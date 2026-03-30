@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_zeroa - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_zeroa</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_zeroa">SDL_zeroa</h1>
+<p>Clear an array's memory to zero.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_stdinc.h">&lt;SDL3/SDL_stdinc.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_zeroa(x) SDL_memset((x), 0, sizeof((x)))
+</code></pre>
+<h2 id="macro-parameters">Macro Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>x</strong></td>
+<td>an array to clear.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="remarks">Remarks</h2>
+<p>This is wrapper over <a href="SDL_memset.html">SDL_memset</a> that handles calculating the
+array size, so there's no chance of copy/paste errors, and the code is
+cleaner.</p>
+<p>This requires an array, not an object, nor a pointer to an object.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this macro from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This macro is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_zero.html">SDL_zero</a></li>
+<li><a href="SDL_zerop.html">SDL_zerop</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryStdinc.html">CategoryStdinc</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_zeroa" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

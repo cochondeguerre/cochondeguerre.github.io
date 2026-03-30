@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_CreateGPUDevice - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_CreateGPUDevice</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_creategpudevice">SDL_CreateGPUDevice</h1>
+<p>Creates a GPU context.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_GPUDevice * SDL_CreateGPUDevice(
+    SDL_GPUShaderFormat format_flags,
+    bool debug_mode,
+    const char *name);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_GPUShaderFormat.html">SDL_GPUShaderFormat</a></td>
+<td><strong>format_flags</strong></td>
+<td>a bitflag indicating which shader formats the app is able to provide.</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong>debug_mode</strong></td>
+<td>enable debug mode properties and validations.</td>
+</tr>
+<tr>
+<td>const char *</td>
+<td><strong>name</strong></td>
+<td>the preferred GPU driver, or NULL to let SDL pick the optimal driver.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_GPUDevice.html">SDL_GPUDevice</a> *) Returns a GPU context on success or NULL
+on failure; call <a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>The GPU driver name can be one of the following:</p>
+<ul>
+<li>&quot;vulkan&quot;: <a href="CategoryGPU#vulkan.html">Vulkan</a></li>
+<li>&quot;direct3d12&quot;: <a href="CategoryGPU#d3d12.html">D3D12</a></li>
+<li>&quot;metal&quot;: <a href="CategoryGPU#metal.html">Metal</a></li>
+<li>NULL: let SDL pick the optimal driver</li>
+</ul>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_CreateGPUDeviceWithProperties.html">SDL_CreateGPUDeviceWithProperties</a></li>
+<li><a href="SDL_GetGPUShaderFormats.html">SDL_GetGPUShaderFormats</a></li>
+<li><a href="SDL_GetGPUDeviceDriver.html">SDL_GetGPUDeviceDriver</a></li>
+<li><a href="SDL_DestroyGPUDevice.html">SDL_DestroyGPUDevice</a></li>
+<li><a href="SDL_GPUSupportsShaderFormats.html">SDL_GPUSupportsShaderFormats</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_CreateGPUDevice" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

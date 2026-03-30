@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_Vulkan_GetInstanceExtensions - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_Vulkan_GetInstanceExtensions</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_vulkan_getinstanceextensions">SDL_Vulkan_GetInstanceExtensions</h1>
+<p>Get the Vulkan instance extensions needed for vkCreateInstance.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_vulkan.h">&lt;SDL3/SDL_vulkan.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">char const * const * SDL_Vulkan_GetInstanceExtensions(Uint32 *count);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="Uint32.html">Uint32</a> *</td>
+<td><strong>count</strong></td>
+<td>a pointer filled in with the number of extensions returned.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(char const * const *) Returns an array of extension name strings on
+success, NULL on failure; call <a href="SDL_GetError.html">SDL_GetError</a>() for more
+information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This should be called after either calling
+<a href="SDL_Vulkan_LoadLibrary.html">SDL_Vulkan_LoadLibrary</a>() or creating an
+<a href="SDL_Window.html">SDL_Window</a> with the <a href="SDL_WINDOW_VULKAN.html"><code>SDL_WINDOW_VULKAN</code></a>
+flag.</p>
+<p>On return, the variable pointed to by <code>count</code> will be set to the number of
+elements returned, suitable for using with
+VkInstanceCreateInfo<span>enabledExtensionCount, and the returned array can be
+used with VkInstanceCreateInfo</span>ppEnabledExtensionNames, for calling
+Vulkan's vkCreateInstance API.</p>
+<p>You should not free the returned array; it is owned by SDL.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="code-examples">Code Examples</h2>
+<pre><code class="language-c">extern void handle_error(void);
+#ifndef VK_EXT_DEBUG_REPORT_EXTENSION_NAME
+#define VK_EXT_DEBUG_REPORT_EXTENSION_NAME &quot;VK_EXT_debug_report&quot;
+#endif
+
+Uint32 count_instance_extensions;
+const char * const *instance_extensions = SDL_Vulkan_GetInstanceExtensions(&amp;count_instance_extensions);
+
+if (instance_extensions == NULL) { handle_error(); }
+
+int count_extensions = count_instance_extensions + 1;
+const char **extensions = SDL_malloc(count_extensions * sizeof(const char *));
+extensions[0] = VK_EXT_DEBUG_REPORT_EXTENSION_NAME;
+SDL_memcpy(&amp;extensions[1], instance_extensions, count_instance_extensions * sizeof(const char*)); 
+
+// Now we can make the Vulkan instance
+VkInstanceCreateInfo create_info = {};
+create_info.enabledExtensionCount = count_extensions;
+create_info.ppEnabledExtensionNames = extensions;
+
+VkInstance instance;
+VkResult result = vkCreateInstance(&amp;create_info, NULL, &amp;instance);
+SDL_free(extensions);
+</code></pre>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_Vulkan_CreateSurface.html">SDL_Vulkan_CreateSurface</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryVulkan.html">CategoryVulkan</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_Vulkan_GetInstanceExtensions" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

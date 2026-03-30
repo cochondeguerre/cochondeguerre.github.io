@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_ALIGNED - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_ALIGNED</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_aligned">SDL_ALIGNED</h1>
+<p>A macro to specify data alignment.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_begin_code.h">&lt;SDL3/SDL_begin_code.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_ALIGNED(x) __attribute__((aligned(x)))
+</code></pre>
+<h2 id="macro-parameters">Macro Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>x</strong></td>
+<td>the byte count to align to, so the data's address will be a multiple of this value.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="remarks">Remarks</h2>
+<p>This informs the compiler that a given datatype or variable must be aligned
+to a specific byte count.</p>
+<p>For example:</p>
+<pre><code class="language-c">// make sure this is struct is aligned to 16 bytes for SIMD access.
+typedef struct {
+   float x, y, z, w;
+} SDL_ALIGNED(16) MySIMDAlignedData;
+
+// make sure this one field in a struct is aligned to 16 bytes for SIMD access.
+typedef struct {
+   SomeStuff stuff;
+   float SDL_ALIGNED(16) position[4];
+   SomeOtherStuff other_stuff;
+} MyStruct;
+
+// make sure this variable is aligned to 32 bytes.
+int SDL_ALIGNED(32) myval = 0;
+</code></pre>
+<p>Alignment is only guaranteed for things the compiler places: local
+variables on the stack and global/static variables. To dynamically allocate
+something that respects this alignment, use
+<a href="SDL_aligned_alloc.html">SDL_aligned_alloc</a>() or some other mechanism.</p>
+<p>On compilers without alignment support, this macro is defined to an invalid
+symbol, to make it clear that the current compiler is likely to generate
+incorrect code when it sees this macro.</p>
+<h2 id="version">Version</h2>
+<p>This macro is available since SDL 3.4.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryBeginCode.html">CategoryBeginCode</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_ALIGNED" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

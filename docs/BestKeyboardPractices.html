@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>BestKeyboardPractices - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">BestKeyboardPractices</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="best-keyboard-practices-in-sdl3">Best keyboard practices in SDL3</h1>
+<h2 id="first-things-first">First things first</h2>
+<p>Keyboard input is a surprisingly complicated topic after you step outside of your usual country and language (and sometimes before you do, too).</p>
+<p>Almost any game, no matter what approach it is taking, should probably offer a means for users to configure key bindings; not only will this solve concerns about what kind of keyboard a user is typing on, it will also make your game flexible to whatever is <em>most comfortable</em> for a user. This is not just a question of keyboard layouts, but being kind to those that don't have full motion of their hands and would benefit from moving keys to accessible locations that don't make obvious sense to an outside observer. At least offer a config file, if not a user interface; people you've never met will thank you for it!</p>
+<h2 id="the-four-approaches">The four approaches</h2>
+<p>There are, as far as we can tell, four common ways that apps want to use keyboard input. Sometimes they want different approaches at different moments, too.</p>
+<h2 id="the-101-button-joystick">The 101-Button Joystick</h2>
+<p>Many games just want to treat a keyboard not as a way to input text, but just as a joystick that has a <em>lot</em> of buttons. The well-known <a href="https://en.wikipedia.org/wiki/WASD_keys">&quot;WASD&quot; key pattern</a> for FPS games is a fine example of this: you want the <em>physical</em> location of a key, regardless of what symbol is printed on the key. After all, on a French keyboard, instead of &quot;WASD&quot;, you'd press &quot;ZQSD&quot;, and on a Hiragana keyboard &quot;てちとし&quot;. Same locations on the keyboard, totally different symbols.</p>
+<p>For these, you want <a href="SDL_Scancode.html">SDL_Scancodes</a>: these are guaranteed to reference the physical location on the keyboard and not what is printed on it.</p>
+<p>Specifically, they assume a US English QWERTY keyboard layout, no matter what the keyboard in use actually has at that location, but that's okay because here we just want physical location of the key, not its meaning.</p>
+<h3 id="events-vs-states">Events vs States</h3>
+<p>When dealing with the buttons of joysticks, mice, and keyboards, it's common that people reach first for events. This document is mostly concerned with them as well as they apply to all of the approaches we'll cover. That said it's important to understand the differences here, as you may run into undesirable if you don't choose wisely.</p>
+<p>Conceptually, Events are a way for the OS or SDL to inform you something has happened. You don't necessarily <em>always</em> want to react to this information immediately. Consider when the player is moving forward, moving the character is, in most games, going to require per-frame work. So frame to frame, you'll need to know the user is pressing the button. Button events, regardless if they're Keyboard/Mouse/Gamepad/Joystick, don't get sent every frame, although they do get repeated, which we'll discuss down below. This can make it appear as though a character is continuously moving, but it will be jerky and there will be a big delay towards the beginning.</p>
+<p>Of course, there's still cases where you might want to use events, but they're typically singular actions. You can know when someone has pressed down on a button to try to do an action, and then you can choose to either immediately adjust state, or set a flag to evaluate the input later in the frame.</p>
+<p>On the other hand States, in the context of input, represent what we last saw when we finished processing events. These are great when we may receive contradictory input and we want to evaluate all relevant state before proceeding with your game logic. They're also useful for continuous input, like movement.</p>
+<p>We'll demonstrate both methods below.</p>
+<h4 id="a-note-on-key-repeat">A Note on Key Repeat</h4>
+<p>As mentioned above, key events are not sent every frame. There's no real way for SDL to do this for us if you're using something like <a href="SDL_PollEvent.html"><code>SDL_PollEvent</code></a>, as it has no idea when your frame starts and ends. Despite that, we do get repeated key event periodically. These repeats are sent by the OS, and typically there's two types of delays between these events. The first type is for the first repeat event. It's typically a little longer, something like ~1s, and then the OS will start sending them at some interval, something like ~200ms. These numbers are fuzzy as this is generally user configurable and dependent on the OS.</p>
+<p>Also mentioned above is that using events for something like movement often results in jerky movement, and indeed, this is due to the delays discussed above. You can mimic the jerky cadence by putting a cursor into a simple text editor and holding it down. The intervals you see as the characters appear is what the key repeat looks like on your system.</p>
+<h3 id="using-them-in-practice">Using them in practice</h3>
+<h4 id="states">States</h4>
+<p>For states you check during the gameloop, you can retrieve the state of the keyboard via <a href="SDL_GetKeyboardState.html"><code>SDL_GetKeyboardState</code></a>. This will give you an array of boolean values representing if a button is up (<code>false</code>), or down (<code>true</code>), indexed by <a href="SDL_Scancode.html"><code>SDL_Scancodes</code></a>. There's no need to worry about the lifetime, SDL owns this array, but you may want to cache it in practice, just so you don't have to call into SDL all the time.</p>
+<p>Here's an example of how you might index into this array to implement the forward/backward axis of the &quot;WASD&quot; pattern mentioned above.</p>
+<pre><code class="language-c">/* returns 1 if moving forward with this keypress, -1 if moving backward, 0 if not moving. */
+int direction_user_should_move()
+{
+    const bool *key_states = SDL_GetKeyboardState();
+    int direction = 0;
+
+    /* (We're writing our code such that it sees both keys are pressed and cancels each other out!) */
+    if (key_states[SDL_SCANCODE_W]) {
+        direction += 1;  /* pressed what would be &quot;W&quot; on a US QWERTY keyboard. Move forward! */
+    } 
+
+    if (key_states[SDL_SCANCODE_S]) {
+        direction += -1;  /* pressed what would be &quot;S&quot; on a US QWERTY keyboard. Move backward! */
+    }
+
+    /* (In practice it's likely you'd be doing full directional input in here, but for simplicity, we're just showing forward and backward) */
+
+    return direction;  /* wasn't key in W or S location, don't move. */
+}
+</code></pre>
+<h4 id="events">Events</h4>
+<p>On the contrary, you might want to initiate an action from events, setting your own state from them that you process in your game loop.</p>
+<p>Simply grab the <code>scancode</code> field from <a href="SDL_EVENT_KEY_DOWN.html">SDL_EVENT_KEY_DOWN</a> and <a href="SDL_EVENT_KEY_UP.html">SDL_EVENT_KEY_UP</a> events.</p>
+<pre><code class="language-c">enum Action { ACTION_NONE, ACTION_RELOAD, ACTION_JUMP };
+
+/* returns ACTION_RELOAD if reloading with this keypress, ACTION_JUMP if jumping, ACTION_NONE if no actions were attempted. */
+Action action_user_should_take(const SDL_Event *e)
+{
+    SDL_assert(e-&gt;type == SDL_EVENT_KEY_DOWN); /* just checking key presses here... */
+    if (e-&gt;key.scancode == SDL_SCANCODE_R) {
+        return ACTION_RELOAD;  /* pressed what would be &quot;R&quot; on a US QWERTY keyboard. Reload! */
+    } else if (e-&gt;key.scancode == SDL_SCANCODE_SPACE) {
+        return ACTION_JUMP;  /* pressed what would be &quot;Space&quot; on a US QWERTY keyboard. Jump! */
+    }
+
+    return ACTION_NONE;  /* wasn't key in W or S location, don't move. */
+}
+</code></pre>
+<h2 id="the-specific-key">The Specific Key</h2>
+<p>Some games might want to know the <em>symbol</em> on a key. This tends to be a &quot;press 'I' to open your inventory&quot; thing, and you don't really care <em>where</em> the 'I' key is on the keyboard.</p>
+<p>(But, again: offer keybindings, because some keyboards don't <em>have</em> an 'I' key!)</p>
+<p>This is also useful for looking for the ESC key to cancel an operation, or Enter to confirm, etc; it doesn't matter where the key is, you still want <em>that</em> key.</p>
+<p>These are <a href="SDL_Keycode.html">SDL_Keycodes</a>. They name specific keys and don't care <em>where</em> on the user's keyboard they actually are. Like scancodes, you also get these from <a href="SDL_EVENT_KEY_DOWN.html">SDL_EVENT_KEY_DOWN</a> and <a href="SDL_EVENT_KEY_UP.html">SDL_EVENT_KEY_UP</a> events.</p>
+<pre><code class="language-c">/* sit in a loop forever until the user presses Escape. */
+bool quit_the_app = false;
+while (!quit_the_app) {
+    SDL_Event e;
+    while (SDL_PollEvent(&amp;e)) {
+        /* user has pressed a key? */
+        if (e.type == SDL_EVENT_KEY_DOWN) {
+            /* the pressed key was Escape? */
+            if (e.key.key == SDLK_ESCAPE) {
+                quit_the_app = true;
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="the-chat-box">The Chat Box</h2>
+<p>Unicode is hard! If you are composing text a string at a time (&quot;Enter your name, adventurer!&quot; screens or accepting sentences for a chat interface, etc) you should <em>not</em> be using key press events! This will <em>never</em> do the right thing across various keyboards and human languages around the world.</p>
+<p>One should instead call <a href="SDL_StartTextInput.html">SDL_StartTextInput</a>, and listen for <a href="SDL_EVENT_TEXT_INPUT.html">SDL_EVENT_TEXT_INPUT</a> events. When done accepting input, call <a href="SDL_StopTextInput.html">SDL_StopTextInput</a>. This approach will let the system provide input interfaces that are familiar to the user (including popping up a virtual keyboard on mobile devices, and other UI for composing in various languages). Then the event will provide Unicode strings in UTF-8 format, which might be complete lines of text or a single character, depending on the system. <strong>You will not be able to replicate these interfaces in your application for everyone in the world</strong>, do not try to build this yourself on top of individual keypress events.</p>
+<p>The downside of this is that a virtual keyboard, etc, might be disruptive to your game, so you need to design accordingly.</p>
+<pre><code class="language-c">/* Set the text area and start text input */
+bool text_input_complete = false;
+char text[1024] = { 0 };
+SDL_Rect area = { textfield.x, textfield.y, textfield.w, textfield.h };
+int cursor = 0;
+SDL_SetTextInputArea(window, &amp;area, cursor);
+SDL_StartTextInput(window);
+
+while (!text_input_complete) {
+    SDL_Event e;
+    while (SDL_PollEvent(&amp;e)) {
+        /* user has pressed a key? */
+        if (e.type == SDL_EVENT_KEY_DOWN) {
+            /* the pressed key was Escape or Return? */
+            if (e.key.key == SDLK_ESCAPE || e.key.key == SDLK_RETURN) {
+                SDL_StopTextInput(window);
+                text_input_complete = true;
+            }
+            /* Handle arrow keys, etc. */
+        } else if (e.type == SDL_EVENT_TEXT_INPUT) {
+            SDL_strlcat(text, e.text.text, sizeof(text));
+        }
+    }
+
+    /* Render the text, adjusting cursor to the offset in pixels from the left edge of the textfield */
+    ...
+
+    /* Update the text input area, adjusting the cursor so IME UI shows up at the correct location. */
+    SDL_SetTextInputArea(window, &amp;area, cursor);
+}
+</code></pre>
+<p>If you're writing a fullscreen game, you might want to render IME UI yourself, so you'd set SDL_HINT_IME_IMPLEMENTED_UI appropriately and handle the SDL_EVENT_TEXT_EDITING and SDL_EVENT_TEXT_EDITING_CANDIDATES events. See <a href="https://github.com/libsdl-org/SDL/blob/main/test/testime.c">testime.c</a> for an example of this.</p>
+<h2 id="the-text-editor">The Text Editor</h2>
+<p>This is a special case, and if you think your game fits here, you should think very hard about how to change that before thinking about how to go this route, because often times you are just on a path to build <a href="#the-chat-box">The Chat Box</a>, incorrectly, from scratch.</p>
+<p>If you were writing an SDL frontend for <a href="https://www.vim.org/">Vim</a>, you would need to know what keypresses-plus-modifiers produce: hitting shift-Z twice produces a different result than pressing z twice, but also you want arrow keys to do the right thing on the numpad, unless NumLock is pressed, when they should produce numbers. On top of all this, it's difficult to correlate between keypress and proper text input events and untangle them to get correct results.</p>
+<p>In this case, you would need to handle both key events and input events as above, in addition you might want to know what the modified keycode for the event is:</p>
+<pre><code class="language-c">bool quit_the_app = false;
+while (!quit_the_app) {
+    SDL_Event e;
+    while (SDL_PollEvent(&amp;e)) {
+        /* user has pressed a key? */
+        if (e.type == SDL_EVENT_KEY_DOWN) {
+            /* Was the pressed key '$', possibly generated by Shift+4 on a US keyboard or the '$' key on the French keyboard? */
+            SDL_Keycode keycode = SDL_GetKeyFromScancode(e.key.scancode, e.key.mod, false);
+            if (keycode == '$') {
+                /* Show me the money! */
+            }
+        }
+    }
+}
+</code></pre>
+<p>Obviously there are many keys that <em>don't</em> generate a character, or characters that are composed by pressing multiple keys (or navigating through IME interfaces that don't map to specific keypresses at all), so this is niche functionality and not how one should accept input in a general sense.</p>
+<h2 id="showing-key-names-to-users">Showing key names to users</h2>
+<p>So you've made your game, and now you're taking the original advice about adding user-configurable keybindings, and you need to know how to show the user the key's name in your config UI, and maybe also in a &quot;press [current keybinding] to jump&quot; tutorial message.</p>
+<p>For this, use <a href="SDL_GetKeyName.html">SDL_GetKeyName</a> with the <a href="SDL_Keycode.html">SDL_Keycode</a> you get from an event:</p>
+<pre><code class="language-c">bool quit_the_app = false;
+while (!quit_the_app) {
+    SDL_Event e;
+    while (SDL_PollEvent(&amp;e)) {
+        /* user has pressed a key? */
+        if (e.type == SDL_EVENT_KEY_DOWN) {
+            SDL_Log(&quot;Wow, you just pressed the %s key!&quot;, SDL_GetKeyName(e.key.key));
+        }
+    }
+}
+</code></pre>
+<p>Note that <a href="SDL_GetKeyName.html">SDL_GetKeyName</a> only returns uppercase characters, which is appropriate for showing a user a &quot;press the button with this symbol on it&quot; message.</p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/BestKeyboardPractices" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

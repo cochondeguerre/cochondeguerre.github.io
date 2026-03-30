@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GPUColorTargetBlendState - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GPUColorTargetBlendState</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gpucolortargetblendstate">SDL_GPUColorTargetBlendState</h1>
+<p>A structure specifying the blend state of a color target.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_GPUColorTargetBlendState
+{
+    SDL_GPUBlendFactor src_color_blendfactor;     /**&lt; The value to be multiplied by the source RGB value. */
+    SDL_GPUBlendFactor dst_color_blendfactor;     /**&lt; The value to be multiplied by the destination RGB value. */
+    SDL_GPUBlendOp color_blend_op;                /**&lt; The blend operation for the RGB components. */
+    SDL_GPUBlendFactor src_alpha_blendfactor;     /**&lt; The value to be multiplied by the source alpha. */
+    SDL_GPUBlendFactor dst_alpha_blendfactor;     /**&lt; The value to be multiplied by the destination alpha. */
+    SDL_GPUBlendOp alpha_blend_op;                /**&lt; The blend operation for the alpha component. */
+    SDL_GPUColorComponentFlags color_write_mask;  /**&lt; A bitmask specifying which of the RGBA components are enabled for writing. Writes to all channels if enable_color_write_mask is false. */
+    bool enable_blend;                            /**&lt; Whether blending is enabled for the color target. */
+    bool enable_color_write_mask;                 /**&lt; Whether the color write mask is enabled. */
+    Uint8 padding1;
+    Uint8 padding2;
+} SDL_GPUColorTargetBlendState;
+</code></pre>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GPUColorTargetDescription.html">SDL_GPUColorTargetDescription</a></li>
+<li><a href="SDL_GPUBlendFactor.html">SDL_GPUBlendFactor</a></li>
+<li><a href="SDL_GPUBlendOp.html">SDL_GPUBlendOp</a></li>
+<li><a href="SDL_GPUColorComponentFlags.html">SDL_GPUColorComponentFlags</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GPUColorTargetBlendState" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

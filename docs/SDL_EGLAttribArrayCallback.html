@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_EGLAttribArrayCallback - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_EGLAttribArrayCallback</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_eglattribarraycallback">SDL_EGLAttribArrayCallback</h1>
+<p>EGL platform attribute initialization callback.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_video.h">&lt;SDL3/SDL_video.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef SDL_EGLAttrib *(SDLCALL *SDL_EGLAttribArrayCallback)(void *userdata);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>userdata</strong></td>
+<td>an app-controlled pointer that is passed to the callback.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>Returns a newly-allocated array of attributes, terminated with <code>EGL_NONE</code>.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This is called when SDL is attempting to create an EGL context, to let the
+app add extra attributes to its eglGetPlatformDisplay() call.</p>
+<p>The callback should return a pointer to an EGL attribute array terminated
+with <code>EGL_NONE</code>. If this function returns NULL, the
+<a href="SDL_CreateWindow.html">SDL_CreateWindow</a> process will fail gracefully.</p>
+<p>The returned pointer should be allocated with <a href="SDL_malloc.html">SDL_malloc</a>()
+and will be passed to <a href="SDL_free.html">SDL_free</a>().</p>
+<p>The arrays returned by each callback will be appended to the existing
+attribute arrays defined by SDL.</p>
+<h2 id="version">Version</h2>
+<p>This datatype is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_EGL_SetAttributeCallbacks.html">SDL_EGL_SetAttributeCallbacks</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIDatatype.html">CategoryAPIDatatype</a>, <a href="CategoryVideo.html">CategoryVideo</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_EGLAttribArrayCallback" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

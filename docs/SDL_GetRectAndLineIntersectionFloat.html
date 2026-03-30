@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetRectAndLineIntersectionFloat - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetRectAndLineIntersectionFloat</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getrectandlineintersectionfloat">SDL_GetRectAndLineIntersectionFloat</h1>
+<p>Calculate the intersection of a rectangle and line segment with float precision.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_rect.h">&lt;SDL3/SDL_rect.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_GetRectAndLineIntersectionFloat(const SDL_FRect *rect, float *X1, float *Y1, float *X2, float *Y2);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>const <a href="SDL_FRect.html">SDL_FRect</a> *</td>
+<td><strong>rect</strong></td>
+<td>an <a href="SDL_FRect.html">SDL_FRect</a> structure representing the rectangle to intersect.</td>
+</tr>
+<tr>
+<td>float *</td>
+<td><strong>X1</strong></td>
+<td>a pointer to the starting X-coordinate of the line.</td>
+</tr>
+<tr>
+<td>float *</td>
+<td><strong>Y1</strong></td>
+<td>a pointer to the starting Y-coordinate of the line.</td>
+</tr>
+<tr>
+<td>float *</td>
+<td><strong>X2</strong></td>
+<td>a pointer to the ending X-coordinate of the line.</td>
+</tr>
+<tr>
+<td>float *</td>
+<td><strong>Y2</strong></td>
+<td>a pointer to the ending Y-coordinate of the line.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true if there is an intersection, false otherwise.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This function is used to clip a line segment to a rectangle. A line segment
+contained entirely within the rectangle or that does not intersect will
+remain unchanged. A line segment that crosses the rectangle at either or
+both ends will be clipped to the boundary of the rectangle and the new
+coordinates saved in <code>X1</code>, <code>Y1</code>, <code>X2</code>, and/or <code>Y2</code> as necessary.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryRect.html">CategoryRect</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetRectAndLineIntersectionFloat" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

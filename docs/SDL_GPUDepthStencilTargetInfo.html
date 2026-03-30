@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GPUDepthStencilTargetInfo - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GPUDepthStencilTargetInfo</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gpudepthstenciltargetinfo">SDL_GPUDepthStencilTargetInfo</h1>
+<p>A structure specifying the parameters of a depth-stencil target used by a render pass.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_GPUDepthStencilTargetInfo
+{
+    SDL_GPUTexture *texture;               /**&lt; The texture that will be used as the depth stencil target by the render pass. */
+    float clear_depth;                     /**&lt; The value to clear the depth component to at the beginning of the render pass. Ignored if SDL_GPU_LOADOP_CLEAR is not used. */
+    SDL_GPULoadOp load_op;                 /**&lt; What is done with the depth contents at the beginning of the render pass. */
+    SDL_GPUStoreOp store_op;               /**&lt; What is done with the depth results of the render pass. */
+    SDL_GPULoadOp stencil_load_op;         /**&lt; What is done with the stencil contents at the beginning of the render pass. */
+    SDL_GPUStoreOp stencil_store_op;       /**&lt; What is done with the stencil results of the render pass. */
+    bool cycle;                            /**&lt; true cycles the texture if the texture is bound and any load ops are not LOAD */
+    Uint8 clear_stencil;                   /**&lt; The value to clear the stencil component to at the beginning of the render pass. Ignored if SDL_GPU_LOADOP_CLEAR is not used. */
+    Uint8 mip_level;                       /**&lt; The mip level to use as the depth stencil target. */
+    Uint8 layer;                           /**&lt; The layer index to use as the depth stencil target. */
+} SDL_GPUDepthStencilTargetInfo;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>The load_op field determines what is done with the depth contents of the
+texture at the beginning of the render pass.</p>
+<ul>
+<li>LOAD: Loads the depth values currently in the texture.</li>
+<li>CLEAR: Clears the texture to a single depth.</li>
+<li>DONT_CARE: The driver will do whatever it wants with the memory. This is
+a good option if you know that every single pixel will be touched in the
+render pass.</li>
+</ul>
+<p>The store_op field determines what is done with the depth results of the
+render pass.</p>
+<ul>
+<li>STORE: Stores the depth results in the texture.</li>
+<li>DONT_CARE: The driver will do whatever it wants with the depth results.
+This is often a good option for depth/stencil textures that don't need to
+be reused again.</li>
+</ul>
+<p>The stencil_load_op field determines what is done with the stencil contents
+of the texture at the beginning of the render pass.</p>
+<ul>
+<li>LOAD: Loads the stencil values currently in the texture.</li>
+<li>CLEAR: Clears the stencil values to a single value.</li>
+<li>DONT_CARE: The driver will do whatever it wants with the memory. This is
+a good option if you know that every single pixel will be touched in the
+render pass.</li>
+</ul>
+<p>The stencil_store_op field determines what is done with the stencil results
+of the render pass.</p>
+<ul>
+<li>STORE: Stores the stencil results in the texture.</li>
+<li>DONT_CARE: The driver will do whatever it wants with the stencil results.
+This is often a good option for depth/stencil textures that don't need to
+be reused again.</li>
+</ul>
+<p>Note that depth/stencil targets do not support multisample resolves.</p>
+<p>Due to ABI limitations, depth textures with more than 255 layers are not
+supported.</p>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_BeginGPURenderPass.html">SDL_BeginGPURenderPass</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GPUDepthStencilTargetInfo" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

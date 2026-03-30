@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>README-psp - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">README-psp</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="psp">PSP</h1>
+<p>SDL port for the Sony PSP contributed by:</p>
+<ul>
+<li>Captain Lex</li>
+<li>Francisco Javier Trujillo Mata</li>
+<li>Wouter Wijsman</li>
+</ul>
+<p>Credit to
+Marcus R.Brown, Jim Paris, Matthew H for the original SDL 1.2 for PSP
+Geecko for his PSP GU lib &quot;Glib2d&quot;</p>
+<h2 id="building">Building</h2>
+<p>To build SDL library for the PSP, make sure you have the latest PSPDev status and run:</p>
+<pre><code class="language-bash">cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=$PSPDEV/psp/share/pspdev.cmake
+cmake --build build
+cmake --install build
+</code></pre>
+<h2 id="getting-psp-dev">Getting PSP Dev</h2>
+<p><a href="https://github.com/pspdev/pspdev">Installing PSP Dev</a></p>
+<h2 id="running-on-ppsspp-emulator">Running on PPSSPP Emulator</h2>
+<p><a href="https://github.com/hrydgard/ppsspp">PPSSPP</a></p>
+<p><a href="https://github.com/hrydgard/ppsspp/wiki/Build-instructions">Build Instructions</a></p>
+<h2 id="compiling-a-helloworld">Compiling a HelloWorld</h2>
+<p><a href="https://pspdev.github.io/basic_programs.html#hello-world">PSP Hello World</a></p>
+<h2 id="to-do">To Do</h2>
+<ul>
+<li>PSP Screen Keyboard</li>
+<li>Dialogs</li>
+</ul>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/README-psp" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

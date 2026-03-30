@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_CreateGPUTransferBuffer - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_CreateGPUTransferBuffer</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_creategputransferbuffer">SDL_CreateGPUTransferBuffer</h1>
+<p>Creates a transfer buffer to be used when uploading to or downloading from graphics resources.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_GPUTransferBuffer * SDL_CreateGPUTransferBuffer(
+    SDL_GPUDevice *device,
+    const SDL_GPUTransferBufferCreateInfo *createinfo);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_GPUDevice.html">SDL_GPUDevice</a> *</td>
+<td><strong>device</strong></td>
+<td>a GPU Context.</td>
+</tr>
+<tr>
+<td>const <a href="SDL_GPUTransferBufferCreateInfo.html">SDL_GPUTransferBufferCreateInfo</a> *</td>
+<td><strong>createinfo</strong></td>
+<td>a struct describing the state of the transfer buffer to create.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_GPUTransferBuffer.html">SDL_GPUTransferBuffer</a> *) Returns a transfer
+buffer on success, or NULL on failure; call <a href="SDL_GetError.html">SDL_GetError</a>()
+for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>Download buffers can be particularly expensive to create, so it is good
+practice to reuse them if data will be downloaded regularly.</p>
+<p>There are optional properties that can be provided through <code>props</code>. These
+are the supported properties:</p>
+<ul>
+<li><a href="SDL_PROP_GPU_TRANSFERBUFFER_CREATE_NAME_STRING.html"><code>SDL_PROP_GPU_TRANSFERBUFFER_CREATE_NAME_STRING</code></a>:
+a name that can be displayed in debugging tools.</li>
+</ul>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_UploadToGPUBuffer.html">SDL_UploadToGPUBuffer</a></li>
+<li><a href="SDL_DownloadFromGPUBuffer.html">SDL_DownloadFromGPUBuffer</a></li>
+<li><a href="SDL_UploadToGPUTexture.html">SDL_UploadToGPUTexture</a></li>
+<li><a href="SDL_DownloadFromGPUTexture.html">SDL_DownloadFromGPUTexture</a></li>
+<li><a href="SDL_ReleaseGPUTransferBuffer.html">SDL_ReleaseGPUTransferBuffer</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_CreateGPUTransferBuffer" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

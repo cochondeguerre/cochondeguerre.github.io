@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_ComposeCustomBlendMode - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_ComposeCustomBlendMode</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_composecustomblendmode">SDL_ComposeCustomBlendMode</h1>
+<p>Compose a custom blend mode for renderers.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_blendmode.h">&lt;SDL3/SDL_blendmode.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_BlendMode SDL_ComposeCustomBlendMode(SDL_BlendFactor srcColorFactor,
+                                     SDL_BlendFactor dstColorFactor,
+                                     SDL_BlendOperation colorOperation,
+                                     SDL_BlendFactor srcAlphaFactor,
+                                     SDL_BlendFactor dstAlphaFactor,
+                                     SDL_BlendOperation alphaOperation);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_BlendFactor.html">SDL_BlendFactor</a></td>
+<td><strong>srcColorFactor</strong></td>
+<td>the <a href="SDL_BlendFactor.html">SDL_BlendFactor</a> applied to the red, green, and blue components of the source pixels.</td>
+</tr>
+<tr>
+<td><a href="SDL_BlendFactor.html">SDL_BlendFactor</a></td>
+<td><strong>dstColorFactor</strong></td>
+<td>the <a href="SDL_BlendFactor.html">SDL_BlendFactor</a> applied to the red, green, and blue components of the destination pixels.</td>
+</tr>
+<tr>
+<td><a href="SDL_BlendOperation.html">SDL_BlendOperation</a></td>
+<td><strong>colorOperation</strong></td>
+<td>the <a href="SDL_BlendOperation.html">SDL_BlendOperation</a> used to combine the red, green, and blue components of the source and destination pixels.</td>
+</tr>
+<tr>
+<td><a href="SDL_BlendFactor.html">SDL_BlendFactor</a></td>
+<td><strong>srcAlphaFactor</strong></td>
+<td>the <a href="SDL_BlendFactor.html">SDL_BlendFactor</a> applied to the alpha component of the source pixels.</td>
+</tr>
+<tr>
+<td><a href="SDL_BlendFactor.html">SDL_BlendFactor</a></td>
+<td><strong>dstAlphaFactor</strong></td>
+<td>the <a href="SDL_BlendFactor.html">SDL_BlendFactor</a> applied to the alpha component of the destination pixels.</td>
+</tr>
+<tr>
+<td><a href="SDL_BlendOperation.html">SDL_BlendOperation</a></td>
+<td><strong>alphaOperation</strong></td>
+<td>the <a href="SDL_BlendOperation.html">SDL_BlendOperation</a> used to combine the alpha component of the source and destination pixels.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_BlendMode.html">SDL_BlendMode</a>) Returns an <a href="SDL_BlendMode.html">SDL_BlendMode</a>
+that represents the chosen factors and operations.</p>
+<h2 id="remarks">Remarks</h2>
+<p>The functions <a href="SDL_SetRenderDrawBlendMode.html">SDL_SetRenderDrawBlendMode</a> and
+<a href="SDL_SetTextureBlendMode.html">SDL_SetTextureBlendMode</a> accept the
+<a href="SDL_BlendMode.html">SDL_BlendMode</a> returned by this function if the renderer
+supports it.</p>
+<p>A blend mode controls how the pixels from a drawing operation (source) get
+combined with the pixels from the render target (destination). First, the
+components of the source and destination pixels get multiplied with their
+blend factors. Then, the blend operation takes the two products and
+calculates the result that will get stored in the render target.</p>
+<p>Expressed in pseudocode, it would look like this:</p>
+<pre><code class="language-c">dstRGB = colorOperation(srcRGB * srcColorFactor, dstRGB * dstColorFactor);
+dstA = alphaOperation(srcA * srcAlphaFactor, dstA * dstAlphaFactor);
+</code></pre>
+<p>Where the functions <code>colorOperation(src, dst)</code> and <code>alphaOperation(src, dst)</code> can return one of the following:</p>
+<ul>
+<li><code>src + dst</code></li>
+<li><code>src - dst</code></li>
+<li><code>dst - src</code></li>
+<li><code>min(src, dst)</code></li>
+<li><code>max(src, dst)</code></li>
+</ul>
+<p>The red, green, and blue components are always multiplied with the first,
+second, and third components of the <a href="SDL_BlendFactor.html">SDL_BlendFactor</a>,
+respectively. The fourth component is not used.</p>
+<p>The alpha component is always multiplied with the fourth component of the
+<a href="SDL_BlendFactor.html">SDL_BlendFactor</a>. The other components are not used in
+the alpha calculation.</p>
+<p>Support for these blend modes varies for each renderer. To check if a
+specific <a href="SDL_BlendMode.html">SDL_BlendMode</a> is supported, create a renderer and
+pass it to either <a href="SDL_SetRenderDrawBlendMode.html">SDL_SetRenderDrawBlendMode</a>
+or <a href="SDL_SetTextureBlendMode.html">SDL_SetTextureBlendMode</a>. They will return
+with an error if the blend mode is not supported.</p>
+<p>This list describes the support of custom blend modes for each renderer.
+All renderers support the four blend modes listed in the
+<a href="SDL_BlendMode.html">SDL_BlendMode</a> enumeration.</p>
+<ul>
+<li><strong>direct3d</strong>: Supports all operations with all factors. However, some
+factors produce unexpected results with
+<a href="SDL_BLENDOPERATION_MINIMUM.html"><code>SDL_BLENDOPERATION_MINIMUM</code></a> and
+<a href="SDL_BLENDOPERATION_MAXIMUM.html"><code>SDL_BLENDOPERATION_MAXIMUM</code></a>.</li>
+<li><strong>direct3d11</strong>: Same as Direct3D 9.</li>
+<li><strong>opengl</strong>: Supports the
+<a href="SDL_BLENDOPERATION_ADD.html"><code>SDL_BLENDOPERATION_ADD</code></a> operation with all
+factors. OpenGL versions 1.1, 1.2, and 1.3 do not work correctly here.</li>
+<li><strong>opengles2</strong>: Supports the
+<a href="SDL_BLENDOPERATION_ADD.html"><code>SDL_BLENDOPERATION_ADD</code></a>,
+<a href="SDL_BLENDOPERATION_SUBTRACT.html"><code>SDL_BLENDOPERATION_SUBTRACT</code></a>,
+<a href="SDL_BLENDOPERATION_REV_SUBTRACT.html"><code>SDL_BLENDOPERATION_REV_SUBTRACT</code></a>
+operations with all factors.</li>
+<li><strong>psp</strong>: No custom blend mode support.</li>
+<li><strong>software</strong>: No custom blend mode support.</li>
+</ul>
+<p>Some renderers do not provide an alpha component for the default render
+target. The <a href="SDL_BLENDFACTOR_DST_ALPHA.html"><code>SDL_BLENDFACTOR_DST_ALPHA</code></a> and
+<a href="SDL_BLENDFACTOR_ONE_MINUS_DST_ALPHA.html"><code>SDL_BLENDFACTOR_ONE_MINUS_DST_ALPHA</code></a>
+factors do not have an effect in this case.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_SetRenderDrawBlendMode.html">SDL_SetRenderDrawBlendMode</a></li>
+<li><a href="SDL_GetRenderDrawBlendMode.html">SDL_GetRenderDrawBlendMode</a></li>
+<li><a href="SDL_SetTextureBlendMode.html">SDL_SetTextureBlendMode</a></li>
+<li><a href="SDL_GetTextureBlendMode.html">SDL_GetTextureBlendMode</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryBlendmode.html">CategoryBlendmode</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_ComposeCustomBlendMode" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

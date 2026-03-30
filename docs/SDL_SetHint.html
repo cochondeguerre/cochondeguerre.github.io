@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_SetHint - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_SetHint</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_sethint">SDL_SetHint</h1>
+<p>Set a hint with normal priority.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_hints.h">&lt;SDL3/SDL_hints.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_SetHint(const char *name, const char *value);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>const char *</td>
+<td><strong>name</strong></td>
+<td>the hint to set.</td>
+</tr>
+<tr>
+<td>const char *</td>
+<td><strong>value</strong></td>
+<td>the value of the hint variable.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>Hints will not be set if there is an existing override hint or environment
+variable that takes precedence. You can use
+<a href="SDL_SetHintWithPriority.html">SDL_SetHintWithPriority</a>() to set the hint with
+override priority instead.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="code-examples">Code Examples</h2>
+<pre><code class="language-c">#include &lt;SDL3/SDL.h&gt;
+#include &lt;SDL3/SDL_main.h&gt;
+
+int main(int argc, char* argv[])
+{
+    // Each hint describes when it should be set, this one should be set before SDL is initialized.
+    SDL_SetHint(SDL_HINT_APP_NAME, &quot;My Game 2: The Revenge&quot;);
+
+    SDL_Init(SDL_INIT_VIDEO);
+
+    // ...
+
+    SDL_Quit();
+    return 0;
+}
+
+</code></pre>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetHint.html">SDL_GetHint</a></li>
+<li><a href="SDL_ResetHint.html">SDL_ResetHint</a></li>
+<li><a href="SDL_SetHintWithPriority.html">SDL_SetHintWithPriority</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryHints.html">CategoryHints</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_SetHint" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

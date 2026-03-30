@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_IOStreamInterface - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_IOStreamInterface</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_iostreaminterface">SDL_IOStreamInterface</h1>
+<p>The function pointers that drive an <a href="SDL_IOStream.html">SDL_IOStream</a>.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_iostream.h">&lt;SDL3/SDL_iostream.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_IOStreamInterface
+{
+    /* The version of this interface */
+    Uint32 version;
+
+    /**
+     *  Return the number of bytes in this SDL_IOStream
+     *
+     *  \return the total size of the data stream, or -1 on error.
+     */
+    Sint64 (SDLCALL *size)(void *userdata);
+
+    /**
+     *  Seek to `offset` relative to `whence`, one of stdio's whence values:
+     *  SDL_IO_SEEK_SET, SDL_IO_SEEK_CUR, SDL_IO_SEEK_END
+     *
+     *  \return the final offset in the data stream, or -1 on error.
+     */
+    Sint64 (SDLCALL *seek)(void *userdata, Sint64 offset, SDL_IOWhence whence);
+
+    /**
+     *  Read up to `size` bytes from the data stream to the area pointed
+     *  at by `ptr`. `size` will always be &gt; 0.
+     *
+     *  On an incomplete read, you should set `*status` to a value from the
+     *  SDL_IOStatus enum. You do not have to explicitly set this on
+     *  a complete, successful read.
+     *
+     *  \return the number of bytes read
+     */
+    size_t (SDLCALL *read)(void *userdata, void *ptr, size_t size, SDL_IOStatus *status);
+
+    /**
+     *  Write exactly `size` bytes from the area pointed at by `ptr`
+     *  to data stream. `size` will always be &gt; 0.
+     *
+     *  On an incomplete write, you should set `*status` to a value from the
+     *  SDL_IOStatus enum. You do not have to explicitly set this on
+     *  a complete, successful write.
+     *
+     *  \return the number of bytes written
+     */
+    size_t (SDLCALL *write)(void *userdata, const void *ptr, size_t size, SDL_IOStatus *status);
+
+    /**
+     *  If the stream is buffering, make sure the data is written out.
+     *
+     *  On failure, you should set `*status` to a value from the
+     *  SDL_IOStatus enum. You do not have to explicitly set this on
+     *  a successful flush.
+     *
+     *  \return true if successful or false on write error when flushing data.
+     */
+    bool (SDLCALL *flush)(void *userdata, SDL_IOStatus *status);
+
+    /**
+     *  Close and free any allocated resources.
+     *
+     *  This does not guarantee file writes will sync to physical media; they
+     *  can be in the system's file cache, waiting to go to disk.
+     *
+     *  The SDL_IOStream is still destroyed even if this fails, so clean up anything
+     *  even if flushing buffers, etc, returns an error.
+     *
+     *  \return true if successful or false on write error when flushing data.
+     */
+    bool (SDLCALL *close)(void *userdata);
+
+} SDL_IOStreamInterface;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>Applications can provide this struct to <a href="SDL_OpenIO.html">SDL_OpenIO</a>() to
+create their own implementation of <a href="SDL_IOStream.html">SDL_IOStream</a>. This is
+not necessarily required, as SDL already offers several common types of I/O
+streams, via functions like <a href="SDL_IOFromFile.html">SDL_IOFromFile</a>() and
+<a href="SDL_IOFromMem.html">SDL_IOFromMem</a>().</p>
+<p>This structure should be initialized using
+<a href="SDL_INIT_INTERFACE.html">SDL_INIT_INTERFACE</a>()</p>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_INIT_INTERFACE.html">SDL_INIT_INTERFACE</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryIOStream.html">CategoryIOStream</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_IOStreamInterface" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

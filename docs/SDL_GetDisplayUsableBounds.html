@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetDisplayUsableBounds - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetDisplayUsableBounds</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getdisplayusablebounds">SDL_GetDisplayUsableBounds</h1>
+<p>Get the usable desktop area represented by a display, in screen coordinates.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_video.h">&lt;SDL3/SDL_video.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_GetDisplayUsableBounds(SDL_DisplayID displayID, SDL_Rect *rect);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_DisplayID.html">SDL_DisplayID</a></td>
+<td><strong>displayID</strong></td>
+<td>the instance ID of the display to query.</td>
+</tr>
+<tr>
+<td><a href="SDL_Rect.html">SDL_Rect</a> *</td>
+<td><strong>rect</strong></td>
+<td>the <a href="SDL_Rect.html">SDL_Rect</a> structure filled in with the display bounds.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This is the same area as <a href="SDL_GetDisplayBounds.html">SDL_GetDisplayBounds</a>()
+reports, but with portions reserved by the system removed. For example, on
+Apple's macOS, this subtracts the area occupied by the menu bar and dock.</p>
+<p>Setting a window to be fullscreen generally bypasses these unusable areas,
+so these are good guidelines for the maximum space available to a
+non-fullscreen window.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should only be called on the main thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetDisplayBounds.html">SDL_GetDisplayBounds</a></li>
+<li><a href="SDL_GetDisplays.html">SDL_GetDisplays</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryVideo.html">CategoryVideo</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetDisplayUsableBounds" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

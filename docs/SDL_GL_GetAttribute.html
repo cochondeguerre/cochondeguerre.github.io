@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GL_GetAttribute - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GL_GetAttribute</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gl_getattribute">SDL_GL_GetAttribute</h1>
+<p>Get the actual value for an attribute from the current context.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_video.h">&lt;SDL3/SDL_video.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_GL_GetAttribute(SDL_GLAttr attr, int *value);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_GLAttr.html">SDL_GLAttr</a></td>
+<td><strong>attr</strong></td>
+<td>an <a href="SDL_GLAttr.html">SDL_GLAttr</a> enum value specifying the OpenGL attribute to get.</td>
+</tr>
+<tr>
+<td>int *</td>
+<td><strong>value</strong></td>
+<td>a pointer filled in with the current value of <code>attr</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should only be called on the main thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GL_ResetAttributes.html">SDL_GL_ResetAttributes</a></li>
+<li><a href="SDL_GL_SetAttribute.html">SDL_GL_SetAttribute</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryVideo.html">CategoryVideo</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GL_GetAttribute" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

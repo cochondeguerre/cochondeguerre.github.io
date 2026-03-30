@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_BindGPUVertexBuffers - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_BindGPUVertexBuffers</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_bindgpuvertexbuffers">SDL_BindGPUVertexBuffers</h1>
+<p>Binds vertex buffers on a command buffer for use with subsequent draw calls.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">void SDL_BindGPUVertexBuffers(
+    SDL_GPURenderPass *render_pass,
+    Uint32 first_slot,
+    const SDL_GPUBufferBinding *bindings,
+    Uint32 num_bindings);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_GPURenderPass.html">SDL_GPURenderPass</a> *</td>
+<td><strong>render_pass</strong></td>
+<td>a render pass handle.</td>
+</tr>
+<tr>
+<td><a href="Uint32.html">Uint32</a></td>
+<td><strong>first_slot</strong></td>
+<td>the vertex buffer slot to begin binding from.</td>
+</tr>
+<tr>
+<td>const <a href="SDL_GPUBufferBinding.html">SDL_GPUBufferBinding</a> *</td>
+<td><strong>bindings</strong></td>
+<td>an array of <a href="SDL_GPUBufferBinding.html">SDL_GPUBufferBinding</a> structs containing vertex buffers and offset values.</td>
+</tr>
+<tr>
+<td><a href="Uint32.html">Uint32</a></td>
+<td><strong>num_bindings</strong></td>
+<td>the number of bindings in the bindings array.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_BindGPUVertexBuffers" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

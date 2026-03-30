@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_StepUTF8 - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_StepUTF8</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_steputf8">SDL_StepUTF8</h1>
+<p>Decode a UTF-8 string, one Unicode codepoint at a time.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_stdinc.h">&lt;SDL3/SDL_stdinc.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">Uint32 SDL_StepUTF8(const char **pstr, size_t *pslen);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>const char **</td>
+<td><strong>pstr</strong></td>
+<td>a pointer to a UTF-8 string pointer to be read and adjusted.</td>
+</tr>
+<tr>
+<td>size_t *</td>
+<td><strong>pslen</strong></td>
+<td>a pointer to the number of bytes in the string, to be read and adjusted. NULL is allowed.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="Uint32.html">Uint32</a>) Returns the first Unicode codepoint in the string.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This will return the first Unicode codepoint in the UTF-8 encoded string in
+<code>*pstr</code>, and then advance <code>*pstr</code> past any consumed bytes before returning.</p>
+<p>It will not access more than <code>*pslen</code> bytes from the string. <code>*pslen</code> will
+be adjusted, as well, subtracting the number of bytes consumed.</p>
+<p><code>pslen</code> is allowed to be NULL, in which case the string <em>must</em> be
+NULL-terminated, as the function will blindly read until it sees the NULL
+char.</p>
+<p>If <code>*pslen</code> is zero, it assumes the end of string is reached and returns a
+zero codepoint regardless of the contents of the string buffer.</p>
+<p>If the resulting codepoint is zero (a NULL terminator), or <code>*pslen</code> is
+zero, it will not advance <code>*pstr</code> or <code>*pslen</code> at all.</p>
+<p>Generally this function is called in a loop until it returns zero,
+adjusting its parameters each iteration.</p>
+<p>If an invalid UTF-8 sequence is encountered, this function returns
+<a href="SDL_INVALID_UNICODE_CODEPOINT.html">SDL_INVALID_UNICODE_CODEPOINT</a> and advances
+the string/length by one byte (which is to say, a multibyte sequence might
+produce several
+<a href="SDL_INVALID_UNICODE_CODEPOINT.html">SDL_INVALID_UNICODE_CODEPOINT</a> returns
+before it syncs to the next valid UTF-8 sequence).</p>
+<p>Several things can generate invalid UTF-8 sequences, including overlong
+encodings, the use of UTF-16 surrogate values, and truncated data. Please
+refer to
+<a href="https://www.ietf.org/rfc/rfc3629.txt">RFC3629</a>
+for details.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryStdinc.html">CategoryStdinc</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_StepUTF8" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

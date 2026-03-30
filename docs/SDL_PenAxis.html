@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_PenAxis - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_PenAxis</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_penaxis">SDL_PenAxis</h1>
+<p>Pen axis indices.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_pen.h">&lt;SDL3/SDL_pen.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef enum SDL_PenAxis
+{
+    SDL_PEN_AXIS_PRESSURE,  /**&lt; Pen pressure.  Unidirectional: 0 to 1.0 */
+    SDL_PEN_AXIS_XTILT,     /**&lt; Pen horizontal tilt angle.  Bidirectional: -90.0 to 90.0 (left-to-right). */
+    SDL_PEN_AXIS_YTILT,     /**&lt; Pen vertical tilt angle.  Bidirectional: -90.0 to 90.0 (top-to-down). */
+    SDL_PEN_AXIS_DISTANCE,  /**&lt; Pen distance to drawing surface.  Unidirectional: 0.0 to 1.0 */
+    SDL_PEN_AXIS_ROTATION,  /**&lt; Pen barrel rotation.  Bidirectional: -180 to 179.9 (clockwise, 0 is facing up, -180.0 is facing down). */
+    SDL_PEN_AXIS_SLIDER,    /**&lt; Pen finger wheel or slider (e.g., Airbrush Pen).  Unidirectional: 0 to 1.0 */
+    SDL_PEN_AXIS_TANGENTIAL_PRESSURE,    /**&lt; Pressure from squeezing the pen (&quot;barrel pressure&quot;). */
+    SDL_PEN_AXIS_COUNT       /**&lt; Total known pen axis types in this version of SDL. This number may grow in future releases! */
+} SDL_PenAxis;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>These are the valid values for the <code>axis</code> field in
+<a href="SDL_PenAxisEvent.html">SDL_PenAxisEvent</a>. All axes are either normalised to
+0..1 or report a (positive or negative) angle in degrees, with 0.0
+representing the centre. Not all pens/backends support all axes:
+unsupported axes are always zero.</p>
+<p>To convert angles for tilt and rotation into vector representation, use
+<a href="SDL_sinf.html">SDL_sinf</a> on the XTILT, YTILT, or ROTATION component, for
+example:</p>
+<p><code>SDL_sinf(xtilt * SDL_PI_F / 180.0)</code>.</p>
+<h2 id="version">Version</h2>
+<p>This enum is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIEnum.html">CategoryAPIEnum</a>, <a href="CategoryPen.html">CategoryPen</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_PenAxis" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

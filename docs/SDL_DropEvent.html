@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_DropEvent - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_DropEvent</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_dropevent">SDL_DropEvent</h1>
+<p>An event used to drop text or request a file open by the system (event.drop.*)</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_events.h">&lt;SDL3/SDL_events.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_DropEvent
+{
+    SDL_EventType type; /**&lt; SDL_EVENT_DROP_BEGIN or SDL_EVENT_DROP_FILE or SDL_EVENT_DROP_TEXT or SDL_EVENT_DROP_COMPLETE or SDL_EVENT_DROP_POSITION */
+    Uint32 reserved;
+    Uint64 timestamp;   /**&lt; In nanoseconds, populated using SDL_GetTicksNS() */
+    SDL_WindowID windowID;    /**&lt; The window that was dropped on, if any */
+    float x;            /**&lt; X coordinate, relative to window (not on begin) */
+    float y;            /**&lt; Y coordinate, relative to window (not on begin) */
+    const char *source; /**&lt; The source app that sent this drop event, or NULL if that isn't available */
+    const char *data;   /**&lt; The text for SDL_EVENT_DROP_TEXT and the file name for SDL_EVENT_DROP_FILE, NULL for other events */
+} SDL_DropEvent;
+</code></pre>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryEvents.html">CategoryEvents</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_DropEvent" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

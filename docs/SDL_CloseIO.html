@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_CloseIO - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_CloseIO</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_closeio">SDL_CloseIO</h1>
+<p>Close and free an allocated <a href="SDL_IOStream.html">SDL_IOStream</a> structure.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_iostream.h">&lt;SDL3/SDL_iostream.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_CloseIO(SDL_IOStream *context);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_IOStream.html">SDL_IOStream</a> *</td>
+<td><strong>context</strong></td>
+<td><a href="SDL_IOStream.html">SDL_IOStream</a> structure to close.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p><a href="SDL_CloseIO.html">SDL_CloseIO</a>() closes and cleans up the
+<a href="SDL_IOStream.html">SDL_IOStream</a> stream. It releases any resources used by the
+stream and frees the <a href="SDL_IOStream.html">SDL_IOStream</a> itself. This returns true
+on success, or false if the stream failed to flush to its output (e.g. to
+disk).</p>
+<p>Note that if this fails to flush the stream for any reason, this function
+reports an error, but the <a href="SDL_IOStream.html">SDL_IOStream</a> is still invalid
+once this function returns.</p>
+<p>This call flushes any buffered writes to the operating system, but there
+are no guarantees that those writes have gone to physical media; they might
+be in the OS's file cache, waiting to go to disk later. If it's absolutely
+crucial that writes go to disk immediately, so they are definitely stored
+even if the power fails before the file cache would have caught up, one
+should call <a href="SDL_FlushIO.html">SDL_FlushIO</a>() before closing. Note that flushing
+takes time and makes the system and your app operate less efficiently, so
+do so sparingly.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>Do not use the same <a href="SDL_IOStream.html">SDL_IOStream</a> from two threads at once.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_OpenIO.html">SDL_OpenIO</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryIOStream.html">CategoryIOStream</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_CloseIO" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

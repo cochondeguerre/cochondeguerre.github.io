@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_DispatchGPUCompute - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_DispatchGPUCompute</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_dispatchgpucompute">SDL_DispatchGPUCompute</h1>
+<p>Dispatches compute work.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">void SDL_DispatchGPUCompute(
+    SDL_GPUComputePass *compute_pass,
+    Uint32 groupcount_x,
+    Uint32 groupcount_y,
+    Uint32 groupcount_z);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_GPUComputePass.html">SDL_GPUComputePass</a> *</td>
+<td><strong>compute_pass</strong></td>
+<td>a compute pass handle.</td>
+</tr>
+<tr>
+<td><a href="Uint32.html">Uint32</a></td>
+<td><strong>groupcount_x</strong></td>
+<td>number of local workgroups to dispatch in the X dimension.</td>
+</tr>
+<tr>
+<td><a href="Uint32.html">Uint32</a></td>
+<td><strong>groupcount_y</strong></td>
+<td>number of local workgroups to dispatch in the Y dimension.</td>
+</tr>
+<tr>
+<td><a href="Uint32.html">Uint32</a></td>
+<td><strong>groupcount_z</strong></td>
+<td>number of local workgroups to dispatch in the Z dimension.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="remarks">Remarks</h2>
+<p>You must not call this function before binding a compute pipeline.</p>
+<p>A VERY IMPORTANT NOTE If you dispatch multiple times in a compute pass, and
+the dispatches write to the same resource region as each other, there is no
+guarantee of which order the writes will occur. If the write order matters,
+you MUST end the compute pass and begin another one.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_DispatchGPUCompute" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

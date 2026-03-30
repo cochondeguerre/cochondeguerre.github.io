@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_BeginGPURenderPass - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_BeginGPURenderPass</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_begingpurenderpass">SDL_BeginGPURenderPass</h1>
+<p>Begins a render pass on a command buffer.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_GPURenderPass * SDL_BeginGPURenderPass(
+    SDL_GPUCommandBuffer *command_buffer,
+    const SDL_GPUColorTargetInfo *color_target_infos,
+    Uint32 num_color_targets,
+    const SDL_GPUDepthStencilTargetInfo *depth_stencil_target_info);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_GPUCommandBuffer.html">SDL_GPUCommandBuffer</a> *</td>
+<td><strong>command_buffer</strong></td>
+<td>a command buffer.</td>
+</tr>
+<tr>
+<td>const <a href="SDL_GPUColorTargetInfo.html">SDL_GPUColorTargetInfo</a> *</td>
+<td><strong>color_target_infos</strong></td>
+<td>an array of texture subresources with corresponding clear values and load/store ops.</td>
+</tr>
+<tr>
+<td><a href="Uint32.html">Uint32</a></td>
+<td><strong>num_color_targets</strong></td>
+<td>the number of color targets in the color_target_infos array.</td>
+</tr>
+<tr>
+<td>const <a href="SDL_GPUDepthStencilTargetInfo.html">SDL_GPUDepthStencilTargetInfo</a> *</td>
+<td><strong>depth_stencil_target_info</strong></td>
+<td>a texture subresource with corresponding clear value and load/store ops, may be NULL.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_GPURenderPass.html">SDL_GPURenderPass</a> *) Returns a render pass handle.</p>
+<h2 id="remarks">Remarks</h2>
+<p>A render pass consists of a set of texture subresources (or depth slices in
+the 3D texture case) which will be rendered to during the render pass,
+along with corresponding clear values and load/store operations. All
+operations related to graphics pipelines must take place inside of a render
+pass. A default viewport and scissor state are automatically set when this
+is called. You cannot begin another render pass, or begin a compute pass or
+copy pass until you have ended the render pass.</p>
+<p>Using <a href="SDL_GPU_LOADOP_LOAD.html">SDL_GPU_LOADOP_LOAD</a> before any contents have
+been written to the texture subresource will result in undefined behavior.
+<a href="SDL_GPU_LOADOP_CLEAR.html">SDL_GPU_LOADOP_CLEAR</a> will set the contents of the
+texture subresource to a single value before any rendering is performed.
+It's fine to do an empty render pass using
+<a href="SDL_GPU_STOREOP_STORE.html">SDL_GPU_STOREOP_STORE</a> to clear a texture, but in
+general it's better to think of clearing not as an independent operation
+but as something that's done as the beginning of a render pass.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_EndGPURenderPass.html">SDL_EndGPURenderPass</a></li>
+</ul>
+<h2 id="d3d12-warnings">D3D12 Warnings</h2>
+<p>On D3D12 with <a href="SDL_CreateGPUDevice#function-parameters.html">debug_mode</a> enabled,
+when clearing a color texture or depth/stencil texture, you may see a
+<code>CLEARRENDERTARGETVIEW_MISMATCHINGCLEARVALUE</code> or
+<code>CLEARDEPTHSTENCILVIEW_MISMATCHINGCLEARVALUE</code> warning at runtime like:</p>
+<blockquote>
+<p>D3D12 WARNING: ... The clear values do not match those passed to resource
+creation. The clear operation is typically slower as a result; but will
+still clear to the desired value.</p>
+</blockquote>
+<p>You can avoid these warnings by, when creating the texture, setting the relevant
+properties below, in the <code>props</code> of your <a href="SDL_GPUTextureCreateInfo.html">SDL_GPUTextureCreateInfo</a>,
+to the same clear color/depth/stencil value that you use in your render pass.</p>
+<p>For the color texture:</p>
+<ul>
+<li><a href="SDL_PROP_GPU_TEXTURE_CREATE_D3D12_CLEAR_R_FLOAT.html">SDL_PROP_GPU_TEXTURE_CREATE_D3D12_CLEAR_R_FLOAT</a>: the red channel of the clear color</li>
+<li><a href="SDL_PROP_GPU_TEXTURE_CREATE_D3D12_CLEAR_G_FLOAT.html">SDL_PROP_GPU_TEXTURE_CREATE_D3D12_CLEAR_G_FLOAT</a>: the green channel of the clear color</li>
+<li><a href="SDL_PROP_GPU_TEXTURE_CREATE_D3D12_CLEAR_B_FLOAT.html">SDL_PROP_GPU_TEXTURE_CREATE_D3D12_CLEAR_B_FLOAT</a>: the blue channel of the clear color</li>
+<li><a href="SDL_PROP_GPU_TEXTURE_CREATE_D3D12_CLEAR_A_FLOAT.html">SDL_PROP_GPU_TEXTURE_CREATE_D3D12_CLEAR_A_FLOAT</a>: the alpha channel of the clear color</li>
+</ul>
+<p>For the depth/stencil texture:</p>
+<ul>
+<li><a href="SDL_PROP_GPU_TEXTURE_CREATE_D3D12_CLEAR_DEPTH_FLOAT.html">SDL_PROP_GPU_TEXTURE_CREATE_D3D12_CLEAR_DEPTH_FLOAT</a>: the depth clear value</li>
+<li><a href="SDL_PROP_GPU_TEXTURE_CREATE_D3D12_CLEAR_STENCIL_UINT8.html">SDL_PROP_GPU_TEXTURE_CREATE_D3D12_CLEAR_STENCIL_UINT8</a>: the stencil clear value</li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_BeginGPURenderPass" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

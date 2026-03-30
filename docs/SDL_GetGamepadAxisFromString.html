@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetGamepadAxisFromString - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetGamepadAxisFromString</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getgamepadaxisfromstring">SDL_GetGamepadAxisFromString</h1>
+<p>Convert a string into <a href="SDL_GamepadAxis.html">SDL_GamepadAxis</a> enum.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gamepad.h">&lt;SDL3/SDL_gamepad.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_GamepadAxis SDL_GetGamepadAxisFromString(const char *str);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>const char *</td>
+<td><strong>str</strong></td>
+<td>string representing a <a href="SDL_Gamepad.html">SDL_Gamepad</a> axis.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_GamepadAxis.html">SDL_GamepadAxis</a>) Returns the
+<a href="SDL_GamepadAxis.html">SDL_GamepadAxis</a> enum corresponding to the input string,
+or <a href="SDL_GAMEPAD_AXIS_INVALID.html"><code>SDL_GAMEPAD_AXIS_INVALID</code></a> if no match was
+found.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This function is called internally to translate <a href="SDL_Gamepad.html">SDL_Gamepad</a>
+mapping strings for the underlying joystick device into the consistent
+<a href="SDL_Gamepad.html">SDL_Gamepad</a> mapping. You do not normally need to call this
+function unless you are parsing <a href="SDL_Gamepad.html">SDL_Gamepad</a> mappings in your
+own code.</p>
+<p>Note specially that &quot;righttrigger&quot; and &quot;lefttrigger&quot; map to
+<a href="SDL_GAMEPAD_AXIS_RIGHT_TRIGGER.html"><code>SDL_GAMEPAD_AXIS_RIGHT_TRIGGER</code></a> and
+<a href="SDL_GAMEPAD_AXIS_LEFT_TRIGGER.html"><code>SDL_GAMEPAD_AXIS_LEFT_TRIGGER</code></a>,
+respectively.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetGamepadStringForAxis.html">SDL_GetGamepadStringForAxis</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryGamepad.html">CategoryGamepad</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetGamepadAxisFromString" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

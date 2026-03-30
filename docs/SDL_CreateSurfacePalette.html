@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_CreateSurfacePalette - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_CreateSurfacePalette</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_createsurfacepalette">SDL_CreateSurfacePalette</h1>
+<p>Create a palette and associate it with a surface.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_surface.h">&lt;SDL3/SDL_surface.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_Palette * SDL_CreateSurfacePalette(SDL_Surface *surface);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Surface.html">SDL_Surface</a> *</td>
+<td><strong>surface</strong></td>
+<td>the <a href="SDL_Surface.html">SDL_Surface</a> structure to update.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_Palette.html">SDL_Palette</a> *) Returns a new <a href="SDL_Palette.html">SDL_Palette</a>
+structure on success or NULL on failure (e.g. if the surface didn't have an
+index format); call <a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This function creates a palette compatible with the provided surface. The
+palette is then returned for you to modify, and the surface will
+automatically use the new palette in future operations. You do not need to
+destroy the returned palette, it will be freed when the reference count
+reaches 0, usually when the surface is destroyed.</p>
+<p>Bitmap surfaces (with format
+<a href="SDL_PIXELFORMAT_INDEX1LSB.html">SDL_PIXELFORMAT_INDEX1LSB</a> or
+<a href="SDL_PIXELFORMAT_INDEX1MSB.html">SDL_PIXELFORMAT_INDEX1MSB</a>) will have the
+palette initialized with 0 as white and 1 as black. Other surfaces will get
+a palette initialized with white in every entry.</p>
+<p>If this function is called for a surface that already has a palette, a new
+palette will be created to replace it.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function can be called on different threads with different surfaces.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_SetPaletteColors.html">SDL_SetPaletteColors</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategorySurface.html">CategorySurface</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_CreateSurfacePalette" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

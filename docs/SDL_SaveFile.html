@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_SaveFile - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_SaveFile</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_savefile">SDL_SaveFile</h1>
+<p>Save all the data into a file path.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_iostream.h">&lt;SDL3/SDL_iostream.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_SaveFile(const char *file, const void *data, size_t datasize);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>const char *</td>
+<td><strong>file</strong></td>
+<td>the path to write all available data into.</td>
+</tr>
+<tr>
+<td>const void *</td>
+<td><strong>data</strong></td>
+<td>the data to be written. If datasize is 0, may be NULL or a invalid pointer.</td>
+</tr>
+<tr>
+<td>size_t</td>
+<td><strong>datasize</strong></td>
+<td>the number of bytes to be written.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_SaveFile_IO.html">SDL_SaveFile_IO</a></li>
+<li><a href="SDL_LoadFile.html">SDL_LoadFile</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryIOStream.html">CategoryIOStream</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_SaveFile" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

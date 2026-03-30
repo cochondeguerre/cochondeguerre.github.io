@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_HINT_SHUTDOWN_DBUS_ON_QUIT - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_HINT_SHUTDOWN_DBUS_ON_QUIT</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_hint_shutdown_dbus_on_quit">SDL_HINT_SHUTDOWN_DBUS_ON_QUIT</h1>
+<p>A variable controlling whether SDL calls dbus_shutdown() on quit.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_hints.h">&lt;SDL3/SDL_hints.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_HINT_SHUTDOWN_DBUS_ON_QUIT &quot;SDL_SHUTDOWN_DBUS_ON_QUIT&quot;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>This is useful as a debug tool to validate memory leaks, but shouldn't ever
+be set in production applications, as other libraries used by the
+application might use dbus under the hood and this can cause crashes if
+they continue after <a href="SDL_Quit.html">SDL_Quit</a>().</p>
+<p>The variable can be set to the following values:</p>
+<ul>
+<li>&quot;0&quot;: SDL will not call dbus_shutdown() on quit. (default)</li>
+<li>&quot;1&quot;: SDL will call dbus_shutdown() on quit.</li>
+</ul>
+<p>This hint can be set anytime.</p>
+<h2 id="version">Version</h2>
+<p>This hint is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryHints.html">CategoryHints</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_HINT_SHUTDOWN_DBUS_ON_QUIT" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

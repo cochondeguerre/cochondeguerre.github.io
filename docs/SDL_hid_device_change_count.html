@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_hid_device_change_count - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_hid_device_change_count</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_hid_device_change_count">SDL_hid_device_change_count</h1>
+<p>Check to see if devices may have been added or removed.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_hidapi.h">&lt;SDL3/SDL_hidapi.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">Uint32 SDL_hid_device_change_count(void);
+</code></pre>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="Uint32.html">Uint32</a>) Returns a change counter that is incremented with each
+potential device change, or 0 if device change detection isn't available.</p>
+<h2 id="remarks">Remarks</h2>
+<p>Enumerating the HID devices is an expensive operation, so you can call this
+to see if there have been any system device changes since the last call to
+this function. A change in the counter returned doesn't necessarily mean
+that anything has changed, but you can call
+<a href="SDL_hid_enumerate.html">SDL_hid_enumerate</a>() to get an updated device list.</p>
+<p>Calling this function for the first time may cause a thread or other system
+resource to be allocated to track device change notifications.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_hid_enumerate.html">SDL_hid_enumerate</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryHIDAPI.html">CategoryHIDAPI</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_hid_device_change_count" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

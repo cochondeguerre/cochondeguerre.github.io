@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>README-contributing - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">README-contributing</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="contributing-to-sdl">Contributing to SDL</h1>
+<p>We appreciate your interest in contributing to SDL, this document will describe how to report bugs, contribute code or ideas or edit documentation.</p>
+<p><strong>Table Of Contents</strong></p>
+<ul>
+<li><a href="#filing-a-github-issue">Filing a GitHub issue</a>
+<ul>
+<li><a href="#reporting-a-bug">Reporting a bug</a></li>
+<li><a href="#suggesting-enhancements">Suggesting enhancements</a></li>
+</ul>
+</li>
+<li><a href="#contributing-code">Contributing code</a>
+<ul>
+<li><a href="#forking-the-project">Forking the project</a></li>
+<li><a href="#following-the-style-guide">Following the style guide</a></li>
+<li><a href="#running-the-tests">Running the tests</a></li>
+<li><a href="#opening-a-pull-request">Opening a pull request</a></li>
+<li><a href="#continuous-integration">Continuous integration</a></li>
+</ul>
+</li>
+<li><a href="#contributing-to-the-documentation">Contributing to the documentation</a>
+<ul>
+<li><a href="#editing-a-function-documentation">Editing a function documentation</a></li>
+<li><a href="#editing-the-wiki">Editing the wiki</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="filing-a-github-issue">Filing a GitHub issue</h2>
+<h3 id="reporting-a-bug">Reporting a bug</h3>
+<p>If you think you have found a bug and would like to report it, here are the steps you should take:</p>
+<ul>
+<li>Before opening a new issue, ensure your bug has not already been reported on the <a href="https://github.com/libsdl-org/SDL/issues">GitHub Issues page</a>.</li>
+<li>On the issue tracker, click on <a href="https://github.com/libsdl-org/SDL/issues/new">New Issue</a>.</li>
+<li>Include details about your environment, such as your Operating System and SDL version.</li>
+<li>If possible, provide a small example that reproduces your bug.</li>
+</ul>
+<h3 id="suggesting-enhancements">Suggesting enhancements</h3>
+<p>If you want to suggest changes for the project, here are the steps you should take:</p>
+<ul>
+<li>Check if the suggestion has already been made on:
+<ul>
+<li>the <a href="https://github.com/libsdl-org/SDL/issues">issue tracker</a>;</li>
+<li>the <a href="https://discourse.libsdl.org/">discourse forum</a>;</li>
+<li>or if a <a href="https://github.com/libsdl-org/SDL/pulls">pull request</a> already exists.</li>
+</ul>
+</li>
+<li>On the issue tracker, click on <a href="https://github.com/libsdl-org/SDL/issues/new">New Issue</a>.</li>
+<li>Describe what change you would like to happen.</li>
+</ul>
+<h2 id="contributing-code">Contributing code</h2>
+<p>This section will cover how the process of forking the project, making a change and opening a pull request.</p>
+<h3 id="forking-the-project">Forking the project</h3>
+<p>The first step consists in making a fork of the project, this is only necessary for the first contribution.</p>
+<p>Head over to <a href="https://github.com/libsdl-org/SDL">https://github.com/libsdl-org/SDL</a> and click on the <code>Fork</code> button in the top right corner of your screen, you may leave the fields unchanged and click <code>Create Fork</code>.</p>
+<p>You will be redirected to your fork of the repository, click the green <code>Code</code> button and copy the git clone link.</p>
+<p>If you had already forked the repository, you may update it from the web page using the <code>Fetch upstream</code> button.</p>
+<h3 id="following-the-style-guide">Following the style guide</h3>
+<p>Code formatting is done using a custom <code>.clang-format</code> file, you can learn more about how to run it <a href="https://clang.llvm.org/docs/ClangFormat.html">here</a>.</p>
+<p>Some legacy code may not be formatted, so please avoid formatting the whole file at once and only format around your changes.</p>
+<p>For your commit message to be properly displayed on GitHub, it should contain:</p>
+<ul>
+<li>A short description of the commit of 50 characters or less on the first line.</li>
+<li>If necessary, add a blank line followed by a long description, each line should be 72 characters or less.</li>
+</ul>
+<p>For example:</p>
+<pre><code>Fix crash in SDL_FooBar.
+
+This addresses the issue #123456 by making sure Foo was successful
+before calling Bar.
+</code></pre>
+<h3 id="running-the-tests">Running the tests</h3>
+<p>Tests allow you to verify if your changes did not break any behaviour, here are the steps to follow:</p>
+<ul>
+<li>Before pushing, run the <code>testautomation</code> suite on your machine, there should be no more failing tests after your change than before.</li>
+<li>After pushing to your fork, Continuous Integration (GitHub Actions) will ensure compilation and tests still pass on other systems.</li>
+</ul>
+<h3 id="opening-a-pull-request">Opening a pull request</h3>
+<ul>
+<li>Head over to your fork's GitHub page.</li>
+<li>Click on the <code>Contribute</code> button and <code>Open Pull Request</code>.</li>
+<li>Fill out the pull request template.</li>
+<li>If any changes are requested, you can add new commits to your fork and they will be automatically added to the pull request.</li>
+</ul>
+<h3 id="continuous-integration">Continuous integration</h3>
+<p>For each push and/or pull request, GitHub Actions will try to build SDL and the test suite on most supported platforms.</p>
+<p>Its behaviour can be influenced slightly by including SDL-specific tags in your commit message:</p>
+<ul>
+<li><code>[sdl-ci-filter GLOB]</code> limits the platforms for which to run ci.</li>
+<li><code>[sdl-ci-artifacts]</code> forces SDL artifacts, which can then be downloaded from the summary page.</li>
+<li><code>[sdl-ci-trackmem-symbol-names]</code> makes sure the final report generated by <code>--trackmem</code> contains symbol names.</li>
+</ul>
+<h2 id="contributing-to-the-documentation">Contributing to the documentation</h2>
+<h3 id="editing-a-function-documentation">Editing a function documentation</h3>
+<p>The wiki documentation for API functions is synchronised from the headers' doxygen comments. As such, all modifications to syntax; function parameters; return value; version; related functions should be done in the header directly.</p>
+<h3 id="editing-the-wiki">Editing the wiki</h3>
+<p>Other changes to the wiki should done directly from <a href="https://wiki.libsdl.org/">https://wiki.libsdl.org/</a>  ... Just click the &quot;edit&quot; link at the bottom of any page!</p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/README-contributing" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

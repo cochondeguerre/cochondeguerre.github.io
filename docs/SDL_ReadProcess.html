@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_ReadProcess - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_ReadProcess</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_readprocess">SDL_ReadProcess</h1>
+<p>Read all the output from a process.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_process.h">&lt;SDL3/SDL_process.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">void * SDL_ReadProcess(SDL_Process *process, size_t *datasize, int *exitcode);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Process.html">SDL_Process</a> *</td>
+<td><strong>process</strong></td>
+<td>The process to read.</td>
+</tr>
+<tr>
+<td>size_t *</td>
+<td><strong>datasize</strong></td>
+<td>a pointer filled in with the number of bytes read, may be NULL.</td>
+</tr>
+<tr>
+<td>int *</td>
+<td><strong>exitcode</strong></td>
+<td>a pointer filled in with the process exit code if the process has exited, may be NULL.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(void *) Returns the data or NULL on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>If a process was created with I/O enabled, you can use this function to
+read the output. This function blocks until the process is complete,
+capturing all output, and providing the process exit code.</p>
+<p>The data is allocated with a zero byte at the end (null terminated) for
+convenience. This extra byte is not included in the value reported via
+<code>datasize</code>.</p>
+<p>The data should be freed with <a href="SDL_free.html">SDL_free</a>().</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function is not thread safe.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_CreateProcess.html">SDL_CreateProcess</a></li>
+<li><a href="SDL_CreateProcessWithProperties.html">SDL_CreateProcessWithProperties</a></li>
+<li><a href="SDL_DestroyProcess.html">SDL_DestroyProcess</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryProcess.html">CategoryProcess</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_ReadProcess" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

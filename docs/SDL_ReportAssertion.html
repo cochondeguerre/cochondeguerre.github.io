@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_ReportAssertion - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_ReportAssertion</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_reportassertion">SDL_ReportAssertion</h1>
+<p>Never call this directly.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_assert.h">&lt;SDL3/SDL_assert.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_AssertState SDL_ReportAssertion(SDL_AssertData *data,
+                                const char *func,
+                                const char *file, int line);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_AssertData.html">SDL_AssertData</a> *</td>
+<td><strong>data</strong></td>
+<td>assert data structure.</td>
+</tr>
+<tr>
+<td>const char *</td>
+<td><strong>func</strong></td>
+<td>function name.</td>
+</tr>
+<tr>
+<td>const char *</td>
+<td><strong>file</strong></td>
+<td>file name.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>line</strong></td>
+<td>line number.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_AssertState.html">SDL_AssertState</a>) Returns assert state.</p>
+<h2 id="remarks">Remarks</h2>
+<p>Use the <a href="SDL_assert.html">SDL_assert</a> macros instead.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryAssert.html">CategoryAssert</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_ReportAssertion" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

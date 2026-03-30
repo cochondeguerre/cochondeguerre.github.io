@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_IsAudioDevicePhysical - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_IsAudioDevicePhysical</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_isaudiodevicephysical">SDL_IsAudioDevicePhysical</h1>
+<p>Determine if an audio device is physical (instead of logical).</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_audio.h">&lt;SDL3/SDL_audio.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_IsAudioDevicePhysical(SDL_AudioDeviceID devid);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_AudioDeviceID.html">SDL_AudioDeviceID</a></td>
+<td><strong>devid</strong></td>
+<td>the device ID to query.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true if devid is a physical device, false if it is logical.</p>
+<h2 id="remarks">Remarks</h2>
+<p>An <a href="SDL_AudioDeviceID.html">SDL_AudioDeviceID</a> that represents physical hardware
+is a physical device; there is one for each piece of hardware that SDL can
+see. Logical devices are created by calling
+<a href="SDL_OpenAudioDevice.html">SDL_OpenAudioDevice</a> or
+<a href="SDL_OpenAudioDeviceStream.html">SDL_OpenAudioDeviceStream</a>, and while each is
+associated with a physical device, there can be any number of logical
+devices on one physical device.</p>
+<p>For the most part, logical and physical IDs are interchangeable--if you try
+to open a logical device, SDL understands to assign that effort to the
+underlying physical device, etc. However, it might be useful to know if an
+arbitrary device ID is physical or logical. This function reports which.</p>
+<p>This function may return either true or false for invalid device IDs.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryAudio.html">CategoryAudio</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_IsAudioDevicePhysical" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

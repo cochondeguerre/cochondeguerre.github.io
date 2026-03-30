@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_CreateGPUShader - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_CreateGPUShader</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_creategpushader">SDL_CreateGPUShader</h1>
+<p>Creates a shader to be used when creating a graphics pipeline.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_GPUShader * SDL_CreateGPUShader(
+    SDL_GPUDevice *device,
+    const SDL_GPUShaderCreateInfo *createinfo);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_GPUDevice.html">SDL_GPUDevice</a> *</td>
+<td><strong>device</strong></td>
+<td>a GPU Context.</td>
+</tr>
+<tr>
+<td>const <a href="SDL_GPUShaderCreateInfo.html">SDL_GPUShaderCreateInfo</a> *</td>
+<td><strong>createinfo</strong></td>
+<td>a struct describing the state of the shader to create.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_GPUShader.html">SDL_GPUShader</a> *) Returns a shader object on success, or
+NULL on failure; call <a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>Shader resource bindings must be authored to follow a particular order
+depending on the shader format.</p>
+<p>For SPIR-V shaders, use the following resource sets:</p>
+<p>For vertex shaders:</p>
+<ul>
+<li>0: Sampled textures, followed by storage textures, followed by storage
+buffers</li>
+<li>1: Uniform buffers</li>
+</ul>
+<p>For fragment shaders:</p>
+<ul>
+<li>2: Sampled textures, followed by storage textures, followed by storage
+buffers</li>
+<li>3: Uniform buffers</li>
+</ul>
+<p>For DXBC and DXIL shaders, use the following register order:</p>
+<p>For vertex shaders:</p>
+<ul>
+<li>(t[n], space0): Sampled textures, followed by storage textures, followed
+by storage buffers</li>
+<li>(s[n], space0): Samplers with indices corresponding to the sampled
+textures</li>
+<li>(b[n], space1): Uniform buffers</li>
+</ul>
+<p>For pixel shaders:</p>
+<ul>
+<li>(t[n], space2): Sampled textures, followed by storage textures, followed
+by storage buffers</li>
+<li>(s[n], space2): Samplers with indices corresponding to the sampled
+textures</li>
+<li>(b[n], space3): Uniform buffers</li>
+</ul>
+<p>For MSL/metallib, use the following order:</p>
+<ul>
+<li>[[texture]]: Sampled textures, followed by storage textures</li>
+<li>[[sampler]]: Samplers with indices corresponding to the sampled textures</li>
+<li>[[buffer]]: Uniform buffers, followed by storage buffers. Vertex buffer 0
+is bound at [[buffer(14)]], vertex buffer 1 at [[buffer(15)]], and so on.
+Rather than manually authoring vertex buffer indices, use the
+[[stage_in]] attribute which will automatically use the vertex input
+information from the <a href="SDL_GPUGraphicsPipeline.html">SDL_GPUGraphicsPipeline</a>.</li>
+</ul>
+<p>Shader semantics other than system-value semantics do not matter in D3D12
+and for ease of use the SDL implementation assumes that non system-value
+semantics will all be TEXCOORD. If you are using HLSL as the shader source
+language, your vertex semantics should start at TEXCOORD0 and increment
+like so: TEXCOORD1, TEXCOORD2, etc. If you wish to change the semantic
+prefix to something other than TEXCOORD you can use
+<a href="SDL_PROP_GPU_DEVICE_CREATE_D3D12_SEMANTIC_NAME_STRING.html">SDL_PROP_GPU_DEVICE_CREATE_D3D12_SEMANTIC_NAME_STRING</a>
+with
+<a href="SDL_CreateGPUDeviceWithProperties.html">SDL_CreateGPUDeviceWithProperties</a>().</p>
+<p>There are optional properties that can be provided through <code>props</code>. These
+are the supported properties:</p>
+<ul>
+<li><a href="SDL_PROP_GPU_SHADER_CREATE_NAME_STRING.html"><code>SDL_PROP_GPU_SHADER_CREATE_NAME_STRING</code></a>:
+a name that can be displayed in debugging tools.</li>
+</ul>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_CreateGPUGraphicsPipeline.html">SDL_CreateGPUGraphicsPipeline</a></li>
+<li><a href="SDL_ReleaseGPUShader.html">SDL_ReleaseGPUShader</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_CreateGPUShader" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

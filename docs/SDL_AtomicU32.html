@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_AtomicU32 - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_AtomicU32</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_atomicu32">SDL_AtomicU32</h1>
+<p>A type representing an atomic unsigned 32-bit value.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_atomic.h">&lt;SDL3/SDL_atomic.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_AtomicU32 { Uint32 value; } SDL_AtomicU32;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>This can be used to manage a value that is synchronized across multiple
+CPUs without a race condition; when an app sets a value with
+<a href="SDL_SetAtomicU32.html">SDL_SetAtomicU32</a> all other threads, regardless of the
+CPU it is running on, will see that value when retrieved with
+<a href="SDL_GetAtomicU32.html">SDL_GetAtomicU32</a>, regardless of CPU caches, etc.</p>
+<p>This is also useful for atomic compare-and-swap operations: a thread can
+change the value as long as its current value matches expectations. When
+done in a loop, one can guarantee data consistency across threads without a
+lock (but the usual warnings apply: if you don't know what you're doing, or
+you don't do it carefully, you can confidently cause any number of
+disasters with this, so in most cases, you <em>should</em> use a mutex instead of
+this!).</p>
+<p>This is a struct so people don't accidentally use numeric operations on it
+directly. You have to use SDL atomic functions.</p>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_CompareAndSwapAtomicU32.html">SDL_CompareAndSwapAtomicU32</a></li>
+<li><a href="SDL_GetAtomicU32.html">SDL_GetAtomicU32</a></li>
+<li><a href="SDL_SetAtomicU32.html">SDL_SetAtomicU32</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryAtomic.html">CategoryAtomic</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_AtomicU32" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_WindowFlags - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_WindowFlags</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_windowflags">SDL_WindowFlags</h1>
+<p>The flags on a window.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_video.h">&lt;SDL3/SDL_video.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef Uint64 SDL_WindowFlags;
+
+#define SDL_WINDOW_FULLSCREEN           SDL_UINT64_C(0x0000000000000001)    /**&lt; window is in fullscreen mode */
+#define SDL_WINDOW_OPENGL               SDL_UINT64_C(0x0000000000000002)    /**&lt; window usable with OpenGL context */
+#define SDL_WINDOW_OCCLUDED             SDL_UINT64_C(0x0000000000000004)    /**&lt; window is occluded */
+#define SDL_WINDOW_HIDDEN               SDL_UINT64_C(0x0000000000000008)    /**&lt; window is neither mapped onto the desktop nor shown in the taskbar/dock/window list; SDL_ShowWindow() is required for it to become visible */
+#define SDL_WINDOW_BORDERLESS           SDL_UINT64_C(0x0000000000000010)    /**&lt; no window decoration */
+#define SDL_WINDOW_RESIZABLE            SDL_UINT64_C(0x0000000000000020)    /**&lt; window can be resized */
+#define SDL_WINDOW_MINIMIZED            SDL_UINT64_C(0x0000000000000040)    /**&lt; window is minimized */
+#define SDL_WINDOW_MAXIMIZED            SDL_UINT64_C(0x0000000000000080)    /**&lt; window is maximized */
+#define SDL_WINDOW_MOUSE_GRABBED        SDL_UINT64_C(0x0000000000000100)    /**&lt; window has grabbed mouse input */
+#define SDL_WINDOW_INPUT_FOCUS          SDL_UINT64_C(0x0000000000000200)    /**&lt; window has input focus */
+#define SDL_WINDOW_MOUSE_FOCUS          SDL_UINT64_C(0x0000000000000400)    /**&lt; window has mouse focus */
+#define SDL_WINDOW_EXTERNAL             SDL_UINT64_C(0x0000000000000800)    /**&lt; window not created by SDL */
+#define SDL_WINDOW_MODAL                SDL_UINT64_C(0x0000000000001000)    /**&lt; window is modal */
+#define SDL_WINDOW_HIGH_PIXEL_DENSITY   SDL_UINT64_C(0x0000000000002000)    /**&lt; window uses high pixel density back buffer if possible */
+#define SDL_WINDOW_MOUSE_CAPTURE        SDL_UINT64_C(0x0000000000004000)    /**&lt; window has mouse captured (unrelated to MOUSE_GRABBED) */
+#define SDL_WINDOW_MOUSE_RELATIVE_MODE  SDL_UINT64_C(0x0000000000008000)    /**&lt; window has relative mode enabled */
+#define SDL_WINDOW_ALWAYS_ON_TOP        SDL_UINT64_C(0x0000000000010000)    /**&lt; window should always be above others */
+#define SDL_WINDOW_UTILITY              SDL_UINT64_C(0x0000000000020000)    /**&lt; window should be treated as a utility window, not showing in the task bar and window list */
+#define SDL_WINDOW_TOOLTIP              SDL_UINT64_C(0x0000000000040000)    /**&lt; window should be treated as a tooltip and does not get mouse or keyboard focus, requires a parent window */
+#define SDL_WINDOW_POPUP_MENU           SDL_UINT64_C(0x0000000000080000)    /**&lt; window should be treated as a popup menu, requires a parent window */
+#define SDL_WINDOW_KEYBOARD_GRABBED     SDL_UINT64_C(0x0000000000100000)    /**&lt; window has grabbed keyboard input */
+#define SDL_WINDOW_FILL_DOCUMENT        SDL_UINT64_C(0x0000000000200000)    /**&lt; window is in fill-document mode (Emscripten only), since SDL 3.4.0 */
+#define SDL_WINDOW_VULKAN               SDL_UINT64_C(0x0000000010000000)    /**&lt; window usable for Vulkan surface */
+#define SDL_WINDOW_METAL                SDL_UINT64_C(0x0000000020000000)    /**&lt; window usable for Metal view */
+#define SDL_WINDOW_TRANSPARENT          SDL_UINT64_C(0x0000000040000000)    /**&lt; window with transparent buffer */
+#define SDL_WINDOW_NOT_FOCUSABLE        SDL_UINT64_C(0x0000000080000000)    /**&lt; window should not be focusable */
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>These cover a lot of true/false, or on/off, window state. Some of it is
+immutable after being set through <a href="SDL_CreateWindow.html">SDL_CreateWindow</a>(),
+some of it can be changed on existing windows by the app, and some of it
+might be altered by the user or system outside of the app's control.</p>
+<p>When creating windows with <a href="SDL_WINDOW_RESIZABLE.html"><code>SDL_WINDOW_RESIZABLE</code></a>,
+SDL will constrain resizable windows to the dimensions recommended by the
+compositor to fit it within the usable desktop space, although some
+compositors will do this automatically without intervention as well. Use
+<a href="SDL_SetWindowResizable.html"><code>SDL_SetWindowResizable</code></a> after creation instead
+if you wish to create a window with a specific size.</p>
+<h2 id="version">Version</h2>
+<p>This datatype is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetWindowFlags.html">SDL_GetWindowFlags</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIDatatype.html">CategoryAPIDatatype</a>, <a href="CategoryVideo.html">CategoryVideo</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_WindowFlags" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

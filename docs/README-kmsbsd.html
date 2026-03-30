@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>README-kmsbsd - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">README-kmsbsd</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="kmsdrm-on-bsd">KMSDRM on *BSD</h1>
+<p>KMSDRM is supported on FreeBSD and OpenBSD. DragonFlyBSD works but requires being a root user. NetBSD isn't supported yet because the application will crash when creating the KMSDRM screen.</p>
+<p>WSCONS support has been brought back, but only as an input backend. It will not be brought back as a video backend to ease maintenance.</p>
+<p>OpenBSD note: Note that the video backend assumes that the user has read/write permissions to the /dev/drm* devices.</p>
+<h1 id="sdl-wscons-input-backend-features">SDL WSCONS input backend features</h1>
+<ol>
+<li>It is keymap-aware; it will work properly with different keymaps.</li>
+<li>It has mouse support.</li>
+<li>Accent input is supported.</li>
+<li>Compose keys are supported.</li>
+<li>AltGr and Meta Shift keys work as intended.</li>
+</ol>
+<h1 id="partially-working-or-no-input-on-openbsdnetbsd">Partially working or no input on OpenBSD/NetBSD.</h1>
+<p>The WSCONS input backend needs read/write access to the /dev/wskbd* devices, without which it will not work properly. /dev/wsmouse must also be read/write accessible, otherwise mouse input will not work.</p>
+<h1 id="partially-working-or-no-input-on-freebsd">Partially working or no input on FreeBSD.</h1>
+<p>The evdev devices are only accessible to the root user by default. Edit devfs rules to allow access to such devices. The /dev/kbd* devices are also only accessible to the root user by default. Edit devfs rules to allow access to such devices.</p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/README-kmsbsd" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

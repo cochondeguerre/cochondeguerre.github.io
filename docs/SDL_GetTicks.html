@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetTicks - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetTicks</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getticks">SDL_GetTicks</h1>
+<p>Get the number of milliseconds that have elapsed since the SDL library initialization.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_timer.h">&lt;SDL3/SDL_timer.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">Uint64 SDL_GetTicks(void);
+</code></pre>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="Uint64.html">Uint64</a>) Returns an unsigned 64‑bit integer that represents the
+number of milliseconds that have elapsed since the SDL library was
+initialized (typically via a call to <a href="SDL_Init.html">SDL_Init</a>).</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="code-examples">Code Examples</h2>
+<pre><code class="language-c">int variable;
+bool quit = false;
+unsigned int lastTime = 0, currentTime;
+while (!quit) {
+  // do stuff
+  // ...
+
+  // Print a report once per second
+  currentTime = SDL_GetTicks();
+  if (currentTime &gt; lastTime + 1000) {
+    printf(&quot;Report: %d\n&quot;, variable);
+    lastTime = currentTime;
+  }
+}
+</code></pre>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetTicksNS.html">SDL_GetTicksNS</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryTimer.html">CategoryTimer</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetTicks" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

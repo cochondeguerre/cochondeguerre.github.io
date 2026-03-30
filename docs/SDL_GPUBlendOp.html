@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GPUBlendOp - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GPUBlendOp</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gpublendop">SDL_GPUBlendOp</h1>
+<p>Specifies the operator to be used when pixels in a render target are blended with existing pixels in the texture.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef enum SDL_GPUBlendOp
+{
+    SDL_GPU_BLENDOP_INVALID,
+    SDL_GPU_BLENDOP_ADD,               /**&lt; (source * source_factor) + (destination * destination_factor) */
+    SDL_GPU_BLENDOP_SUBTRACT,          /**&lt; (source * source_factor) - (destination * destination_factor) */
+    SDL_GPU_BLENDOP_REVERSE_SUBTRACT,  /**&lt; (destination * destination_factor) - (source * source_factor) */
+    SDL_GPU_BLENDOP_MIN,               /**&lt; min(source, destination) */
+    SDL_GPU_BLENDOP_MAX                /**&lt; max(source, destination) */
+} SDL_GPUBlendOp;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>The source color is the value written by the fragment shader. The
+destination color is the value currently existing in the texture.</p>
+<h2 id="version">Version</h2>
+<p>This enum is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_CreateGPUGraphicsPipeline.html">SDL_CreateGPUGraphicsPipeline</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIEnum.html">CategoryAPIEnum</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GPUBlendOp" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

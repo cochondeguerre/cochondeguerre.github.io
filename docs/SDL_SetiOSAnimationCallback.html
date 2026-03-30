@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_SetiOSAnimationCallback - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_SetiOSAnimationCallback</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_setiosanimationcallback">SDL_SetiOSAnimationCallback</h1>
+<p>Use this function to set the animation callback on Apple iOS.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_system.h">&lt;SDL3/SDL_system.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_SetiOSAnimationCallback(SDL_Window *window, int interval, SDL_iOSAnimationCallback callback, void *callbackParam);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Window.html">SDL_Window</a> *</td>
+<td><strong>window</strong></td>
+<td>the window for which the animation callback should be set.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>interval</strong></td>
+<td>the number of frames after which <strong>callback</strong> will be called.</td>
+</tr>
+<tr>
+<td><a href="SDL_iOSAnimationCallback.html">SDL_iOSAnimationCallback</a></td>
+<td><strong>callback</strong></td>
+<td>the function to call for every frame.</td>
+</tr>
+<tr>
+<td>void *</td>
+<td><strong>callbackParam</strong></td>
+<td>a pointer that is passed to <code>callback</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>The function prototype for <code>callback</code> is:</p>
+<pre><code class="language-c">void callback(void *callbackParam);
+</code></pre>
+<p>Where its parameter, <code>callbackParam</code>, is what was passed as <code>callbackParam</code>
+to <a href="SDL_SetiOSAnimationCallback.html">SDL_SetiOSAnimationCallback</a>().</p>
+<p>This function is only available on Apple iOS.</p>
+<p>For more information see:</p>
+<p><a href="https://wiki.libsdl.org/SDL3/README-ios">https://wiki.libsdl.org/SDL3/README-ios</a></p>
+<p>Note that if you use the &quot;main callbacks&quot; instead of a standard C <code>main</code>
+function, you don't have to use this API, as SDL will manage this for you.</p>
+<p>Details on main callbacks are here:</p>
+<p><a href="https://wiki.libsdl.org/SDL3/README-main-functions">https://wiki.libsdl.org/SDL3/README-main-functions</a></p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should only be called on the main thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_SetiOSEventPump.html">SDL_SetiOSEventPump</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategorySystem.html">CategorySystem</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_SetiOSAnimationCallback" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

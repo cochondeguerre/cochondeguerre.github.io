@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetPrefPath - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetPrefPath</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getprefpath">SDL_GetPrefPath</h1>
+<p>Get the user-and-app-specific path where files can be written.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_filesystem.h">&lt;SDL3/SDL_filesystem.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">char * SDL_GetPrefPath(const char *org, const char *app);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>const char *</td>
+<td><strong>org</strong></td>
+<td>the name of your organization.</td>
+</tr>
+<tr>
+<td>const char *</td>
+<td><strong>app</strong></td>
+<td>the name of your application.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(char *) Returns a UTF-8 string of the user directory in platform-dependent
+notation. NULL if there's a problem (creating directory failed, etc.). This
+should be freed with <a href="SDL_free.html">SDL_free</a>() when it is no longer needed.</p>
+<h2 id="remarks">Remarks</h2>
+<p>Get the &quot;pref dir&quot;. This is meant to be where users can write personal
+files (preferences and save games, etc) that are specific to your
+application. This directory is unique per user, per application.</p>
+<p>This function will decide the appropriate location in the native
+filesystem, create the directory if necessary, and return a string of the
+absolute path to the directory in UTF-8 encoding.</p>
+<p>On Windows, the string might look like:</p>
+<p><code>C:\\Users\\bob\\AppData\\Roaming\\My Company\\My Program Name\\</code></p>
+<p>On Linux, the string might look like:</p>
+<p><code>/home/bob/.local/share/My Program Name/</code></p>
+<p>On macOS, the string might look like:</p>
+<p><code>/Users/bob/Library/Application Support/My Program Name/</code></p>
+<p>You should assume the path returned by this function is the only safe place
+to write files (and that <a href="SDL_GetBasePath.html">SDL_GetBasePath</a>(), while it
+might be writable, or even the parent of the returned path, isn't where you
+should be writing things).</p>
+<p>Both the org and app strings may become part of a directory name, so please
+follow these rules:</p>
+<ul>
+<li>Try to use the same org string (<em>including case-sensitivity</em>) for all
+your applications that use this function.</li>
+<li>Always use a unique app string for each one, and make sure it never
+changes for an app once you've decided on it.</li>
+<li>Unicode characters are legal, as long as they are UTF-8 encoded, but...</li>
+<li>...only use letters, numbers, and spaces. Avoid punctuation like &quot;Game
+Name 2: Bad Guy's Revenge!&quot; ... &quot;Game Name 2&quot; is sufficient.</li>
+</ul>
+<p>Due to historical mistakes, <code>org</code> is allowed to be NULL or &quot;&quot;. In such
+cases, SDL will omit the org subdirectory, including on platforms where it
+shouldn't, and including on platforms where this would make your app fail
+certification for an app store. New apps should definitely specify a real
+string for <code>org</code>.</p>
+<p>The returned path is guaranteed to end with a path separator ('\' on
+Windows, '/' on most other platforms).</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetBasePath.html">SDL_GetBasePath</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryFilesystem.html">CategoryFilesystem</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetPrefPath" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

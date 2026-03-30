@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_AudioStreamCallback - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_AudioStreamCallback</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_audiostreamcallback">SDL_AudioStreamCallback</h1>
+<p>A callback that fires when data passes through an <a href="SDL_AudioStream.html">SDL_AudioStream</a>.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_audio.h">&lt;SDL3/SDL_audio.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef void (SDLCALL *SDL_AudioStreamCallback)(void *userdata, SDL_AudioStream *stream, int additional_amount, int total_amount);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>stream</strong></td>
+<td>the SDL audio stream associated with this callback.</td>
+</tr>
+<tr>
+<td><strong>additional_amount</strong></td>
+<td>the amount of data, in bytes, that is needed right now.</td>
+</tr>
+<tr>
+<td><strong>total_amount</strong></td>
+<td>the total amount of data requested, in bytes, that is requested or available.</td>
+</tr>
+<tr>
+<td><strong>userdata</strong></td>
+<td>an opaque pointer provided by the app for their personal use.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="remarks">Remarks</h2>
+<p>Apps can (optionally) register a callback with an audio stream that is
+called when data is added with
+<a href="SDL_PutAudioStreamData.html">SDL_PutAudioStreamData</a>, or requested with
+<a href="SDL_GetAudioStreamData.html">SDL_GetAudioStreamData</a>.</p>
+<p>Two values are offered here: one is the amount of additional data needed to
+satisfy the immediate request (which might be zero if the stream already
+has enough data queued) and the other is the total amount being requested.
+In a Get call triggering a Put callback, these values can be different. In
+a Put call triggering a Get callback, these values are always the same.</p>
+<p>Byte counts might be slightly overestimated due to buffering or resampling,
+and may change from call to call.</p>
+<p>This callback is not required to do anything. Generally this is useful for
+adding/reading data on demand, and the app will often put/get data as
+appropriate, but the system goes on with the data currently available to it
+if this callback does nothing.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This callbacks may run from any thread, so if you need to protect shared
+data, you should use <a href="SDL_LockAudioStream.html">SDL_LockAudioStream</a> to
+serialize access; this lock will be held before your callback is called, so
+your callback does not need to manage the lock explicitly.</p>
+<h2 id="version">Version</h2>
+<p>This datatype is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_SetAudioStreamGetCallback.html">SDL_SetAudioStreamGetCallback</a></li>
+<li><a href="SDL_SetAudioStreamPutCallback.html">SDL_SetAudioStreamPutCallback</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIDatatype.html">CategoryAPIDatatype</a>, <a href="CategoryAudio.html">CategoryAudio</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_AudioStreamCallback" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_ELF_NOTE_DLOPEN - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_ELF_NOTE_DLOPEN</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_elf_note_dlopen">SDL_ELF_NOTE_DLOPEN</h1>
+<p>Add a note that your application has dynamic shared library dependencies.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_dlopennote.h">&lt;SDL3/SDL_dlopennote.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_ELF_NOTE_DLOPEN(feature, description, priority, ...) \
+    SDL_ELF_NOTE_INTERNAL(                                       \
+        &quot;[{\&quot;feature\&quot;:\&quot;&quot; feature                               \
+        &quot;\&quot;,\&quot;description\&quot;:\&quot;&quot; description                      \
+        &quot;\&quot;,\&quot;priority\&quot;:\&quot;&quot; priority                            \
+        &quot;\&quot;,\&quot;soname\&quot;:&quot; SDL_DLNOTE_JSON_ARRAY(__VA_ARGS__) &quot;}]&quot;,   \
+        SDL_DLNOTE_UNIQUE_NAME);
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>You can do this by adding the following to the global scope:</p>
+<pre><code class="language-c">SDL_ELF_NOTE_DLOPEN(
+    &quot;png&quot;,
+    &quot;Support for loading PNG images using libpng (required for APNG)&quot;,
+    SDL_ELF_NOTE_DLOPEN_PRIORITY_RECOMMENDED,
+    &quot;libpng12.so.0&quot;
+)
+</code></pre>
+<p>A trailing semicolon is not needed.</p>
+<p>Or if you support multiple versions of a library, you can list them:</p>
+<pre><code class="language-c">// Our app supports SDL1, SDL2, and SDL3 by dynamically loading them
+SDL_ELF_NOTE_DLOPEN(
+    &quot;SDL&quot;,
+    &quot;Create windows through SDL video backend&quot;,
+    SDL_ELF_NOTE_DLOPEN_PRIORITY_REQUIRED
+    &quot;libSDL-1.2.so.0&quot;, &quot;libSDL2-2.0.so.0&quot;, &quot;libSDL3.so.0&quot;
+)
+</code></pre>
+<p>This macro is not available for compilers that do not support variadic
+macro's.</p>
+<h2 id="version">Version</h2>
+<p>This macro is available since SDL 3.4.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_ELF_NOTE_DLOPEN_PRIORITY_SUGGESTED.html">SDL_ELF_NOTE_DLOPEN_PRIORITY_SUGGESTED</a></li>
+<li><a href="SDL_ELF_NOTE_DLOPEN_PRIORITY_RECOMMENDED.html">SDL_ELF_NOTE_DLOPEN_PRIORITY_RECOMMENDED</a></li>
+<li><a href="SDL_ELF_NOTE_DLOPEN_PRIORITY_REQUIRED.html">SDL_ELF_NOTE_DLOPEN_PRIORITY_REQUIRED</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryDlopenNotes.html">CategoryDlopenNotes</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_ELF_NOTE_DLOPEN" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

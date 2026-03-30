@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_BroadcastCondition - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_BroadcastCondition</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_broadcastcondition">SDL_BroadcastCondition</h1>
+<p>Restart all threads that are waiting on the condition variable.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_mutex.h">&lt;SDL3/SDL_mutex.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">void SDL_BroadcastCondition(SDL_Condition *cond);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Condition.html">SDL_Condition</a> *</td>
+<td><strong>cond</strong></td>
+<td>the condition variable to signal.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="code-examples">Code Examples</h2>
+<pre><code class="language-c">
+// BEWARE: This code example was migrated from the SDL2 Wiki, by only updating the names.
+
+bool condition = false;
+SDL_Mutex *lock;
+SDL_Condition *cond;
+lock = SDL_CreateMutex();
+cond = SDL_CreateCondition();
+
+Thread_A:
+    SDL_LockMutex(lock);
+    while (!condition) {
+        SDL_WaitCondition(cond, lock);
+    }
+    SDL_UnlockMutex(lock);
+Thread_B:
+    SDL_LockMutex(lock);
+    while (!condition) {
+        SDL_WaitCondition(cond, lock);
+    }
+    SDL_UnlockMutex(lock);
+Thread_C:
+    SDL_LockMutex(lock);
+    /* ... */
+    condition = true;
+    /* ... */
+    SDL_BroadcastCondition(cond);
+    SDL_UnlockMutex(lock);
+
+SDL_DestroyCondition(cond);
+SDL_DestroyMutex(lock);
+</code></pre>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_SignalCondition.html">SDL_SignalCondition</a></li>
+<li><a href="SDL_WaitCondition.html">SDL_WaitCondition</a></li>
+<li><a href="SDL_WaitConditionTimeout.html">SDL_WaitConditionTimeout</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryMutex.html">CategoryMutex</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_BroadcastCondition" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

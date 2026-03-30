@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetCurrentDisplayMode - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetCurrentDisplayMode</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getcurrentdisplaymode">SDL_GetCurrentDisplayMode</h1>
+<p>Get information about the current display mode.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_video.h">&lt;SDL3/SDL_video.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">const SDL_DisplayMode * SDL_GetCurrentDisplayMode(SDL_DisplayID displayID);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_DisplayID.html">SDL_DisplayID</a></td>
+<td><strong>displayID</strong></td>
+<td>the instance ID of the display to query.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(const <a href="SDL_DisplayMode.html">SDL_DisplayMode</a> *) Returns a pointer to the
+desktop display mode or NULL on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>There's a difference between this function and
+<a href="SDL_GetDesktopDisplayMode.html">SDL_GetDesktopDisplayMode</a>() when SDL runs
+fullscreen and has changed the resolution. In that case this function will
+return the current display mode, and not the previous native display mode.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should only be called on the main thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetDesktopDisplayMode.html">SDL_GetDesktopDisplayMode</a></li>
+<li><a href="SDL_GetDisplays.html">SDL_GetDisplays</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryVideo.html">CategoryVideo</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetCurrentDisplayMode" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

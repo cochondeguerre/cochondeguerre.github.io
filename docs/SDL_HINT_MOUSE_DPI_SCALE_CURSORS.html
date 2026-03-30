@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_HINT_MOUSE_DPI_SCALE_CURSORS - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_HINT_MOUSE_DPI_SCALE_CURSORS</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_hint_mouse_dpi_scale_cursors">SDL_HINT_MOUSE_DPI_SCALE_CURSORS</h1>
+<p>A variable setting whether we should scale cursors by the current display scale.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_hints.h">&lt;SDL3/SDL_hints.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_HINT_MOUSE_DPI_SCALE_CURSORS &quot;SDL_MOUSE_DPI_SCALE_CURSORS&quot;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>The variable can be set to the following values:</p>
+<ul>
+<li>&quot;0&quot;: Cursors will not change size based on the display content scale.
+(default)</li>
+<li>&quot;1&quot;: Cursors will automatically match the display content scale (e.g. a
+2x sized cursor will be used when the window is on a monitor with 200%
+scale). This is currently implemented on Windows and Wayland.</li>
+</ul>
+<p>This hint needs to be set before creating cursors.</p>
+<h2 id="version">Version</h2>
+<p>This hint is available since SDL 3.4.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryHints.html">CategoryHints</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_HINT_MOUSE_DPI_SCALE_CURSORS" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_PointInRectFloat - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_PointInRectFloat</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_pointinrectfloat">SDL_PointInRectFloat</h1>
+<p>Determine whether a point resides inside a floating point rectangle.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_rect.h">&lt;SDL3/SDL_rect.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_FORCE_INLINE bool SDL_PointInRectFloat(const SDL_FPoint *p, const SDL_FRect *r);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>const <a href="SDL_FPoint.html">SDL_FPoint</a> *</td>
+<td><strong>p</strong></td>
+<td>the point to test.</td>
+</tr>
+<tr>
+<td>const <a href="SDL_FRect.html">SDL_FRect</a> *</td>
+<td><strong>r</strong></td>
+<td>the rectangle to test.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true if <code>p</code> is contained by <code>r</code>, false otherwise.</p>
+<h2 id="remarks">Remarks</h2>
+<p>A point is considered part of a rectangle if both <code>p</code> and <code>r</code> are not NULL,
+and <code>p</code>'s x and y coordinates are &gt;= to the rectangle's top left corner,
+and &lt;= the rectangle's x+w and y+h. So a 1x1 rectangle considers point
+(0,0) and (0,1) as &quot;inside&quot; and (0,2) as not.</p>
+<p>Note that this is a forced-inline function in a header, and not a public
+API function available in the SDL library (which is to say, the code is
+embedded in the calling program and the linker and dynamic loader will not
+be able to find this function inside SDL itself).</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryRect.html">CategoryRect</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_PointInRectFloat" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

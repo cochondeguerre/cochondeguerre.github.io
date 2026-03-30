@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_AssertData - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_AssertData</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_assertdata">SDL_AssertData</h1>
+<p>Information about an assertion failure.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_assert.h">&lt;SDL3/SDL_assert.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_AssertData
+{
+    bool always_ignore;  /**&lt; true if app should always continue when assertion is triggered. */
+    unsigned int trigger_count; /**&lt; Number of times this assertion has been triggered. */
+    const char *condition;  /**&lt; A string of this assert's test code. */
+    const char *filename;  /**&lt; The source file where this assert lives. */
+    int linenum;  /**&lt; The line in `filename` where this assert lives. */
+    const char *function;  /**&lt; The name of the function where this assert lives. */
+    const struct SDL_AssertData *next;  /**&lt; next item in the linked list. */
+} SDL_AssertData;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>This structure is filled in with information about a triggered assertion,
+used by the assertion handler, then added to the assertion report. This is
+returned as a linked list from
+<a href="SDL_GetAssertionReport.html">SDL_GetAssertionReport</a>().</p>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryAssert.html">CategoryAssert</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_AssertData" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetGamepadTypeForID - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetGamepadTypeForID</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getgamepadtypeforid">SDL_GetGamepadTypeForID</h1>
+<p>Get the type of a gamepad.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gamepad.h">&lt;SDL3/SDL_gamepad.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_GamepadType SDL_GetGamepadTypeForID(SDL_JoystickID instance_id);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_JoystickID.html">SDL_JoystickID</a></td>
+<td><strong>instance_id</strong></td>
+<td>the joystick instance ID.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_GamepadType.html">SDL_GamepadType</a>) Returns the gamepad type.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This can be called before any gamepads are opened.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetGamepadType.html">SDL_GetGamepadType</a></li>
+<li><a href="SDL_GetGamepads.html">SDL_GetGamepads</a></li>
+<li><a href="SDL_GetRealGamepadTypeForID.html">SDL_GetRealGamepadTypeForID</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryGamepad.html">CategoryGamepad</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetGamepadTypeForID" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

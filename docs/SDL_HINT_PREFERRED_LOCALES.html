@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_HINT_PREFERRED_LOCALES - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_HINT_PREFERRED_LOCALES</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_hint_preferred_locales">SDL_HINT_PREFERRED_LOCALES</h1>
+<p>Override for <a href="SDL_GetPreferredLocales.html">SDL_GetPreferredLocales</a>().</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_hints.h">&lt;SDL3/SDL_hints.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_HINT_PREFERRED_LOCALES &quot;SDL_PREFERRED_LOCALES&quot;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>If set, this will be favored over anything the OS might report for the
+user's preferred locales. Changing this hint at runtime will not generate a
+<a href="SDL_EVENT_LOCALE_CHANGED.html">SDL_EVENT_LOCALE_CHANGED</a> event (but if you can
+change the hint, you can push your own event, if you want).</p>
+<p>The format of this hint is a comma-separated list of language and locale,
+combined with an underscore, as is a common format: &quot;en_GB&quot;. Locale is
+optional: &quot;en&quot;. So you might have a list like this: &quot;en_GB,jp,es_PT&quot;</p>
+<p>This hint can be set anytime.</p>
+<h2 id="version">Version</h2>
+<p>This hint is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryHints.html">CategoryHints</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_HINT_PREFERRED_LOCALES" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

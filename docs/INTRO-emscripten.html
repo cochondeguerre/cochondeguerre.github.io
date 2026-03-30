@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>INTRO-emscripten - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">INTRO-emscripten</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="introduction-to-sdl-with-emscripten">Introduction to SDL with Emscripten</h1>
+<p>The easiest way to use SDL is to include it as a subproject in your project.</p>
+<p>We'll start by creating a simple project to build and run <a href="hello.c.html">hello.c</a></p>
+<p>First, you should have the Emscripten SDK installed from:</p>
+<p><a href="https://emscripten.org/docs/getting_started/downloads.html">https://emscripten.org/docs/getting_started/downloads.html</a></p>
+<p>Create the file CMakeLists.txt</p>
+<pre><code class="language-cmake">cmake_minimum_required(VERSION 3.16)
+project(hello)
+
+# set the output directory for built objects.
+# This makes sure that the dynamic library goes into the build directory automatically.
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY &quot;${CMAKE_BINARY_DIR}/$&lt;CONFIGURATION&gt;&quot;)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY &quot;${CMAKE_BINARY_DIR}/$&lt;CONFIGURATION&gt;&quot;)
+
+# This assumes the SDL source is available in vendored/SDL
+add_subdirectory(vendored/SDL EXCLUDE_FROM_ALL)
+
+# on Web targets, we need CMake to generate a HTML webpage.
+if(EMSCRIPTEN)
+  set(CMAKE_EXECUTABLE_SUFFIX &quot;.html&quot; CACHE INTERNAL &quot;&quot;)
+endif()
+
+# Create your game executable target as usual
+add_executable(hello WIN32 hello.c)
+
+# Link to the actual SDL3 library.
+target_link_libraries(hello PRIVATE SDL3::SDL3)
+</code></pre>
+<p>Build:</p>
+<pre><code class="language-sh">emcmake cmake -S . -B build
+cd build
+emmake make
+</code></pre>
+<p>You can now run your app by pointing a webserver at your build directory and connecting a web browser to it, opening hello.html</p>
+<p>A more complete example is available at:</p>
+<p><a href="https://github.com/Ravbug/sdl3-sample">https://github.com/Ravbug/sdl3-sample</a></p>
+<p>Additional information and troubleshooting is available in <a href="README-emscripten.html">README-emscripten.md</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/INTRO-emscripten" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

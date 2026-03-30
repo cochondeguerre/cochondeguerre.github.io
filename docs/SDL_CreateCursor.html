@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_CreateCursor - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_CreateCursor</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_createcursor">SDL_CreateCursor</h1>
+<p>Create a cursor using the specified bitmap data and mask (in MSB format).</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_mouse.h">&lt;SDL3/SDL_mouse.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_Cursor * SDL_CreateCursor(const Uint8 *data,
+                         const Uint8 *mask,
+                         int w, int h, int hot_x,
+                         int hot_y);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>const Uint8 *</td>
+<td><strong>data</strong></td>
+<td>the color value for each pixel of the cursor.</td>
+</tr>
+<tr>
+<td>const Uint8 *</td>
+<td><strong>mask</strong></td>
+<td>the mask value for each pixel of the cursor.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>w</strong></td>
+<td>the width of the cursor.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>h</strong></td>
+<td>the height of the cursor.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>hot_x</strong></td>
+<td>the x-axis offset from the left of the cursor image to the mouse x position, in the range of 0 to <code>w</code> - 1.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>hot_y</strong></td>
+<td>the y-axis offset from the top of the cursor image to the mouse y position, in the range of 0 to <code>h</code> - 1.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_Cursor.html">SDL_Cursor</a> *) Returns a new cursor with the specified
+parameters on success or NULL on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p><code>mask</code> has to be in MSB (Most Significant Bit) format.</p>
+<p>The cursor width (<code>w</code>) must be a multiple of 8 bits.</p>
+<p>The cursor is created in black and white according to the following:</p>
+<ul>
+<li>data=0, mask=1: white</li>
+<li>data=1, mask=1: black</li>
+<li>data=0, mask=0: transparent</li>
+<li>data=1, mask=0: inverted color if possible, black if not.</li>
+</ul>
+<p>Cursors created with this function must be freed with
+<a href="SDL_DestroyCursor.html">SDL_DestroyCursor</a>().</p>
+<p>If you want to have a color cursor, or create your cursor from an
+<a href="SDL_Surface.html">SDL_Surface</a>, you should use
+<a href="SDL_CreateColorCursor.html">SDL_CreateColorCursor</a>(). Alternately, you can hide
+the cursor and draw your own as part of your game's rendering, but it will
+be bound to the framerate.</p>
+<p>Also, <a href="SDL_CreateSystemCursor.html">SDL_CreateSystemCursor</a>() is available,
+which provides several readily-available system cursors to pick from.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should only be called on the main thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="code-examples">Code Examples</h2>
+<pre><code class="language-c">/* Stolen from the mailing list */
+/* Creates a new mouse cursor from an XPM */
+
+
+/* XPM */
+static const char *arrow[] = {
+  /* width height num_colors chars_per_pixel */
+  &quot;    32    32        3            1&quot;,
+  /* colors */
+  &quot;X c #000000&quot;,
+  &quot;. c #ffffff&quot;,
+  &quot;  c None&quot;,
+  /* pixels */
+  &quot;X                               &quot;,
+  &quot;XX                              &quot;,
+  &quot;X.X                             &quot;,
+  &quot;X..X                            &quot;,
+  &quot;X...X                           &quot;,
+  &quot;X....X                          &quot;,
+  &quot;X.....X                         &quot;,
+  &quot;X......X                        &quot;,
+  &quot;X.......X                       &quot;,
+  &quot;X........X                      &quot;,
+  &quot;X.....XXXXX                     &quot;,
+  &quot;X..X..X                         &quot;,
+  &quot;X.X X..X                        &quot;,
+  &quot;XX  X..X                        &quot;,
+  &quot;X    X..X                       &quot;,
+  &quot;     X..X                       &quot;,
+  &quot;      X..X                      &quot;,
+  &quot;      X..X                      &quot;,
+  &quot;       XX                       &quot;,
+  &quot;                                &quot;,
+  &quot;                                &quot;,
+  &quot;                                &quot;,
+  &quot;                                &quot;,
+  &quot;                                &quot;,
+  &quot;                                &quot;,
+  &quot;                                &quot;,
+  &quot;                                &quot;,
+  &quot;                                &quot;,
+  &quot;                                &quot;,
+  &quot;                                &quot;,
+  &quot;                                &quot;,
+  &quot;                                &quot;,
+  &quot;0,0&quot;
+};
+
+SDL_Cursor *init_system_cursor(const char *image[])
+{
+  int i, row, col;
+  Uint8 data[4*32];
+  Uint8 mask[4*32];
+  int hot_x, hot_y;
+
+  i = -1;
+  for (row=0; row&lt;32; ++row) {
+    for (col=0; col&lt;32; ++col) {
+      if (col % 8) {
+        data[i] &lt;&lt;= 1;
+        mask[i] &lt;&lt;= 1;
+      } else {
+        ++i;
+        data[i] = mask[i] = 0;
+      }
+      switch (image[4+row][col]) {
+        case 'X':
+          data[i] |= 0x01;
+          mask[i] |= 0x01;
+          break;
+        case '.':
+          mask[i] |= 0x01;
+          break;
+        case ' ':
+          break;
+      }
+    }
+  }
+  sscanf(image[4+row], &quot;%d,%d&quot;, &amp;hot_x, &amp;hot_y);
+  return SDL_CreateCursor(data, mask, 32, 32, hot_x, hot_y);
+}
+</code></pre>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_CreateAnimatedCursor.html">SDL_CreateAnimatedCursor</a></li>
+<li><a href="SDL_CreateColorCursor.html">SDL_CreateColorCursor</a></li>
+<li><a href="SDL_CreateSystemCursor.html">SDL_CreateSystemCursor</a></li>
+<li><a href="SDL_DestroyCursor.html">SDL_DestroyCursor</a></li>
+<li><a href="SDL_SetCursor.html">SDL_SetCursor</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryMouse.html">CategoryMouse</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_CreateCursor" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

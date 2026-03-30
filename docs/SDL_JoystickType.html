@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_JoystickType - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_JoystickType</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_joysticktype">SDL_JoystickType</h1>
+<p>An enum of some common joystick types.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_joystick.h">&lt;SDL3/SDL_joystick.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef enum SDL_JoystickType
+{
+    SDL_JOYSTICK_TYPE_UNKNOWN,
+    SDL_JOYSTICK_TYPE_GAMEPAD,
+    SDL_JOYSTICK_TYPE_WHEEL,
+    SDL_JOYSTICK_TYPE_ARCADE_STICK,
+    SDL_JOYSTICK_TYPE_FLIGHT_STICK,
+    SDL_JOYSTICK_TYPE_DANCE_PAD,
+    SDL_JOYSTICK_TYPE_GUITAR,
+    SDL_JOYSTICK_TYPE_DRUM_KIT,
+    SDL_JOYSTICK_TYPE_ARCADE_PAD,
+    SDL_JOYSTICK_TYPE_THROTTLE,
+    SDL_JOYSTICK_TYPE_COUNT
+} SDL_JoystickType;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>In some cases, SDL can identify a low-level joystick as being a certain
+type of device, and will report it through
+<a href="SDL_GetJoystickType.html">SDL_GetJoystickType</a> (or
+<a href="SDL_GetJoystickTypeForID.html">SDL_GetJoystickTypeForID</a>).</p>
+<p>This is by no means a complete list of everything that can be plugged into
+a computer.</p>
+<p>You may refer to
+<a href="https://learn.microsoft.com/en-us/windows/win32/xinput/xinput-and-controller-subtypes">XInput Controller Types</a>
+table for a general understanding of each joystick type.</p>
+<h2 id="version">Version</h2>
+<p>This enum is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIEnum.html">CategoryAPIEnum</a>, <a href="CategoryJoystick.html">CategoryJoystick</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_JoystickType" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

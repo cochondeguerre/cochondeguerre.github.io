@@ -1,0 +1,22 @@
+﻿{
+    "types":  [
+                  "ENUM",
+                  "ENUM_VALUE",
+                  "FN",
+                  "MACRO",
+                  "STRUCT"
+              ],
+    "categories":  [
+                       "Additional",
+                       "Audio",
+                       "Event",
+                       "FILE \u0026 IO",
+                       "General",
+                       "GPU",
+                       "Haptic",
+                       "Platform",
+                       "Threads",
+                       "Time",
+                       "Video"
+                   ]
+}

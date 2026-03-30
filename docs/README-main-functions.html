@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>README-main-functions - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">README-main-functions</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="where-an-sdl-program-starts-running">Where an SDL program starts running.</h1>
+<h2 id="history">History</h2>
+<p>SDL has a long, complicated history with starting a program.</p>
+<p>In most of the civilized world, an application starts in a C-callable
+function named &quot;main&quot;. You probably learned it a long time ago:</p>
+<pre><code class="language-c">int main(int argc, char **argv)
+{
+    printf(&quot;Hello world!\n&quot;);
+    return 0;
+}
+</code></pre>
+<p>But not all platforms work like this. Windows apps might want a different
+function named &quot;WinMain&quot;, for example, so SDL set out to paper over this
+difference.</p>
+<p>Generally how this would work is: your app would always use the &quot;standard&quot;
+<code>main(argc, argv)</code> function as its entry point, and <code>#include</code> the proper
+SDL header before that, which did some macro magic. On platforms that used
+a standard <code>main</code>, it would do nothing and what you saw was what you got.</p>
+<p>But those other platforms! If they needed something that <em>wasn't</em> <code>main</code>,
+SDL's macro magic would quietly rename your function to <code>SDL_main</code>, and
+provide its own entry point that called it. Your app was none the wiser and
+your code worked everywhere without changes.</p>
+<h2 id="the-main-entry-point-in-sdl3">The main entry point in SDL3</h2>
+<p>Previous versions of SDL had a static library, SDLmain, that you would link
+your app against. SDL3 still has the same macro tricks, but the static library
+is gone. Now it's supplied by a &quot;single-header library,&quot; which means you
+<code>#include &lt;SDL3/SDL_main.h&gt;</code> and that header will insert a small amount of
+code into the source file that included it, so you no longer have to worry
+about linking against an extra library that you might need on some platforms.
+You just build your app and it works.</p>
+<p>You should <em>only</em> include SDL_main.h from one file (the umbrella header,
+SDL.h, does <em>not</em> include it), and know that it will <code>#define main</code> to
+something else, so if you use this symbol elsewhere as a variable name, etc,
+it can cause you unexpected problems.</p>
+<p>SDL_main.h will also include platform-specific code (WinMain or whatnot) that
+calls your <em>actual</em> main function. This is compiled directly into your
+program.</p>
+<p>If for some reason you need to include SDL_main.h in a file but also <em>don't</em>
+want it to generate this platform-specific code, you should define a special
+macro before including the header:</p>
+<pre><code class="language-c">#define SDL_MAIN_NOIMPL
+</code></pre>
+<p>If you are moving from SDL2, remove any references to the SDLmain static
+library from your build system, and you should be done. Things should work as
+they always have.</p>
+<p>If you have never controlled your process's entry point (you are using SDL
+as a module from a general-purpose scripting language interpreter, or you're
+using SDL in a plugin for some otherwise-unrelated app), then there is nothing
+required of you here; there is no startup code in SDL's entry point code that
+is required, so using SDL_main.h is completely optional. Just start using
+the SDL API when you are ready.</p>
+<h2 id="main-callbacks-in-sdl3">Main callbacks in SDL3</h2>
+<p>There is a second option in SDL3 for how to structure your program. This is
+completely optional and you can ignore it if you're happy using a standard
+&quot;main&quot; function.</p>
+<p>Some platforms would rather your program operate in chunks. Most of the time,
+games tend to look like this at the highest level:</p>
+<pre><code class="language-c">int main(int argc, char **argv)
+{
+    initialize();
+    while (keep_running()) {
+        handle_new_events();
+        do_one_frame_of_stuff();
+    }
+    deinitialize();
+}
+</code></pre>
+<p>There are platforms that would rather be in charge of that <code>while</code> loop:
+iOS would rather you return from main() immediately and then it will let you
+know that it's time to update and draw the next frame of video. Emscripten
+(programs that run on a web page) absolutely requires this to function at all.
+Video targets like Wayland can notify the app when to draw a new frame, to
+save battery life and cooperate with the compositor more closely.</p>
+<p>In most cases, you can add special-case code to your program to deal with this
+on different platforms, but SDL3 offers a system to handle this transparently on
+the app's behalf.</p>
+<p>To use this, you have to redesign the highest level of your app a little. Once
+you do, it'll work on all supported SDL platforms without problems and
+<code>#ifdef</code>s in your code.</p>
+<p>Instead of providing a &quot;main&quot; function, under this system, you would provide
+several functions that SDL will call as appropriate.</p>
+<p>Using the callback entry points works on every platform, because on platforms
+that don't require them, we can fake them with a simple loop in an internal
+implementation of the usual SDL_main.</p>
+<p>The primary way we expect people to write SDL apps is still with SDL_main, and
+this is not intended to replace it. If the app chooses to use this, it just
+removes some platform-specific details they might have to otherwise manage,
+and maybe removes a barrier to entry on some future platform. And you might
+find you enjoy structuring your program like this more!</p>
+<h2 id="how-to-use-main-callbacks-in-sdl3">How to use main callbacks in SDL3</h2>
+<p>To enable the callback entry points, you include SDL_main.h with an extra define,
+from a single source file in your project:</p>
+<pre><code class="language-c">#define SDL_MAIN_USE_CALLBACKS
+#include &lt;SDL3/SDL_main.h&gt;
+</code></pre>
+<p>Once you do this, you do not write a &quot;main&quot; function at all (and if you do,
+the app will likely fail to link). Instead, you provide the following
+functions:</p>
+<p>First:</p>
+<pre><code class="language-c">SDL_AppResult SDL_AppInit(void **appstate, int argc, char **argv);
+</code></pre>
+<p>This will be called <em>once</em> before anything else. argc/argv work like they
+always do. If this returns SDL_APP_CONTINUE, the app runs. If it returns
+SDL_APP_FAILURE, the app calls SDL_AppQuit and terminates with an exit
+code that reports an error to the platform. If it returns SDL_APP_SUCCESS,
+the app calls SDL_AppQuit and terminates with an exit code that reports
+success to the platform. This function should not go into an infinite
+mainloop; it should do any one-time startup it requires and then return.</p>
+<p>If you want to, you can assign a pointer to <code>*appstate</code>, and this pointer
+will be made available to you in later functions calls in their <code>appstate</code>
+parameter. This allows you to avoid global variables, but is totally
+optional. If you don't set this, the pointer will be NULL in later function
+calls.</p>
+<p>Then:</p>
+<pre><code class="language-c">SDL_AppResult SDL_AppIterate(void *appstate);
+</code></pre>
+<p>This is called over and over, possibly at the refresh rate of the display or
+some other metric that the platform dictates. This is where the heart of your
+app runs. It should return as quickly as reasonably possible, but it's not a
+&quot;run one memcpy and that's all the time you have&quot; sort of thing. The app
+should do any game updates, and render a frame of video. If it returns
+SDL_APP_FAILURE, SDL will call SDL_AppQuit and terminate the process with an
+exit code that reports an error to the platform. If it returns
+SDL_APP_SUCCESS, the app calls SDL_AppQuit and terminates with an exit code
+that reports success to the platform. If it returns SDL_APP_CONTINUE, then
+SDL_AppIterate will be called again at some regular frequency. The platform
+may choose to run this more or less (perhaps less in the background, etc),
+or it might just call this function in a loop as fast as possible. You do
+not check the  event queue in this function (SDL_AppEvent exists for that).</p>
+<p>Next:</p>
+<pre><code class="language-c">SDL_AppResult SDL_AppEvent(void *appstate, SDL_Event *event);
+</code></pre>
+<p>This will be called whenever an SDL event arrives. Your app should not call
+SDL_PollEvent, SDL_PumpEvent, etc, as  SDL will manage all this for you. Return
+values are the same as from SDL_AppIterate(), so you can terminate in response
+to SDL_EVENT_QUIT, etc.</p>
+<p>Finally:</p>
+<pre><code class="language-c">void SDL_AppQuit(void *appstate, SDL_AppResult result);
+</code></pre>
+<p>This is called once before terminating the app--assuming the app isn't being
+forcibly killed or crashed--as a last chance to clean up. After this returns,
+SDL will call SDL_Quit so the app doesn't have to (but it's safe for the app
+to call it, too). Process termination proceeds as if the app returned normally
+from main(), so atexit handles will run, if your platform supports that.</p>
+<p>If you set <code>*appstate</code> during SDL_AppInit, this is where you should free that
+data, as this pointer will not be provided to your app again.</p>
+<p>The SDL_AppResult value that terminated the app is provided here, in case
+it's useful to know if this was a successful or failing run of the app.</p>
+<h2 id="using-main-functions-from-other-languages">Using main functions from other languages</h2>
+<p>If you're not using C/C++, using SDL's entry points is still possible but is
+more complex. Please refer to <a href="https://wiki.libsdl.org/SDL3/NonstandardStartup">https://wiki.libsdl.org/SDL3/NonstandardStartup</a>
+for the technical details.</p>
+<h2 id="summary-and-best-practices">Summary and Best Practices</h2>
+<ul>
+<li><p><strong>Always Include SDL_main.h in One Source File:</strong> When working with SDL,
+remember that SDL_main.h must only be included in one source file in your
+project. Including it in multiple files will lead to conflicts and undefined
+behavior.</p>
+</li>
+<li><p><strong>Avoid Redefining main:</strong> If you're using SDL's entry point system (which
+renames <code>main</code> to <code>SDL_main</code>), do not define <code>main</code> yourself. SDL takes care
+of this for you, and redefining it can cause issues, especially when linking
+with SDL libraries.</p>
+</li>
+<li><p><strong>Using SDL's Callback System:</strong> If you're working with more complex
+scenarios, such as requiring more control over your application's flow
+(e.g., with games or apps that need extensive event handling), consider
+using SDL's callback system. Define the necessary callbacks and SDL will
+handle initialization, event processing, and cleanup automatically.</p>
+</li>
+<li><p><strong>Platform-Specific Considerations:</strong> On platforms like Windows, SDL handles
+the platform-specific entry point (like <code>WinMain</code>) automatically. This means
+you don't need to worry about writing platform-specific entry code when
+using SDL.</p>
+</li>
+<li><p><strong>When to Skip SDL_main.h:</strong> If you do not require SDL's custom entry point
+(for example, if you're integrating SDL into an existing application or a
+scripting environment), you can omit SDL_main.h. However, this will limit
+SDL's ability to abstract away platform-specific entry point details.</p>
+</li>
+</ul>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/README-main-functions" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

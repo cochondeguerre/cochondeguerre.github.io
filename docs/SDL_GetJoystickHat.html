@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetJoystickHat - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetJoystickHat</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getjoystickhat">SDL_GetJoystickHat</h1>
+<p>Get the current state of a POV hat on a joystick.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_joystick.h">&lt;SDL3/SDL_joystick.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">Uint8 SDL_GetJoystickHat(SDL_Joystick *joystick, int hat);
+
+
+#define SDL_HAT_CENTERED    0x00u
+#define SDL_HAT_UP          0x01u
+#define SDL_HAT_RIGHT       0x02u
+#define SDL_HAT_DOWN        0x04u
+#define SDL_HAT_LEFT        0x08u
+#define SDL_HAT_RIGHTUP     (SDL_HAT_RIGHT|SDL_HAT_UP)
+#define SDL_HAT_RIGHTDOWN   (SDL_HAT_RIGHT|SDL_HAT_DOWN)
+#define SDL_HAT_LEFTUP      (SDL_HAT_LEFT|SDL_HAT_UP)
+#define SDL_HAT_LEFTDOWN    (SDL_HAT_LEFT|SDL_HAT_DOWN)
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Joystick.html">SDL_Joystick</a> *</td>
+<td><strong>joystick</strong></td>
+<td>an <a href="SDL_Joystick.html">SDL_Joystick</a> structure containing joystick information.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>hat</strong></td>
+<td>the hat index to get the state from; indices start at index 0.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(Uint8) Returns the current hat position.</p>
+<h2 id="remarks">Remarks</h2>
+<p>The returned value will be one of the <code>SDL_HAT_*</code> values.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetNumJoystickHats.html">SDL_GetNumJoystickHats</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryJoystick.html">CategoryJoystick</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetJoystickHat" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

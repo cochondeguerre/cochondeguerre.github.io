@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GPUBufferCreateInfo - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GPUBufferCreateInfo</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gpubuffercreateinfo">SDL_GPUBufferCreateInfo</h1>
+<p>A structure specifying the parameters of a buffer.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_GPUBufferCreateInfo
+{
+    SDL_GPUBufferUsageFlags usage;  /**&lt; How the buffer is intended to be used by the client. */
+    Uint32 size;                    /**&lt; The size in bytes of the buffer. */
+
+    SDL_PropertiesID props;         /**&lt; A properties ID for extensions. Should be 0 if no extensions are needed. */
+} SDL_GPUBufferCreateInfo;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>Usage flags can be bitwise OR'd together for combinations of usages. Note
+that certain combinations are invalid, for example VERTEX and INDEX.</p>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_CreateGPUBuffer.html">SDL_CreateGPUBuffer</a></li>
+<li><a href="SDL_GPUBufferUsageFlags.html">SDL_GPUBufferUsageFlags</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GPUBufferCreateInfo" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

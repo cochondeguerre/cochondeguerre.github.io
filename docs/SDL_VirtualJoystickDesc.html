@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_VirtualJoystickDesc - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_VirtualJoystickDesc</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_virtualjoystickdesc">SDL_VirtualJoystickDesc</h1>
+<p>The structure that describes a virtual joystick.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_joystick.h">&lt;SDL3/SDL_joystick.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_VirtualJoystickDesc
+{
+    Uint32 version;     /**&lt; the version of this interface */
+    Uint16 type;        /**&lt; `SDL_JoystickType` */
+    Uint16 padding;     /**&lt; unused */
+    Uint16 vendor_id;   /**&lt; the USB vendor ID of this joystick */
+    Uint16 product_id;  /**&lt; the USB product ID of this joystick */
+    Uint16 naxes;       /**&lt; the number of axes on this joystick */
+    Uint16 nbuttons;    /**&lt; the number of buttons on this joystick */
+    Uint16 nballs;      /**&lt; the number of balls on this joystick */
+    Uint16 nhats;       /**&lt; the number of hats on this joystick */
+    Uint16 ntouchpads;  /**&lt; the number of touchpads on this joystick, requires `touchpads` to point at valid descriptions */
+    Uint16 nsensors;    /**&lt; the number of sensors on this joystick, requires `sensors` to point at valid descriptions */
+    Uint16 padding2[2]; /**&lt; unused */
+    Uint32 button_mask; /**&lt; A mask of which buttons are valid for this controller
+                             e.g. (1 &lt;&lt; SDL_GAMEPAD_BUTTON_SOUTH) */
+    Uint32 axis_mask;   /**&lt; A mask of which axes are valid for this controller
+                             e.g. (1 &lt;&lt; SDL_GAMEPAD_AXIS_LEFTX) */
+    const char *name;   /**&lt; the name of the joystick */
+    const SDL_VirtualJoystickTouchpadDesc *touchpads;   /**&lt; A pointer to an array of touchpad descriptions, required if `ntouchpads` is &gt; 0 */
+    const SDL_VirtualJoystickSensorDesc *sensors;       /**&lt; A pointer to an array of sensor descriptions, required if `nsensors` is &gt; 0 */
+
+    void *userdata;     /**&lt; User data pointer passed to callbacks */
+    void (SDLCALL *Update)(void *userdata); /**&lt; Called when the joystick state should be updated */
+    void (SDLCALL *SetPlayerIndex)(void *userdata, int player_index); /**&lt; Called when the player index is set */
+    bool (SDLCALL *Rumble)(void *userdata, Uint16 low_frequency_rumble, Uint16 high_frequency_rumble); /**&lt; Implements SDL_RumbleJoystick() */
+    bool (SDLCALL *RumbleTriggers)(void *userdata, Uint16 left_rumble, Uint16 right_rumble); /**&lt; Implements SDL_RumbleJoystickTriggers() */
+    bool (SDLCALL *SetLED)(void *userdata, Uint8 red, Uint8 green, Uint8 blue); /**&lt; Implements SDL_SetJoystickLED() */
+    bool (SDLCALL *SendEffect)(void *userdata, const void *data, int size); /**&lt; Implements SDL_SendJoystickEffect() */
+    bool (SDLCALL *SetSensorsEnabled)(void *userdata, bool enabled); /**&lt; Implements SDL_SetGamepadSensorEnabled() */
+    void (SDLCALL *Cleanup)(void *userdata); /**&lt; Cleans up the userdata when the joystick is detached */
+} SDL_VirtualJoystickDesc;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>This structure should be initialized using
+<a href="SDL_INIT_INTERFACE.html">SDL_INIT_INTERFACE</a>(). All elements of this structure
+are optional.</p>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_AttachVirtualJoystick.html">SDL_AttachVirtualJoystick</a></li>
+<li><a href="SDL_INIT_INTERFACE.html">SDL_INIT_INTERFACE</a></li>
+<li><a href="SDL_VirtualJoystickSensorDesc.html">SDL_VirtualJoystickSensorDesc</a></li>
+<li><a href="SDL_VirtualJoystickTouchpadDesc.html">SDL_VirtualJoystickTouchpadDesc</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryJoystick.html">CategoryJoystick</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_VirtualJoystickDesc" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

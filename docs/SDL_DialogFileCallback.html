@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_DialogFileCallback - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_DialogFileCallback</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_dialogfilecallback">SDL_DialogFileCallback</h1>
+<p>Callback used by file dialog functions.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_dialog.h">&lt;SDL3/SDL_dialog.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef void (SDLCALL *SDL_DialogFileCallback)(void *userdata, const char * const *filelist, int filter);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>userdata</strong></td>
+<td>an app-provided pointer, for the callback's use.</td>
+</tr>
+<tr>
+<td><strong>filelist</strong></td>
+<td>the file(s) chosen by the user.</td>
+</tr>
+<tr>
+<td><strong>filter</strong></td>
+<td>index of the selected filter.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="remarks">Remarks</h2>
+<p>The specific usage is described in each function.</p>
+<p>If <code>filelist</code> is:</p>
+<ul>
+<li>NULL, an error occurred. Details can be obtained with
+<a href="SDL_GetError.html">SDL_GetError</a>().</li>
+<li>A pointer to NULL, the user either didn't choose any file or canceled the
+dialog.</li>
+<li>A pointer to non-<code>NULL</code>, the user chose one or more files. The argument
+is a null-terminated array of pointers to UTF-8 encoded strings, each
+containing a path.</li>
+</ul>
+<p>The filelist argument should not be freed; it will automatically be freed
+when the callback returns.</p>
+<p>The filter argument is the index of the filter that was selected, or -1 if
+no filter was selected or if the platform or method doesn't support
+fetching the selected filter.</p>
+<p>In Android, the <code>filelist</code> are <code>content://</code> URIs. They should be opened
+using <a href="SDL_IOFromFile.html">SDL_IOFromFile</a>() with appropriate modes. This
+applies both to open and save file dialog.</p>
+<h2 id="version">Version</h2>
+<p>This datatype is available since SDL 3.2.0.</p>
+<h2 id="code-examples">Code Examples</h2>
+<pre><code class="language-c">#include &lt;SDL3/SDL.h&gt;
+
+static const SDL_DialogFileFilter filters[] = {
+    { &quot;PNG images&quot;,  &quot;png&quot; },
+    { &quot;JPEG images&quot;, &quot;jpg;jpeg&quot; },
+    { &quot;All images&quot;,  &quot;png;jpg;jpeg&quot; },
+    { &quot;All files&quot;,   &quot;*&quot; }
+};
+
+static void SDLCALL callback(void* userdata, const char* const* filelist, int filter)
+{
+    if (!filelist) {
+        SDL_Log(&quot;An error occured: %s&quot;, SDL_GetError());
+        return;
+    } else if (!*filelist) {
+        SDL_Log(&quot;The user did not select any file.&quot;);
+        SDL_Log(&quot;Most likely, the dialog was canceled.&quot;);
+        return;
+    }
+
+    while (*filelist) {
+        SDL_Log(&quot;Full path to selected file: '%s'&quot;, *filelist);
+        filelist++;
+    }
+
+    if (filter &lt; 0) {
+        SDL_Log(&quot;The current platform does not support fetching &quot;
+                &quot;the selected filter, or the user did not select&quot;
+                &quot; any filter.&quot;);
+    } else if (filter &lt; SDL_arraysize(filters)) {
+        SDL_Log(&quot;The filter selected by the user is '%s' (%s).&quot;,
+                filters[filter].pattern, filters[filter].name);
+    }
+}
+</code></pre>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_DialogFileFilter.html">SDL_DialogFileFilter</a></li>
+<li><a href="SDL_ShowOpenFileDialog.html">SDL_ShowOpenFileDialog</a></li>
+<li><a href="SDL_ShowSaveFileDialog.html">SDL_ShowSaveFileDialog</a></li>
+<li><a href="SDL_ShowOpenFolderDialog.html">SDL_ShowOpenFolderDialog</a></li>
+<li><a href="SDL_ShowFileDialogWithProperties.html">SDL_ShowFileDialogWithProperties</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIDatatype.html">CategoryAPIDatatype</a>, <a href="CategoryDialog.html">CategoryDialog</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_DialogFileCallback" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

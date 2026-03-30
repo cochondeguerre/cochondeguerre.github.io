@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_realloc - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_realloc</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_realloc">SDL_realloc</h1>
+<p>Change the size of allocated memory.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_stdinc.h">&lt;SDL3/SDL_stdinc.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">void * SDL_realloc(void *mem, size_t size);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>void *</td>
+<td><strong>mem</strong></td>
+<td>a pointer to allocated memory to reallocate, or NULL.</td>
+</tr>
+<tr>
+<td>size_t</td>
+<td><strong>size</strong></td>
+<td>the new size of the memory.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(void *) Returns a pointer to the newly allocated memory, or NULL if
+allocation failed.</p>
+<h2 id="remarks">Remarks</h2>
+<p>The memory returned by this function must be freed with
+<a href="SDL_free.html">SDL_free</a>().</p>
+<p>If <code>size</code> is 0, it will be set to 1. Note that this is unlike some other C
+runtime <code>realloc</code> implementations, which may treat <code>realloc(mem, 0)</code> the
+same way as <code>free(mem)</code>.</p>
+<p>If <code>mem</code> is NULL, the behavior of this function is equivalent to
+<a href="SDL_malloc.html">SDL_malloc</a>(). Otherwise, the function can have one of three
+possible outcomes:</p>
+<ul>
+<li>If it returns the same pointer as <code>mem</code>, it means that <code>mem</code> was resized
+in place without freeing.</li>
+<li>If it returns a different non-NULL pointer, it means that <code>mem</code> was freed
+and cannot be dereferenced anymore.</li>
+<li>If it returns NULL (indicating failure), then <code>mem</code> will remain valid and
+must still be freed with <a href="SDL_free.html">SDL_free</a>().</li>
+</ul>
+<p>If the allocation is successfully resized, the returned pointer is
+guaranteed to be aligned to either the <em>fundamental alignment</em>
+(<code>alignof(max_align_t)</code> in C11 and later) or <code>2 * sizeof(void *)</code>,
+whichever is smaller.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_free.html">SDL_free</a></li>
+<li><a href="SDL_malloc.html">SDL_malloc</a></li>
+<li><a href="SDL_calloc.html">SDL_calloc</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryStdinc.html">CategoryStdinc</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_realloc" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

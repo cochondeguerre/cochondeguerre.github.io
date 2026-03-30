@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GL_SwapWindow - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GL_SwapWindow</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gl_swapwindow">SDL_GL_SwapWindow</h1>
+<p>Update a window with OpenGL rendering.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_video.h">&lt;SDL3/SDL_video.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_GL_SwapWindow(SDL_Window *window);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Window.html">SDL_Window</a> *</td>
+<td><strong>window</strong></td>
+<td>the window to change.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This is used with double-buffered OpenGL contexts, which are the default.</p>
+<p>On macOS, make sure you bind 0 to the draw framebuffer before swapping the
+window, otherwise nothing will happen. If you aren't using
+glBindFramebuffer(), this is the default and you won't have to do anything
+extra.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should only be called on the main thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="code-examples">Code Examples</h2>
+<pre><code class="language-c">
+SDL_Window* window = SDL_CreateWindow(&quot;SDL3/OpenGL Demo&quot;, 640, 480, SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE);
+      
+/* Create an OpenGL context associated with the window. */
+SDL_GLContext glcontext = SDL_GL_CreateContext(window);
+
+/* This makes our buffer swap syncronized with the monitor's vertical refresh */
+SDL_GL_SetSwapInterval(1);
+
+/* Clear context */
+glClearColor(0,0,0,1);
+glClear(GL_COLOR_BUFFER_BIT);
+
+/* &lt;Extra drawing functions here&gt; */ 
+
+/* Swap our buffer to display the current contents of buffer on screen */ 
+SDL_GL_SwapWindow(window);
+
+
+</code></pre>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryVideo.html">CategoryVideo</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GL_SwapWindow" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>INTRO-visualstudio - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">INTRO-visualstudio</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="introduction-to-sdl-with-visual-studio">Introduction to SDL with Visual Studio</h1>
+<p>The easiest way to use SDL is to include it as a subproject in your project.</p>
+<p>We'll start by creating a simple project to build and run <a href="hello.c.html">hello.c</a></p>
+<ul>
+<li>Get a copy of the SDL source, you can clone the repo, or download the &quot;Source Code&quot; asset from <a href="https://github.com/libsdl-org/SDL/releases/latest">the latest release.</a>
+<ul>
+<li>If you've downloaded a release, make sure to extract the contents somewhere you can find it.</li>
+</ul>
+</li>
+<li>Create a new project in Visual Studio, using the C++ Empty Project template</li>
+<li>Add hello.c to the Source Files</li>
+<li>Right click the solution, select add an existing project, navigate to <code>VisualC/SDL</code> from within the source you cloned or downloaded above and add SDL.vcxproj</li>
+<li>Select your main project and go to Project -&gt; Add -&gt; Reference and select SDL3</li>
+<li>Select your main project and go to Project -&gt; Properties, set the filter at the top to &quot;All Configurations&quot; and &quot;All Platforms&quot;, select C/C++ -&gt; General and add the SDL include directory to &quot;Additional Include Directories&quot;</li>
+<li>Build and run!</li>
+</ul>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/INTRO-visualstudio" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

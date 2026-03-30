@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_CreateTray - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_CreateTray</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_createtray">SDL_CreateTray</h1>
+<p>Create an icon to be placed in the operating system's tray, or equivalent.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_tray.h">&lt;SDL3/SDL_tray.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_Tray * SDL_CreateTray(SDL_Surface *icon, const char *tooltip);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Surface.html">SDL_Surface</a> *</td>
+<td><strong>icon</strong></td>
+<td>a surface to be used as icon. May be NULL.</td>
+</tr>
+<tr>
+<td>const char *</td>
+<td><strong>tooltip</strong></td>
+<td>a tooltip to be displayed when the mouse hovers the icon in UTF-8 encoding. Not supported on all platforms. May be NULL.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_Tray.html">SDL_Tray</a> *) Returns The newly created system tray icon.</p>
+<h2 id="remarks">Remarks</h2>
+<p>Many platforms advise not using a system tray unless persistence is a
+necessary feature. Avoid needlessly creating a tray icon, as the user may
+feel like it clutters their interface.</p>
+<p>Using tray icons require the video subsystem.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should only be called on the main thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="code-examples">Code Examples</h2>
+<p>A simple program that creates a system tray with a single button that quits the
+program:</p>
+<pre><code class="language-c">#include &lt;SDL3/SDL.h&gt;
+#include &lt;SDL3/SDL_main.h&gt;
+
+void callback_quit(void *userdata, SDL_TrayEntry *invoker)
+{
+    SDL_Event e;
+    e.type = SDL_EVENT_QUIT;
+    SDL_PushEvent(&amp;e);
+}
+
+int main(int argc, char *argv[])
+{
+    SDL_Tray *tray;
+    SDL_TrayMenu *menu;
+    SDL_TrayEntry *entry;
+    SDL_Event e;
+
+    SDL_Init(SDL_INIT_VIDEO);
+
+    // Create the entry in the system tray. A regular app will want to provide
+    // an SDL_Surface instead of NULL.
+    tray = SDL_CreateTray(NULL, &quot;My tray&quot;);
+
+    // Create a context menu for the tray.
+    menu = SDL_CreateTrayMenu(tray);
+
+    // Create a button in the context menu.
+    entry = SDL_InsertTrayEntryAt(menu, -1, &quot;Quit&quot;, SDL_TRAYENTRY_BUTTON);
+
+    // Set the callback for the button
+    SDL_SetTrayEntryCallback(entry, callback_quit, NULL);
+
+    // Run the main loop...
+    while (SDL_WaitEvent(&amp;e)) {
+        if (e.type == SDL_EVENT_QUIT) {
+            break;
+        }
+    }
+
+    // No need to destroy anything other than the tray itself - the rest is
+    // destroyed automatically.
+    SDL_DestroyTray(tray);
+
+    SDL_Quit();
+
+    return 0;
+}
+</code></pre>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_CreateTrayWithProperties.html">SDL_CreateTrayWithProperties</a></li>
+<li><a href="SDL_CreateTrayMenu.html">SDL_CreateTrayMenu</a></li>
+<li><a href="SDL_GetTrayMenu.html">SDL_GetTrayMenu</a></li>
+<li><a href="SDL_DestroyTray.html">SDL_DestroyTray</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryTray.html">CategoryTray</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_CreateTray" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

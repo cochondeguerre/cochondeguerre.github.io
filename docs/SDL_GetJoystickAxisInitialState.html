@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetJoystickAxisInitialState - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetJoystickAxisInitialState</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getjoystickaxisinitialstate">SDL_GetJoystickAxisInitialState</h1>
+<p>Get the initial state of an axis control on a joystick.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_joystick.h">&lt;SDL3/SDL_joystick.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_GetJoystickAxisInitialState(SDL_Joystick *joystick, int axis, Sint16 *state);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Joystick.html">SDL_Joystick</a> *</td>
+<td><strong>joystick</strong></td>
+<td>an <a href="SDL_Joystick.html">SDL_Joystick</a> structure containing joystick information.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>axis</strong></td>
+<td>the axis to query; the axis indices start at index 0.</td>
+</tr>
+<tr>
+<td><a href="Sint16.html">Sint16</a> *</td>
+<td><strong>state</strong></td>
+<td>upon return, the initial value is supplied here.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true if this axis has any initial value, or false if not.</p>
+<h2 id="remarks">Remarks</h2>
+<p>The state is a value ranging from -32768 to 32767.</p>
+<p>The axis indices start at index 0.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryJoystick.html">CategoryJoystick</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetJoystickAxisInitialState" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

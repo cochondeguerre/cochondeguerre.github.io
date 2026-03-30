@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_HINT_MOUSE_EMULATE_WARP_WITH_RELATIVE - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_HINT_MOUSE_EMULATE_WARP_WITH_RELATIVE</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_hint_mouse_emulate_warp_with_relative">SDL_HINT_MOUSE_EMULATE_WARP_WITH_RELATIVE</h1>
+<p>A variable controlling whether warping a hidden mouse cursor will activate relative mouse mode.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_hints.h">&lt;SDL3/SDL_hints.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_HINT_MOUSE_EMULATE_WARP_WITH_RELATIVE &quot;SDL_MOUSE_EMULATE_WARP_WITH_RELATIVE&quot;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>When this hint is set, the mouse cursor is hidden, and multiple warps to
+the window center occur within a short time period, SDL will emulate mouse
+warps using relative mouse mode. This can provide smoother and more
+reliable mouse motion for some older games, which continuously calculate
+the distance traveled by the mouse pointer and warp it back to the center
+of the window, rather than using relative mouse motion.</p>
+<p>Note that relative mouse mode may have different mouse acceleration
+behavior than pointer warps.</p>
+<p>If your application needs to repeatedly warp the hidden mouse cursor at a
+high-frequency for other purposes, it should disable this hint.</p>
+<p>The variable can be set to the following values:</p>
+<ul>
+<li>&quot;0&quot;: Attempts to warp the mouse will always be made.</li>
+<li>&quot;1&quot;: Some mouse warps will be emulated by forcing relative mouse mode.
+(default)</li>
+</ul>
+<p>If not set, this is automatically enabled unless an application uses
+relative mouse mode directly.</p>
+<p>This hint can be set anytime.</p>
+<h2 id="version">Version</h2>
+<p>This hint is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryHints.html">CategoryHints</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_HINT_MOUSE_EMULATE_WARP_WITH_RELATIVE" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

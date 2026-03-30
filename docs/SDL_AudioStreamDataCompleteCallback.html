@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_AudioStreamDataCompleteCallback - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_AudioStreamDataCompleteCallback</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_audiostreamdatacompletecallback">SDL_AudioStreamDataCompleteCallback</h1>
+<p>A callback that fires for completed <a href="SDL_PutAudioStreamDataNoCopy.html">SDL_PutAudioStreamDataNoCopy</a>() data.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_audio.h">&lt;SDL3/SDL_audio.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef void (SDLCALL *SDL_AudioStreamDataCompleteCallback)(void *userdata, const void *buf, int buflen);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>userdata</strong></td>
+<td>an opaque pointer provided by the app for their personal use.</td>
+</tr>
+<tr>
+<td><strong>buf</strong></td>
+<td>the pointer provided to <a href="SDL_PutAudioStreamDataNoCopy.html">SDL_PutAudioStreamDataNoCopy</a>().</td>
+</tr>
+<tr>
+<td><strong>buflen</strong></td>
+<td>the size of buffer, in bytes, provided to <a href="SDL_PutAudioStreamDataNoCopy.html">SDL_PutAudioStreamDataNoCopy</a>().</td>
+</tr>
+</tbody>
+</table>
+<h2 id="remarks">Remarks</h2>
+<p>When using <a href="SDL_PutAudioStreamDataNoCopy.html">SDL_PutAudioStreamDataNoCopy</a>()
+to provide data to an <a href="SDL_AudioStream.html">SDL_AudioStream</a>, it's not safe to
+dispose of the data until the stream has completely consumed it. Often
+times it's difficult to know exactly when this has happened.</p>
+<p>This callback fires once when the stream no longer needs the buffer,
+allowing the app to easily free or reuse it.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This callbacks may run from any thread, so if you need to protect shared
+data, you should use <a href="SDL_LockAudioStream.html">SDL_LockAudioStream</a> to
+serialize access; this lock will be held before your callback is called, so
+your callback does not need to manage the lock explicitly.</p>
+<h2 id="version">Version</h2>
+<p>This datatype is available since SDL 3.4.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_SetAudioStreamGetCallback.html">SDL_SetAudioStreamGetCallback</a></li>
+<li><a href="SDL_SetAudioStreamPutCallback.html">SDL_SetAudioStreamPutCallback</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIDatatype.html">CategoryAPIDatatype</a>, <a href="CategoryAudio.html">CategoryAudio</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_AudioStreamDataCompleteCallback" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

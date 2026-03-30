@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_LockTexture - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_LockTexture</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_locktexture">SDL_LockTexture</h1>
+<p>Lock a portion of the texture for <strong>write-only</strong> pixel access.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_render.h">&lt;SDL3/SDL_render.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_LockTexture(SDL_Texture *texture,
+                const SDL_Rect *rect,
+                void **pixels, int *pitch);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Texture.html">SDL_Texture</a> *</td>
+<td><strong>texture</strong></td>
+<td>the texture to lock for access, which was created with <a href="SDL_TEXTUREACCESS_STREAMING.html"><code>SDL_TEXTUREACCESS_STREAMING</code></a>.</td>
+</tr>
+<tr>
+<td>const <a href="SDL_Rect.html">SDL_Rect</a> *</td>
+<td><strong>rect</strong></td>
+<td>an <a href="SDL_Rect.html">SDL_Rect</a> structure representing the area to lock for access; NULL to lock the entire texture.</td>
+</tr>
+<tr>
+<td>void **</td>
+<td><strong>pixels</strong></td>
+<td>this is filled in with a pointer to the locked pixels, appropriately offset by the locked area.</td>
+</tr>
+<tr>
+<td>int *</td>
+<td><strong>pitch</strong></td>
+<td>this is filled in with the pitch of the locked pixels; the pitch is the length of one row in bytes.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false if the texture is not valid or was
+not created with
+<a href="SDL_TEXTUREACCESS_STREAMING.html"><code>SDL_TEXTUREACCESS_STREAMING</code></a>; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>As an optimization, the pixels made available for editing don't necessarily
+contain the old texture data. This is a write-only operation, and if you
+need to keep a copy of the texture data you should do that at the
+application level.</p>
+<p>You must use <a href="SDL_UnlockTexture.html">SDL_UnlockTexture</a>() to unlock the pixels
+and apply any changes.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should only be called on the main thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_LockTextureToSurface.html">SDL_LockTextureToSurface</a></li>
+<li><a href="SDL_UnlockTexture.html">SDL_UnlockTexture</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryRender.html">CategoryRender</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_LockTexture" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

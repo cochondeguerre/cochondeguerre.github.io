@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_CommonEvent - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_CommonEvent</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_commonevent">SDL_CommonEvent</h1>
+<p>Fields shared by every event</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_events.h">&lt;SDL3/SDL_events.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_CommonEvent
+{
+    Uint32 type;        /**&lt; Event type, shared with all events, Uint32 to cover user events which are not in the SDL_EventType enumeration */
+    Uint32 reserved;
+    Uint64 timestamp;   /**&lt; In nanoseconds, populated using SDL_GetTicksNS() */
+} SDL_CommonEvent;
+</code></pre>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryEvents.html">CategoryEvents</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_CommonEvent" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

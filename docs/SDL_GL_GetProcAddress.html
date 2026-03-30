@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GL_GetProcAddress - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GL_GetProcAddress</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gl_getprocaddress">SDL_GL_GetProcAddress</h1>
+<p>Get an OpenGL function by name.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_video.h">&lt;SDL3/SDL_video.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_FunctionPointer SDL_GL_GetProcAddress(const char *proc);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>const char *</td>
+<td><strong>proc</strong></td>
+<td>the name of an OpenGL function.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_FunctionPointer.html">SDL_FunctionPointer</a>) Returns a pointer to the named
+OpenGL function. The returned pointer should be cast to the appropriate
+function signature.</p>
+<h2 id="remarks">Remarks</h2>
+<p>If the GL library is loaded at runtime with
+<a href="SDL_GL_LoadLibrary.html">SDL_GL_LoadLibrary</a>(), then all GL functions must be
+retrieved this way. Usually this is used to retrieve function pointers to
+OpenGL extensions.</p>
+<p>There are some quirks to looking up OpenGL functions that require some
+extra care from the application. If you code carefully, you can handle
+these quirks without any platform-specific code, though:</p>
+<ul>
+<li>On Windows, function pointers are specific to the current GL context;
+this means you need to have created a GL context and made it current
+before calling <a href="SDL_GL_GetProcAddress.html">SDL_GL_GetProcAddress</a>(). If you
+recreate your context or create a second context, you should assume that
+any existing function pointers aren't valid to use with it. This is
+(currently) a Windows-specific limitation, and in practice lots of
+drivers don't suffer this limitation, but it is still the way the wgl API
+is documented to work and you should expect crashes if you don't respect
+it. Store a copy of the function pointers that comes and goes with
+context lifespan.</li>
+<li>On X11, function pointers returned by this function are valid for any
+context, and can even be looked up before a context is created at all.
+This means that, for at least some common OpenGL implementations, if you
+look up a function that doesn't exist, you'll get a non-NULL result that
+is <em>NOT</em> safe to call. You must always make sure the function is actually
+available for a given GL context before calling it, by checking for the
+existence of the appropriate extension with
+<a href="SDL_GL_ExtensionSupported.html">SDL_GL_ExtensionSupported</a>(), or verifying
+that the version of OpenGL you're using offers the function as core
+functionality.</li>
+<li>Some OpenGL drivers, on all platforms, <em>will</em> return NULL if a function
+isn't supported, but you can't count on this behavior. Check for
+extensions you use, and if you get a NULL anyway, act as if that
+extension wasn't available. This is probably a bug in the driver, but you
+can code defensively for this scenario anyhow.</li>
+<li>Just because you're on Linux/Unix, don't assume you'll be using X11.
+Next-gen display servers are waiting to replace it, and may or may not
+make the same promises about function pointers.</li>
+<li>OpenGL function pointers must be declared <code>APIENTRY</code> as in the example
+code. This will ensure the proper calling convention is followed on
+platforms where this matters (Win32) thereby avoiding stack corruption.</li>
+</ul>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should only be called on the main thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="code-examples">Code Examples</h2>
+<pre><code class="language-c">typedef void (APIENTRY * GL_ActiveTextureARB_Func)(unsigned int);
+GL_ActiveTextureARB_Func glActiveTextureARB_ptr = 0;
+
+/* Get function pointer */
+glActiveTextureARB_ptr=(GL_ActiveTextureARB_Func) SDL_GL_GetProcAddress(&quot;glActiveTextureARB&quot;);
+
+/* It was your responsibility to make sure this was a valid function to call! */
+glActiveTextureARB_ptr(GL_TEXTURE0_ARB);
+</code></pre>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GL_ExtensionSupported.html">SDL_GL_ExtensionSupported</a></li>
+<li><a href="SDL_GL_LoadLibrary.html">SDL_GL_LoadLibrary</a></li>
+<li><a href="SDL_GL_UnloadLibrary.html">SDL_GL_UnloadLibrary</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryVideo.html">CategoryVideo</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GL_GetProcAddress" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

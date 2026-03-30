@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_ShouldInit - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_ShouldInit</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_shouldinit">SDL_ShouldInit</h1>
+<p>Return whether initialization should be done.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_mutex.h">&lt;SDL3/SDL_mutex.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_ShouldInit(SDL_InitState *state);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_InitState.html">SDL_InitState</a> *</td>
+<td><strong>state</strong></td>
+<td>the initialization state to check.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true if initialization needs to be done, false otherwise.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This function checks the passed in state and if initialization should be
+done, sets the status to
+<a href="SDL_INIT_STATUS_INITIALIZING.html"><code>SDL_INIT_STATUS_INITIALIZING</code></a> and returns
+true. If another thread is already modifying this state, it will wait until
+that's done before returning.</p>
+<p>If this function returns true, the calling code must call
+<a href="SDL_SetInitialized.html">SDL_SetInitialized</a>() to complete the initialization.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_SetInitialized.html">SDL_SetInitialized</a></li>
+<li><a href="SDL_ShouldQuit.html">SDL_ShouldQuit</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryMutex.html">CategoryMutex</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_ShouldInit" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

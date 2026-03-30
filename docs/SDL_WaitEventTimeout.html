@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_WaitEventTimeout - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_WaitEventTimeout</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_waiteventtimeout">SDL_WaitEventTimeout</h1>
+<p>Wait until the specified timeout (in milliseconds) for the next available event.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_events.h">&lt;SDL3/SDL_events.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_WaitEventTimeout(SDL_Event *event, Sint32 timeoutMS);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Event.html">SDL_Event</a> *</td>
+<td><strong>event</strong></td>
+<td>the <a href="SDL_Event.html">SDL_Event</a> structure to be filled in with the next event from the queue, or NULL.</td>
+</tr>
+<tr>
+<td><a href="Sint32.html">Sint32</a></td>
+<td><strong>timeoutMS</strong></td>
+<td>the maximum number of milliseconds to wait for the next available event.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true if this got an event or false if the timeout elapsed
+without any events available.</p>
+<h2 id="remarks">Remarks</h2>
+<p>If <code>event</code> is not NULL, the next event is removed from the queue and stored
+in the <a href="SDL_Event.html">SDL_Event</a> structure pointed to by <code>event</code>.</p>
+<p>As this function may implicitly call <a href="SDL_PumpEvents.html">SDL_PumpEvents</a>(),
+you can only call this function in the thread that initialized the video
+subsystem.</p>
+<p>The timeout is not guaranteed, the actual wait time could be longer due to
+system scheduling.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should only be called on the main thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_PollEvent.html">SDL_PollEvent</a></li>
+<li><a href="SDL_PushEvent.html">SDL_PushEvent</a></li>
+<li><a href="SDL_WaitEvent.html">SDL_WaitEvent</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryEvents.html">CategoryEvents</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_WaitEventTimeout" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

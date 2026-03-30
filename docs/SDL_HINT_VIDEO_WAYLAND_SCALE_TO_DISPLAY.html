@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_HINT_VIDEO_WAYLAND_SCALE_TO_DISPLAY - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_HINT_VIDEO_WAYLAND_SCALE_TO_DISPLAY</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_hint_video_wayland_scale_to_display">SDL_HINT_VIDEO_WAYLAND_SCALE_TO_DISPLAY</h1>
+<p>A variable forcing non-DPI-aware Wayland windows to output at 1:1 scaling.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_hints.h">&lt;SDL3/SDL_hints.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_HINT_VIDEO_WAYLAND_SCALE_TO_DISPLAY &quot;SDL_VIDEO_WAYLAND_SCALE_TO_DISPLAY&quot;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>This must be set before initializing the video subsystem.</p>
+<p>When this hint is set, Wayland windows that are not flagged as being
+DPI-aware will be output with scaling designed to force 1:1 pixel mapping.</p>
+<p>This is intended to allow legacy applications to be displayed without
+desktop scaling being applied, and has issues with certain display
+configurations, as this forces the window to behave in a way that Wayland
+desktops were not designed to accommodate:</p>
+<ul>
+<li>Rounding errors can result with odd window sizes and/or desktop scales,
+which can cause the window contents to appear slightly blurry.</li>
+<li>Positioning the window may be imprecise due to unit conversions and
+rounding.</li>
+<li>The window may be unusably small on scaled desktops.</li>
+<li>The window may jump in size when moving between displays of different
+scale factors.</li>
+<li>Displays may appear to overlap when using a multi-monitor setup with
+scaling enabled.</li>
+<li>Possible loss of cursor precision due to the logical size of the window
+being reduced.</li>
+</ul>
+<p>New applications should be designed with proper DPI awareness handling
+instead of enabling this.</p>
+<p>The variable can be set to the following values:</p>
+<ul>
+<li>&quot;0&quot;: Windows will be scaled normally.</li>
+<li>&quot;1&quot;: Windows will be forced to scale to achieve 1:1 output.</li>
+</ul>
+<p>This hint should be set before creating a window.</p>
+<h2 id="version">Version</h2>
+<p>This hint is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryHints.html">CategoryHints</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_HINT_VIDEO_WAYLAND_SCALE_TO_DISPLAY" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

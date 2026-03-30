@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_AsyncIOOutcome - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_AsyncIOOutcome</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_asynciooutcome">SDL_AsyncIOOutcome</h1>
+<p>Information about a completed asynchronous I/O request.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_asyncio.h">&lt;SDL3/SDL_asyncio.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_AsyncIOOutcome
+{
+    SDL_AsyncIO *asyncio;   /**&lt; what generated this task. This pointer will be invalid if it was closed! */
+    SDL_AsyncIOTaskType type;  /**&lt; What sort of task was this? Read, write, etc? */
+    SDL_AsyncIOResult result;  /**&lt; the result of the work (success, failure, cancellation). */
+    void *buffer;  /**&lt; buffer where data was read/written. */
+    Uint64 offset;  /**&lt; offset in the SDL_AsyncIO where data was read/written. */
+    Uint64 bytes_requested;  /**&lt; number of bytes the task was to read/write. */
+    Uint64 bytes_transferred;  /**&lt; actual number of bytes that were read/written. */
+    void *userdata;    /**&lt; pointer provided by the app when starting the task */
+} SDL_AsyncIOOutcome;
+</code></pre>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryAsyncIO.html">CategoryAsyncIO</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_AsyncIOOutcome" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

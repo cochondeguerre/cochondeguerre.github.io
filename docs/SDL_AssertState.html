@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_AssertState - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_AssertState</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_assertstate">SDL_AssertState</h1>
+<p>Possible outcomes from a triggered assertion.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_assert.h">&lt;SDL3/SDL_assert.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef enum SDL_AssertState
+{
+    SDL_ASSERTION_RETRY,  /**&lt; Retry the assert immediately. */
+    SDL_ASSERTION_BREAK,  /**&lt; Make the debugger trigger a breakpoint. */
+    SDL_ASSERTION_ABORT,  /**&lt; Terminate the program. */
+    SDL_ASSERTION_IGNORE,  /**&lt; Ignore the assert. */
+    SDL_ASSERTION_ALWAYS_IGNORE  /**&lt; Ignore the assert from now on. */
+} SDL_AssertState;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>When an enabled assertion triggers, it may call the assertion handler
+(possibly one provided by the app via
+<a href="SDL_SetAssertionHandler.html">SDL_SetAssertionHandler</a>), which will return one
+of these values, possibly after asking the user.</p>
+<p>Then SDL will respond based on this outcome (loop around to retry the
+condition, try to break in a debugger, kill the program, or ignore the
+problem).</p>
+<h2 id="version">Version</h2>
+<p>This enum is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIEnum.html">CategoryAPIEnum</a>, <a href="CategoryAssert.html">CategoryAssert</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_AssertState" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

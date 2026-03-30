@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_UpdateJoysticks - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_UpdateJoysticks</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_updatejoysticks">SDL_UpdateJoysticks</h1>
+<p>Update the current state of the open joysticks.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_joystick.h">&lt;SDL3/SDL_joystick.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">void SDL_UpdateJoysticks(void);
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>This is called automatically by the event loop if any joystick events are
+enabled and
+<a href="SDL_HINT_AUTO_UPDATE_JOYSTICKS.html">SDL_HINT_AUTO_UPDATE_JOYSTICKS</a> hasn't
+been set to &quot;0&quot;.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryJoystick.html">CategoryJoystick</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_UpdateJoysticks" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

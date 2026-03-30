@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_HINT_AUDIO_ALSA_DEFAULT_PLAYBACK_DEVICE - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_HINT_AUDIO_ALSA_DEFAULT_PLAYBACK_DEVICE</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_hint_audio_alsa_default_playback_device">SDL_HINT_AUDIO_ALSA_DEFAULT_PLAYBACK_DEVICE</h1>
+<p>Specify the default ALSA audio playback device name.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_hints.h">&lt;SDL3/SDL_hints.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_HINT_AUDIO_ALSA_DEFAULT_PLAYBACK_DEVICE &quot;SDL_AUDIO_ALSA_DEFAULT_PLAYBACK_DEVICE&quot;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>This variable is a specific audio device to open for playback, when the
+&quot;default&quot; audio device is used.</p>
+<p>If this hint isn't set, SDL will check
+<a href="SDL_HINT_AUDIO_ALSA_DEFAULT_DEVICE.html">SDL_HINT_AUDIO_ALSA_DEFAULT_DEVICE</a>
+before choosing a reasonable default.</p>
+<p>This hint should be set before an audio device is opened.</p>
+<h2 id="version">Version</h2>
+<p>This hint is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_HINT_AUDIO_ALSA_DEFAULT_RECORDING_DEVICE.html">SDL_HINT_AUDIO_ALSA_DEFAULT_RECORDING_DEVICE</a></li>
+<li><a href="SDL_HINT_AUDIO_ALSA_DEFAULT_DEVICE.html">SDL_HINT_AUDIO_ALSA_DEFAULT_DEVICE</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryHints.html">CategoryHints</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_HINT_AUDIO_ALSA_DEFAULT_PLAYBACK_DEVICE" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

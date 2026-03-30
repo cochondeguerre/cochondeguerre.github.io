@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetPixelFormatForMasks - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetPixelFormatForMasks</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getpixelformatformasks">SDL_GetPixelFormatForMasks</h1>
+<p>Convert a bpp value and RGBA masks to an enumerated pixel format.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_pixels.h">&lt;SDL3/SDL_pixels.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_PixelFormat SDL_GetPixelFormatForMasks(int bpp, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td><strong>bpp</strong></td>
+<td>a bits per pixel value; usually 15, 16, or 32.</td>
+</tr>
+<tr>
+<td><a href="Uint32.html">Uint32</a></td>
+<td><strong>Rmask</strong></td>
+<td>the red mask for the format.</td>
+</tr>
+<tr>
+<td><a href="Uint32.html">Uint32</a></td>
+<td><strong>Gmask</strong></td>
+<td>the green mask for the format.</td>
+</tr>
+<tr>
+<td><a href="Uint32.html">Uint32</a></td>
+<td><strong>Bmask</strong></td>
+<td>the blue mask for the format.</td>
+</tr>
+<tr>
+<td><a href="Uint32.html">Uint32</a></td>
+<td><strong>Amask</strong></td>
+<td>the alpha mask for the format.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_PixelFormat.html">SDL_PixelFormat</a>) Returns the
+<a href="SDL_PixelFormat.html">SDL_PixelFormat</a> value corresponding to the format masks,
+or <a href="SDL_PIXELFORMAT_UNKNOWN.html">SDL_PIXELFORMAT_UNKNOWN</a> if there isn't a
+match.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This will return <a href="SDL_PIXELFORMAT_UNKNOWN.html"><code>SDL_PIXELFORMAT_UNKNOWN</code></a> if
+the conversion wasn't possible.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetMasksForPixelFormat.html">SDL_GetMasksForPixelFormat</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryPixels.html">CategoryPixels</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetPixelFormatForMasks" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

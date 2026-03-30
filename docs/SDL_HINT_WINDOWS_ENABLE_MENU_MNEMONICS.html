@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_HINT_WINDOWS_ENABLE_MENU_MNEMONICS - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_HINT_WINDOWS_ENABLE_MENU_MNEMONICS</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_hint_windows_enable_menu_mnemonics">SDL_HINT_WINDOWS_ENABLE_MENU_MNEMONICS</h1>
+<p>A variable controlling whether menus can be opened with their keyboard shortcut (Alt+mnemonic).</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_hints.h">&lt;SDL3/SDL_hints.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_HINT_WINDOWS_ENABLE_MENU_MNEMONICS &quot;SDL_WINDOWS_ENABLE_MENU_MNEMONICS&quot;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>If the mnemonics are enabled, then menus can be opened by pressing the Alt
+key and the corresponding mnemonic (for example, Alt+F opens the File
+menu). However, in case an invalid mnemonic is pressed, Windows makes an
+audible beep to convey that nothing happened. This is true even if the
+window has no menu at all!</p>
+<p>Because most SDL applications don't have menus, and some want to use the
+Alt key for other purposes, SDL disables mnemonics (and the beeping) by
+default.</p>
+<p>Note: This also affects keyboard events: with mnemonics enabled, when a
+menu is opened from the keyboard, you will not receive a KEYUP event for
+the mnemonic key, and <em>might</em> not receive one for Alt.</p>
+<p>The variable can be set to the following values:</p>
+<ul>
+<li>&quot;0&quot;: Alt+mnemonic does nothing, no beeping. (default)</li>
+<li>&quot;1&quot;: Alt+mnemonic opens menus, invalid mnemonics produce a beep.</li>
+</ul>
+<p>This hint can be set anytime.</p>
+<h2 id="version">Version</h2>
+<p>This hint is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryHints.html">CategoryHints</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_HINT_WINDOWS_ENABLE_MENU_MNEMONICS" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

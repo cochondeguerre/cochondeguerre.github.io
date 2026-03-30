@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_EnumerateProperties - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_EnumerateProperties</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_enumerateproperties">SDL_EnumerateProperties</h1>
+<p>Enumerate the properties contained in a group of properties.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_properties.h">&lt;SDL3/SDL_properties.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_EnumerateProperties(SDL_PropertiesID props, SDL_EnumeratePropertiesCallback callback, void *userdata);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_PropertiesID.html">SDL_PropertiesID</a></td>
+<td><strong>props</strong></td>
+<td>the properties to query.</td>
+</tr>
+<tr>
+<td><a href="SDL_EnumeratePropertiesCallback.html">SDL_EnumeratePropertiesCallback</a></td>
+<td><strong>callback</strong></td>
+<td>the function to call for each property.</td>
+</tr>
+<tr>
+<td>void *</td>
+<td><strong>userdata</strong></td>
+<td>a pointer that is passed to <code>callback</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>The callback function is called for each property in the group of
+properties. The properties are locked during enumeration.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="code-examples">Code Examples</h2>
+<pre><code class="language-c">// Example program
+// Use SDL3 to enumerate the display properties of every display
+
+#include &lt;SDL3/SDL_log.h&gt;
+#include &lt;SDL3/SDL_main.h&gt;
+#include &lt;SDL3/SDL_video.h&gt;
+
+
+static void
+my_enumerate_properties_callback(void *userdata, SDL_PropertiesID props, const char *name)
+{
+  SDL_PropertyType prop_type = SDL_GetPropertyType(props, name);
+
+  switch (prop_type) {
+    case SDL_PROPERTY_TYPE_POINTER:
+      SDL_Log(&quot;%s is a pointer poperty&quot;, name);
+      break;
+    case SDL_PROPERTY_TYPE_STRING:
+      SDL_Log(
+        &quot;%s is a string property with value %s&quot;, name, SDL_GetStringProperty(props, name, &quot;&quot;));
+      break;
+    case SDL_PROPERTY_TYPE_NUMBER:
+      SDL_Log(&quot;%s is a number property with value %&quot;SDL_PRIs64, name, SDL_GetNumberProperty(props, name, 0));
+      break;
+    case SDL_PROPERTY_TYPE_FLOAT:
+      SDL_Log(&quot;%s is a float property with value %f&quot;, name, SDL_GetFloatProperty(props, name, 0.0f));
+      break;
+    case SDL_PROPERTY_TYPE_BOOLEAN:
+      SDL_Log(
+        &quot;%s is a boolean property with value %d&quot;, name, SDL_GetBooleanProperty(props, name, false));
+      break;
+    case SDL_PROPERTY_TYPE_INVALID:
+    default:
+      SDL_Log(&quot;%s is an invalid property&quot;, name);
+      break;
+  }
+}
+
+
+int
+main(int argc, char** argv)
+{
+  if (!SDL_Init(SDL_INIT_VIDEO)) {
+    SDL_Log(&quot;Unable to initialize SDL: %s&quot;, SDL_GetError());
+    return 0;
+  }
+
+  SDL_Log(&quot;SDL initialized&quot;);
+
+  int num_displays;
+  SDL_DisplayID *displays = SDL_GetDisplays(&amp;num_displays);
+  SDL_Log(&quot;Found %d displays.&quot;, num_displays);
+
+  for(int i = 0; i &lt; num_displays; i++) {
+    SDL_PropertiesID prop_id = SDL_GetDisplayProperties(displays[i]);
+    SDL_Log(&quot;Display %d has properties ID %d&quot;, i, prop_id);
+
+    if(!SDL_EnumerateProperties(prop_id, my_enumerate_properties_callback, NULL)) {
+      SDL_Log(&quot;Error enumerating properties: %s.&quot;, SDL_GetError());
+    }
+  }
+
+  SDL_free(displays);
+
+  return 0;
+}
+</code></pre>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryProperties.html">CategoryProperties</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_EnumerateProperties" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_WriteIO - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_WriteIO</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_writeio">SDL_WriteIO</h1>
+<p>Write to an <a href="SDL_IOStream.html">SDL_IOStream</a> data stream.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_iostream.h">&lt;SDL3/SDL_iostream.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">size_t SDL_WriteIO(SDL_IOStream *context, const void *ptr, size_t size);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_IOStream.html">SDL_IOStream</a> *</td>
+<td><strong>context</strong></td>
+<td>a pointer to an <a href="SDL_IOStream.html">SDL_IOStream</a> structure.</td>
+</tr>
+<tr>
+<td>const void *</td>
+<td><strong>ptr</strong></td>
+<td>a pointer to a buffer containing data to write.</td>
+</tr>
+<tr>
+<td>size_t</td>
+<td><strong>size</strong></td>
+<td>the number of bytes to write.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(size_t) Returns the number of bytes written, which will be less than
+<code>size</code> on failure; call <a href="SDL_GetError.html">SDL_GetError</a>() for more
+information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This function writes exactly <code>size</code> bytes from the area pointed at by <code>ptr</code>
+to the stream. If this fails for any reason, it'll return less than <code>size</code>
+to demonstrate how far the write progressed. On success, it returns <code>size</code>.</p>
+<p>On error, this function still attempts to write as much as possible, so it
+might return a positive value less than the requested write size.</p>
+<p>The caller can use <a href="SDL_GetIOStatus.html">SDL_GetIOStatus</a>() to determine if the
+problem is recoverable, such as a non-blocking write that can simply be
+retried later, or a fatal error.</p>
+<p>A request for zero bytes on a valid stream will return zero immediately
+without accessing the stream, so the stream status (EOF, err, etc) will not
+change.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>Do not use the same <a href="SDL_IOStream.html">SDL_IOStream</a> from two threads at once.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_IOprintf.html">SDL_IOprintf</a></li>
+<li><a href="SDL_ReadIO.html">SDL_ReadIO</a></li>
+<li><a href="SDL_SeekIO.html">SDL_SeekIO</a></li>
+<li><a href="SDL_FlushIO.html">SDL_FlushIO</a></li>
+<li><a href="SDL_GetIOStatus.html">SDL_GetIOStatus</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryIOStream.html">CategoryIOStream</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_WriteIO" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

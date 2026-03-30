@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetOriginalMemoryFunctions - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetOriginalMemoryFunctions</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getoriginalmemoryfunctions">SDL_GetOriginalMemoryFunctions</h1>
+<p>Get the original set of SDL memory functions.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_stdinc.h">&lt;SDL3/SDL_stdinc.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">void SDL_GetOriginalMemoryFunctions(SDL_malloc_func *malloc_func,
+                                SDL_calloc_func *calloc_func,
+                                SDL_realloc_func *realloc_func,
+                                SDL_free_func *free_func);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_malloc_func.html">SDL_malloc_func</a> *</td>
+<td><strong>malloc_func</strong></td>
+<td>filled with malloc function.</td>
+</tr>
+<tr>
+<td><a href="SDL_calloc_func.html">SDL_calloc_func</a> *</td>
+<td><strong>calloc_func</strong></td>
+<td>filled with calloc function.</td>
+</tr>
+<tr>
+<td><a href="SDL_realloc_func.html">SDL_realloc_func</a> *</td>
+<td><strong>realloc_func</strong></td>
+<td>filled with realloc function.</td>
+</tr>
+<tr>
+<td><a href="SDL_free_func.html">SDL_free_func</a> *</td>
+<td><strong>free_func</strong></td>
+<td>filled with free function.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="remarks">Remarks</h2>
+<p>This is what <a href="SDL_malloc.html">SDL_malloc</a> and friends will use by default, if
+there has been no call to <a href="SDL_SetMemoryFunctions.html">SDL_SetMemoryFunctions</a>.
+This is not necessarily using the C runtime's <code>malloc</code> functions behind the
+scenes! Different platforms and build configurations might do any number of
+unexpected things.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryStdinc.html">CategoryStdinc</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetOriginalMemoryFunctions" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

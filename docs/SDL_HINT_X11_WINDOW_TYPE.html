@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_HINT_X11_WINDOW_TYPE - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_HINT_X11_WINDOW_TYPE</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_hint_x11_window_type">SDL_HINT_X11_WINDOW_TYPE</h1>
+<p>A variable specifying the type of an X11 window.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_hints.h">&lt;SDL3/SDL_hints.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_HINT_X11_WINDOW_TYPE &quot;SDL_X11_WINDOW_TYPE&quot;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>During <a href="SDL_CreateWindow.html">SDL_CreateWindow</a>, SDL uses the
+_NET_WM_WINDOW_TYPE X11 property to report to the window manager the type
+of window it wants to create. This might be set to various things if
+<a href="SDL_WINDOW_TOOLTIP.html">SDL_WINDOW_TOOLTIP</a> or
+<a href="SDL_WINDOW_POPUP_MENU.html">SDL_WINDOW_POPUP_MENU</a>, etc, were specified. For
+&quot;normal&quot; windows that haven't set a specific type, this hint can be used to
+specify a custom type. For example, a dock window might set this to
+&quot;_NET_WM_WINDOW_TYPE_DOCK&quot;.</p>
+<p>This hint should be set before creating a window.</p>
+<h2 id="version">Version</h2>
+<p>This hint is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryHints.html">CategoryHints</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_HINT_X11_WINDOW_TYPE" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

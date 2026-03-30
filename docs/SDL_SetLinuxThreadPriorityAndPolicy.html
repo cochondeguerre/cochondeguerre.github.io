@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_SetLinuxThreadPriorityAndPolicy - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_SetLinuxThreadPriorityAndPolicy</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_setlinuxthreadpriorityandpolicy">SDL_SetLinuxThreadPriorityAndPolicy</h1>
+<p>Sets the priority (not nice level) and scheduling policy for a thread.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_system.h">&lt;SDL3/SDL_system.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_SetLinuxThreadPriorityAndPolicy(Sint64 threadID, int sdlPriority, int schedPolicy);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="Sint64.html">Sint64</a></td>
+<td><strong>threadID</strong></td>
+<td>the Unix thread ID to change priority of.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>sdlPriority</strong></td>
+<td>the new <a href="SDL_ThreadPriority.html">SDL_ThreadPriority</a> value.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>schedPolicy</strong></td>
+<td>the new scheduling policy (SCHED_FIFO, SCHED_RR, SCHED_OTHER, etc...).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This uses setpriority() if possible, and RealtimeKit if available.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategorySystem.html">CategorySystem</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_SetLinuxThreadPriorityAndPolicy" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

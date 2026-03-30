@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_LockRWLockForWriting - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_LockRWLockForWriting</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_lockrwlockforwriting">SDL_LockRWLockForWriting</h1>
+<p>Lock the read/write lock for <em>write</em> operations.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_mutex.h">&lt;SDL3/SDL_mutex.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">void SDL_LockRWLockForWriting(SDL_RWLock *rwlock);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_RWLock.html">SDL_RWLock</a> *</td>
+<td><strong>rwlock</strong></td>
+<td>the read/write lock to lock.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="remarks">Remarks</h2>
+<p>This will block until the rwlock is available, which is to say it is not
+locked for reading or writing by any other thread. Only one thread may hold
+the lock when it requests write access; all other threads, whether they
+also want to write or only want read-only access, must wait until the
+writer thread has released the lock.</p>
+<p>It is illegal for the owning thread to lock an already-locked rwlock for
+writing (read-only may be locked recursively, writing can not). Doing so
+results in undefined behavior.</p>
+<p>It is illegal to request a write lock from a thread that already holds a
+read-only lock. Doing so results in undefined behavior. Unlock the
+read-only lock before requesting a write lock.</p>
+<p>This function does not fail; if rwlock is NULL, it will return immediately
+having locked nothing. If the rwlock is valid, this function will always
+block until it can lock the mutex, and return with it locked.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_LockRWLockForReading.html">SDL_LockRWLockForReading</a></li>
+<li><a href="SDL_TryLockRWLockForWriting.html">SDL_TryLockRWLockForWriting</a></li>
+<li><a href="SDL_UnlockRWLock.html">SDL_UnlockRWLock</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryMutex.html">CategoryMutex</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_LockRWLockForWriting" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

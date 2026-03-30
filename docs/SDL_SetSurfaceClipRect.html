@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_SetSurfaceClipRect - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_SetSurfaceClipRect</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_setsurfacecliprect">SDL_SetSurfaceClipRect</h1>
+<p>Set the clipping rectangle for a surface.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_surface.h">&lt;SDL3/SDL_surface.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_SetSurfaceClipRect(SDL_Surface *surface, const SDL_Rect *rect);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Surface.html">SDL_Surface</a> *</td>
+<td><strong>surface</strong></td>
+<td>the <a href="SDL_Surface.html">SDL_Surface</a> structure to be clipped.</td>
+</tr>
+<tr>
+<td>const <a href="SDL_Rect.html">SDL_Rect</a> *</td>
+<td><strong>rect</strong></td>
+<td>the <a href="SDL_Rect.html">SDL_Rect</a> structure representing the clipping rectangle, or NULL to disable clipping.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true if the rectangle intersects the surface, otherwise
+false and blits will be completely clipped.</p>
+<h2 id="remarks">Remarks</h2>
+<p>When <code>surface</code> is the destination of a blit, only the area within the clip
+rectangle is drawn into.</p>
+<p>Note that blits are automatically clipped to the edges of the source and
+destination surfaces.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function can be called on different threads with different surfaces.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetSurfaceClipRect.html">SDL_GetSurfaceClipRect</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategorySurface.html">CategorySurface</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_SetSurfaceClipRect" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

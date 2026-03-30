@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_BlitSurfaceUncheckedScaled - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_BlitSurfaceUncheckedScaled</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_blitsurfaceuncheckedscaled">SDL_BlitSurfaceUncheckedScaled</h1>
+<p>Perform low-level surface scaled blitting only.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_surface.h">&lt;SDL3/SDL_surface.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_BlitSurfaceUncheckedScaled(SDL_Surface *src, const SDL_Rect *srcrect, SDL_Surface *dst, const SDL_Rect *dstrect, SDL_ScaleMode scaleMode);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Surface.html">SDL_Surface</a> *</td>
+<td><strong>src</strong></td>
+<td>the <a href="SDL_Surface.html">SDL_Surface</a> structure to be copied from.</td>
+</tr>
+<tr>
+<td>const <a href="SDL_Rect.html">SDL_Rect</a> *</td>
+<td><strong>srcrect</strong></td>
+<td>the <a href="SDL_Rect.html">SDL_Rect</a> structure representing the rectangle to be copied, may not be NULL.</td>
+</tr>
+<tr>
+<td><a href="SDL_Surface.html">SDL_Surface</a> *</td>
+<td><strong>dst</strong></td>
+<td>the <a href="SDL_Surface.html">SDL_Surface</a> structure that is the blit target.</td>
+</tr>
+<tr>
+<td>const <a href="SDL_Rect.html">SDL_Rect</a> *</td>
+<td><strong>dstrect</strong></td>
+<td>the <a href="SDL_Rect.html">SDL_Rect</a> structure representing the target rectangle in the destination surface, may not be NULL.</td>
+</tr>
+<tr>
+<td><a href="SDL_ScaleMode.html">SDL_ScaleMode</a></td>
+<td><strong>scaleMode</strong></td>
+<td>the <a href="SDL_ScaleMode.html">SDL_ScaleMode</a> to be used.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This is a semi-private function and it performs low-level surface blitting,
+assuming the input rectangles have already been clipped.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>Only one thread should be using the <code>src</code> and <code>dst</code> surfaces at any given
+time.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_BlitSurfaceScaled.html">SDL_BlitSurfaceScaled</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategorySurface.html">CategorySurface</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_BlitSurfaceUncheckedScaled" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

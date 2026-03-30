@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_HapticDirection - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_HapticDirection</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_hapticdirection">SDL_HapticDirection</h1>
+<p>Structure that represents a haptic direction.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_haptic.h">&lt;SDL3/SDL_haptic.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_HapticDirection
+{
+    SDL_HapticDirectionType type;  /**&lt; The type of encoding. */
+    Sint32 dir[3];                 /**&lt; The encoded direction. */
+} SDL_HapticDirection;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>This is the direction where the force comes from, instead of the direction
+in which the force is exerted.</p>
+<p>Directions can be specified by:</p>
+<ul>
+<li><a href="SDL_HAPTIC_POLAR.html">SDL_HAPTIC_POLAR</a> : Specified by polar coordinates.</li>
+<li><a href="SDL_HAPTIC_CARTESIAN.html">SDL_HAPTIC_CARTESIAN</a> : Specified by cartesian
+coordinates.</li>
+<li><a href="SDL_HAPTIC_SPHERICAL.html">SDL_HAPTIC_SPHERICAL</a> : Specified by spherical
+coordinates.</li>
+</ul>
+<p>Cardinal directions of the haptic device are relative to the positioning of
+the device. North is considered to be away from the user.</p>
+<p>The following diagram represents the cardinal directions:</p>
+<pre><code>               .--.
+               |__| .-------.
+               |=.| |.-----.|
+               |--| ||     ||
+               |  | |'-----'|
+               |__|~')_____('
+                 [ COMPUTER ]
+
+
+                   North (0,-1)
+                       ^
+                       |
+                       |
+ (-1,0)  West &lt;----[ HAPTIC ]----&gt; East (1,0)
+                       |
+                       |
+                       v
+                    South (0,1)
+
+
+                    [ USER ]
+                      \|||/
+                      (o o)
+                ---ooO-(_)-Ooo---
+</code></pre>
+<p>If type is <a href="SDL_HAPTIC_POLAR.html">SDL_HAPTIC_POLAR</a>, direction is encoded by
+hundredths of a degree starting north and turning clockwise.
+<a href="SDL_HAPTIC_POLAR.html">SDL_HAPTIC_POLAR</a> only uses the first <code>dir</code> parameter.
+The cardinal directions would be:</p>
+<ul>
+<li>North: 0 (0 degrees)</li>
+<li>East: 9000 (90 degrees)</li>
+<li>South: 18000 (180 degrees)</li>
+<li>West: 27000 (270 degrees)</li>
+</ul>
+<p>If type is <a href="SDL_HAPTIC_CARTESIAN.html">SDL_HAPTIC_CARTESIAN</a>, direction is
+encoded by three positions (X axis, Y axis and Z axis (with 3 axes)).
+<a href="SDL_HAPTIC_CARTESIAN.html">SDL_HAPTIC_CARTESIAN</a> uses the first three <code>dir</code>
+parameters. The cardinal directions would be:</p>
+<ul>
+<li>North: 0,-1, 0</li>
+<li>East: 1, 0, 0</li>
+<li>South: 0, 1, 0</li>
+<li>West: -1, 0, 0</li>
+</ul>
+<p>The Z axis represents the height of the effect if supported, otherwise it's
+unused. In cartesian encoding (1, 2) would be the same as (2, 4), you can
+use any multiple you want, only the direction matters.</p>
+<p>If type is <a href="SDL_HAPTIC_SPHERICAL.html">SDL_HAPTIC_SPHERICAL</a>, direction is
+encoded by two rotations. The first two <code>dir</code> parameters are used. The
+<code>dir</code> parameters are as follows (all values are in hundredths of degrees):</p>
+<ul>
+<li>Degrees from (1, 0) rotated towards (0, 1).</li>
+<li>Degrees towards (0, 0, 1) (device needs at least 3 axes).</li>
+</ul>
+<p>Example of force coming from the south with all encodings (force coming
+from the south means the user will have to pull the stick to counteract):</p>
+<pre><code class="language-c"> SDL_HapticDirection direction;
+
+ // Cartesian directions
+ direction.type = SDL_HAPTIC_CARTESIAN; // Using cartesian direction encoding.
+ direction.dir[0] = 0; // X position
+ direction.dir[1] = 1; // Y position
+ // Assuming the device has 2 axes, we don't need to specify third parameter.
+
+ // Polar directions
+ direction.type = SDL_HAPTIC_POLAR; // We'll be using polar direction encoding.
+ direction.dir[0] = 18000; // Polar only uses first parameter
+
+ // Spherical coordinates
+ direction.type = SDL_HAPTIC_SPHERICAL; // Spherical encoding
+ direction.dir[0] = 9000; // Since we only have two axes we don't need more parameters.
+</code></pre>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_HAPTIC_POLAR.html">SDL_HAPTIC_POLAR</a></li>
+<li><a href="SDL_HAPTIC_CARTESIAN.html">SDL_HAPTIC_CARTESIAN</a></li>
+<li><a href="SDL_HAPTIC_SPHERICAL.html">SDL_HAPTIC_SPHERICAL</a></li>
+<li><a href="SDL_HAPTIC_STEERING_AXIS.html">SDL_HAPTIC_STEERING_AXIS</a></li>
+<li><a href="SDL_HapticEffect.html">SDL_HapticEffect</a></li>
+<li><a href="SDL_GetNumHapticAxes.html">SDL_GetNumHapticAxes</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryHaptic.html">CategoryHaptic</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_HapticDirection" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

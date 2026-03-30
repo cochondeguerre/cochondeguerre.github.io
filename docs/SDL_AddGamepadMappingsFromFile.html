@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_AddGamepadMappingsFromFile - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_AddGamepadMappingsFromFile</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_addgamepadmappingsfromfile">SDL_AddGamepadMappingsFromFile</h1>
+<p>Load a set of gamepad mappings from a file.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gamepad.h">&lt;SDL3/SDL_gamepad.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">int SDL_AddGamepadMappingsFromFile(const char *file);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>const char *</td>
+<td><strong>file</strong></td>
+<td>the mappings file to load.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(int) Returns the number of mappings added or -1 on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>You can call this function several times, if needed, to load different
+database files.</p>
+<p>If a new mapping is loaded for an already known gamepad GUID, the later
+version will overwrite the one currently loaded.</p>
+<p>Any new mappings for already plugged in controllers will generate
+<a href="SDL_EVENT_GAMEPAD_ADDED.html">SDL_EVENT_GAMEPAD_ADDED</a> events.</p>
+<p>Mappings not belonging to the current platform or with no platform field
+specified will be ignored (i.e. mappings for Linux will be ignored in
+Windows, etc).</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_AddGamepadMapping.html">SDL_AddGamepadMapping</a></li>
+<li><a href="SDL_AddGamepadMappingsFromIO.html">SDL_AddGamepadMappingsFromIO</a></li>
+<li><a href="SDL_GetGamepadMapping.html">SDL_GetGamepadMapping</a></li>
+<li><a href="SDL_GetGamepadMappingForGUID.html">SDL_GetGamepadMappingForGUID</a></li>
+<li><a href="SDL_HINT_GAMECONTROLLERCONFIG.html">SDL_HINT_GAMECONTROLLERCONFIG</a></li>
+<li><a href="SDL_HINT_GAMECONTROLLERCONFIG_FILE.html">SDL_HINT_GAMECONTROLLERCONFIG_FILE</a></li>
+<li><a href="SDL_EVENT_GAMEPAD_ADDED.html">SDL_EVENT_GAMEPAD_ADDED</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryGamepad.html">CategoryGamepad</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_AddGamepadMappingsFromFile" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

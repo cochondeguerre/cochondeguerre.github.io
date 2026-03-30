@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_RunHapticEffect - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_RunHapticEffect</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_runhapticeffect">SDL_RunHapticEffect</h1>
+<p>Run the haptic effect on its associated haptic device.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_haptic.h">&lt;SDL3/SDL_haptic.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_RunHapticEffect(SDL_Haptic *haptic, SDL_HapticEffectID effect, Uint32 iterations);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Haptic.html">SDL_Haptic</a> *</td>
+<td><strong>haptic</strong></td>
+<td>the <a href="SDL_Haptic.html">SDL_Haptic</a> device to run the effect on.</td>
+</tr>
+<tr>
+<td><a href="SDL_HapticEffectID.html">SDL_HapticEffectID</a></td>
+<td><strong>effect</strong></td>
+<td>the ID of the haptic effect to run.</td>
+</tr>
+<tr>
+<td><a href="Uint32.html">Uint32</a></td>
+<td><strong>iterations</strong></td>
+<td>the number of iterations to run the effect; use <a href="SDL_HAPTIC_INFINITY.html"><code>SDL_HAPTIC_INFINITY</code></a> to repeat forever.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>To repeat the effect over and over indefinitely, set <code>iterations</code> to
+<a href="SDL_HAPTIC_INFINITY.html"><code>SDL_HAPTIC_INFINITY</code></a>. (Repeats the envelope -
+attack and fade.) To make one instance of the effect last indefinitely (so
+the effect does not fade), set the effect's <code>length</code> in its structure/union
+to <a href="SDL_HAPTIC_INFINITY.html"><code>SDL_HAPTIC_INFINITY</code></a> instead.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetHapticEffectStatus.html">SDL_GetHapticEffectStatus</a></li>
+<li><a href="SDL_StopHapticEffect.html">SDL_StopHapticEffect</a></li>
+<li><a href="SDL_StopHapticEffects.html">SDL_StopHapticEffects</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryHaptic.html">CategoryHaptic</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_RunHapticEffect" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

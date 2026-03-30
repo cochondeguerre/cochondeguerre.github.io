@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_EnterAppMainCallbacks - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_EnterAppMainCallbacks</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_enterappmaincallbacks">SDL_EnterAppMainCallbacks</h1>
+<p>An entry point for SDL's use in <a href="SDL_MAIN_USE_CALLBACKS.html">SDL_MAIN_USE_CALLBACKS</a>.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_main.h">&lt;SDL3/SDL_main.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">int SDL_EnterAppMainCallbacks(int argc, char *argv[], SDL_AppInit_func appinit, SDL_AppIterate_func appiter, SDL_AppEvent_func appevent, SDL_AppQuit_func appquit);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td><strong>argc</strong></td>
+<td>standard Unix main argc.</td>
+</tr>
+<tr>
+<td>char **</td>
+<td><strong>argv</strong></td>
+<td>standard Unix main argv.</td>
+</tr>
+<tr>
+<td><a href="SDL_AppInit_func.html">SDL_AppInit_func</a></td>
+<td><strong>appinit</strong></td>
+<td>the application's <a href="SDL_AppInit.html">SDL_AppInit</a> function.</td>
+</tr>
+<tr>
+<td><a href="SDL_AppIterate_func.html">SDL_AppIterate_func</a></td>
+<td><strong>appiter</strong></td>
+<td>the application's <a href="SDL_AppIterate.html">SDL_AppIterate</a> function.</td>
+</tr>
+<tr>
+<td><a href="SDL_AppEvent_func.html">SDL_AppEvent_func</a></td>
+<td><strong>appevent</strong></td>
+<td>the application's <a href="SDL_AppEvent.html">SDL_AppEvent</a> function.</td>
+</tr>
+<tr>
+<td><a href="SDL_AppQuit_func.html">SDL_AppQuit_func</a></td>
+<td><strong>appquit</strong></td>
+<td>the application's <a href="SDL_AppQuit.html">SDL_AppQuit</a> function.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(int) Returns standard Unix main return value.</p>
+<h2 id="remarks">Remarks</h2>
+<p>Generally, you should not call this function directly. This only exists to
+hand off work into SDL as soon as possible, where it has a lot more control
+and functionality available, and make the inline code in
+<a href="SDL_main.html">SDL_main</a>.h as small as possible.</p>
+<p>Not all platforms use this, it's actual use is hidden in a magic
+header-only library, and you should not call this directly unless you
+<em>really</em> know what you're doing.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is not safe to call this anywhere except as the only function call in
+<a href="SDL_main.html">SDL_main</a>.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryMain.html">CategoryMain</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_EnterAppMainCallbacks" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

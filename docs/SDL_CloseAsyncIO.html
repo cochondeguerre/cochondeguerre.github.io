@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_CloseAsyncIO - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_CloseAsyncIO</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_closeasyncio">SDL_CloseAsyncIO</h1>
+<p>Close and free any allocated resources for an async I/O object.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_asyncio.h">&lt;SDL3/SDL_asyncio.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_CloseAsyncIO(SDL_AsyncIO *asyncio, bool flush, SDL_AsyncIOQueue *queue, void *userdata);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_AsyncIO.html">SDL_AsyncIO</a> *</td>
+<td><strong>asyncio</strong></td>
+<td>a pointer to an <a href="SDL_AsyncIO.html">SDL_AsyncIO</a> structure to close.</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong>flush</strong></td>
+<td>true if data should sync to disk before the task completes.</td>
+</tr>
+<tr>
+<td><a href="SDL_AsyncIOQueue.html">SDL_AsyncIOQueue</a> *</td>
+<td><strong>queue</strong></td>
+<td>a queue to add the new <a href="SDL_AsyncIO.html">SDL_AsyncIO</a> to.</td>
+</tr>
+<tr>
+<td>void *</td>
+<td><strong>userdata</strong></td>
+<td>an app-defined pointer that will be provided with the task results.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>Closing a file is <em>also</em> an asynchronous task! If a write failure were to
+happen during the closing process, for example, the task results will
+report it as usual.</p>
+<p>Closing a file that has been written to does not guarantee the data has
+made it to physical media; it may remain in the operating system's file
+cache, for later writing to disk. This means that a successfully-closed
+file can be lost if the system crashes or loses power in this small window.
+To prevent this, call this function with the <code>flush</code> parameter set to true.
+This will make the operation take longer, and perhaps increase system load
+in general, but a successful result guarantees that the data has made it to
+physical storage. Don't use this for temporary files, caches, and
+unimportant data, and definitely use it for crucial irreplaceable files,
+like game saves.</p>
+<p>This function guarantees that the close will happen after any other pending
+tasks to <code>asyncio</code>, so it's safe to open a file, start several operations,
+close the file immediately, then check for all results later. This function
+will not block until the tasks have completed.</p>
+<p>Once this function returns true, <code>asyncio</code> is no longer valid, regardless
+of any future outcomes. Any completed tasks might still contain this
+pointer in their <a href="SDL_AsyncIOOutcome.html">SDL_AsyncIOOutcome</a> data, in case the
+app was using this value to track information, but it should not be used
+again.</p>
+<p>If this function returns false, the close wasn't started at all, and it's
+safe to attempt to close again later.</p>
+<p>An <a href="SDL_AsyncIOQueue.html">SDL_AsyncIOQueue</a> must be specified. The
+newly-created task will be added to it when it completes its work.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread, but two threads should
+not attempt to close the same object.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryAsyncIO.html">CategoryAsyncIO</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_CloseAsyncIO" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

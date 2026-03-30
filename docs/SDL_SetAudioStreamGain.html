@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_SetAudioStreamGain - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_SetAudioStreamGain</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_setaudiostreamgain">SDL_SetAudioStreamGain</h1>
+<p>Change the gain of an audio stream.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_audio.h">&lt;SDL3/SDL_audio.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_SetAudioStreamGain(SDL_AudioStream *stream, float gain);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_AudioStream.html">SDL_AudioStream</a> *</td>
+<td><strong>stream</strong></td>
+<td>the stream on which the gain is being changed.</td>
+</tr>
+<tr>
+<td>float</td>
+<td><strong>gain</strong></td>
+<td>the gain. 1.0f is no change, 0.0f is silence.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>The gain of a stream is its volume; a larger gain means a louder output,
+with a gain of zero being silence.</p>
+<p>Audio streams default to a gain of 1.0f (no change in output).</p>
+<p>This is applied during <a href="SDL_GetAudioStreamData.html">SDL_GetAudioStreamData</a>,
+and can be continuously changed to create various effects.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread, as it holds a
+stream-specific mutex while running.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetAudioStreamGain.html">SDL_GetAudioStreamGain</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryAudio.html">CategoryAudio</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_SetAudioStreamGain" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

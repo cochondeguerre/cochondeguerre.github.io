@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_FlushRenderer - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_FlushRenderer</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_flushrenderer">SDL_FlushRenderer</h1>
+<p>Force the rendering context to flush any pending commands and state.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_render.h">&lt;SDL3/SDL_render.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_FlushRenderer(SDL_Renderer *renderer);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Renderer.html">SDL_Renderer</a> *</td>
+<td><strong>renderer</strong></td>
+<td>the rendering context.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>You do not need to (and in fact, shouldn't) call this function unless you
+are planning to call into OpenGL/Direct3D/Metal/whatever directly, in
+addition to using an <a href="SDL_Renderer.html">SDL_Renderer</a>.</p>
+<p>This is for a very-specific case: if you are using SDL's render API, and
+you plan to make OpenGL/D3D/whatever calls in addition to SDL render API
+calls. If this applies, you should call this function between calls to
+SDL's render API and the low-level API you're using in cooperation.</p>
+<p>In all other cases, you can ignore this function.</p>
+<p>This call makes SDL flush any pending rendering work it was queueing up to
+do later in a single batch, and marks any internal cached state as invalid,
+so it'll prepare all its state again later, from scratch.</p>
+<p>This means you do not need to save state in your rendering code to protect
+the SDL renderer. However, there lots of arbitrary pieces of Direct3D and
+OpenGL state that can confuse things; you should use your best judgment and
+be prepared to make changes if specific state needs to be protected.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should only be called on the main thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryRender.html">CategoryRender</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_FlushRenderer" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_ThreadPriority - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_ThreadPriority</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_threadpriority">SDL_ThreadPriority</h1>
+<p>The SDL thread priority.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_thread.h">&lt;SDL3/SDL_thread.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef enum SDL_ThreadPriority {
+    SDL_THREAD_PRIORITY_LOW,
+    SDL_THREAD_PRIORITY_NORMAL,
+    SDL_THREAD_PRIORITY_HIGH,
+    SDL_THREAD_PRIORITY_TIME_CRITICAL
+} SDL_ThreadPriority;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>SDL will make system changes as necessary in order to apply the thread
+priority. Code which attempts to control thread state related to priority
+should be aware that calling
+<a href="SDL_SetCurrentThreadPriority.html">SDL_SetCurrentThreadPriority</a> may alter such
+state. <a href="SDL_HINT_THREAD_PRIORITY_POLICY.html">SDL_HINT_THREAD_PRIORITY_POLICY</a>
+can be used to control aspects of this behavior.</p>
+<h2 id="version">Version</h2>
+<p>This enum is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIEnum.html">CategoryAPIEnum</a>, <a href="CategoryThread.html">CategoryThread</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_ThreadPriority" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetKeyboardState - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetKeyboardState</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getkeyboardstate">SDL_GetKeyboardState</h1>
+<p>Get a snapshot of the current state of the keyboard.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_keyboard.h">&lt;SDL3/SDL_keyboard.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">const bool * SDL_GetKeyboardState(int *numkeys);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int *</td>
+<td><strong>numkeys</strong></td>
+<td>if non-NULL, receives the length of the returned array.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(const bool *) Returns a pointer to an array of key states.</p>
+<h2 id="remarks">Remarks</h2>
+<p>The pointer returned is a pointer to an internal SDL array. It will be
+valid for the whole lifetime of the application and should not be freed by
+the caller.</p>
+<p>A array element with a value of true means that the key is pressed and a
+value of false means that it is not. Indexes into this array are obtained
+by using <a href="SDL_Scancode.html">SDL_Scancode</a> values.</p>
+<p>Use <a href="SDL_PumpEvents.html">SDL_PumpEvents</a>() to update the state array.</p>
+<p>This function gives you the current state after all events have been
+processed, so if a key or button has been pressed and released before you
+process events, then the pressed state will never show up in the
+<a href="SDL_GetKeyboardState.html">SDL_GetKeyboardState</a>() calls.</p>
+<p>Note: This function doesn't take into account whether shift has been
+pressed or not.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_PumpEvents.html">SDL_PumpEvents</a></li>
+<li><a href="SDL_ResetKeyboard.html">SDL_ResetKeyboard</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryKeyboard.html">CategoryKeyboard</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetKeyboardState" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

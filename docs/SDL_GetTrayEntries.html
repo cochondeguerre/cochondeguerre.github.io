@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetTrayEntries - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetTrayEntries</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gettrayentries">SDL_GetTrayEntries</h1>
+<p>Returns a list of entries in the menu, in order.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_tray.h">&lt;SDL3/SDL_tray.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">const SDL_TrayEntry ** SDL_GetTrayEntries(SDL_TrayMenu *menu, int *count);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_TrayMenu.html">SDL_TrayMenu</a> *</td>
+<td><strong>menu</strong></td>
+<td>The menu to get entries from.</td>
+</tr>
+<tr>
+<td>int *</td>
+<td><strong>count</strong></td>
+<td>An optional pointer to obtain the number of entries in the menu.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(const <a href="SDL_TrayEntry.html">SDL_TrayEntry</a> **) Returns a NULL-terminated list of
+entries within the given menu. The pointer becomes invalid when any
+function that inserts or deletes entries in the menu is called.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should be called on the thread that created the tray.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_RemoveTrayEntry.html">SDL_RemoveTrayEntry</a></li>
+<li><a href="SDL_InsertTrayEntryAt.html">SDL_InsertTrayEntryAt</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryTray.html">CategoryTray</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetTrayEntries" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

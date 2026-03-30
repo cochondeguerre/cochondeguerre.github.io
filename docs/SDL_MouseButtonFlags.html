@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_MouseButtonFlags - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_MouseButtonFlags</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_mousebuttonflags">SDL_MouseButtonFlags</h1>
+<p>A bitmask of pressed mouse buttons, as reported by <a href="SDL_GetMouseState.html">SDL_GetMouseState</a>, etc.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_mouse.h">&lt;SDL3/SDL_mouse.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef Uint32 SDL_MouseButtonFlags;
+
+#define SDL_BUTTON_LEFT     1
+#define SDL_BUTTON_MIDDLE   2
+#define SDL_BUTTON_RIGHT    3
+#define SDL_BUTTON_X1       4
+#define SDL_BUTTON_X2       5
+
+#define SDL_BUTTON_MASK(X)  (1u &lt;&lt; ((X)-1))
+#define SDL_BUTTON_LMASK    SDL_BUTTON_MASK(SDL_BUTTON_LEFT)
+#define SDL_BUTTON_MMASK    SDL_BUTTON_MASK(SDL_BUTTON_MIDDLE)
+#define SDL_BUTTON_RMASK    SDL_BUTTON_MASK(SDL_BUTTON_RIGHT)
+#define SDL_BUTTON_X1MASK   SDL_BUTTON_MASK(SDL_BUTTON_X1)
+#define SDL_BUTTON_X2MASK   SDL_BUTTON_MASK(SDL_BUTTON_X2)
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<ul>
+<li>Button 1: Left mouse button</li>
+<li>Button 2: Middle mouse button</li>
+<li>Button 3: Right mouse button</li>
+<li>Button 4: Side mouse button 1</li>
+<li>Button 5: Side mouse button 2</li>
+</ul>
+<h2 id="version">Version</h2>
+<p>This datatype is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetMouseState.html">SDL_GetMouseState</a></li>
+<li><a href="SDL_GetGlobalMouseState.html">SDL_GetGlobalMouseState</a></li>
+<li><a href="SDL_GetRelativeMouseState.html">SDL_GetRelativeMouseState</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIDatatype.html">CategoryAPIDatatype</a>, <a href="CategoryMouse.html">CategoryMouse</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_MouseButtonFlags" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

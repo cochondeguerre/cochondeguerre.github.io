@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_TouchFingerEvent - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_TouchFingerEvent</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_touchfingerevent">SDL_TouchFingerEvent</h1>
+<p>Touch finger event structure (event.tfinger.*)</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_events.h">&lt;SDL3/SDL_events.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_TouchFingerEvent
+{
+    SDL_EventType type; /**&lt; SDL_EVENT_FINGER_DOWN, SDL_EVENT_FINGER_UP, SDL_EVENT_FINGER_MOTION, or SDL_EVENT_FINGER_CANCELED */
+    Uint32 reserved;
+    Uint64 timestamp;   /**&lt; In nanoseconds, populated using SDL_GetTicksNS() */
+    SDL_TouchID touchID; /**&lt; The touch device id */
+    SDL_FingerID fingerID;
+    float x;            /**&lt; Normalized in the range 0...1 */
+    float y;            /**&lt; Normalized in the range 0...1 */
+    float dx;           /**&lt; Normalized in the range -1...1 */
+    float dy;           /**&lt; Normalized in the range -1...1 */
+    float pressure;     /**&lt; Normalized in the range 0...1 */
+    SDL_WindowID windowID; /**&lt; The window underneath the finger, if any */
+} SDL_TouchFingerEvent;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>Coordinates in this event are normalized. <code>x</code> and <code>y</code> are normalized to a
+range between 0.0f and 1.0f, relative to the window, so (0,0) is the top
+left and (1,1) is the bottom right. Delta coordinates <code>dx</code> and <code>dy</code> are
+normalized in the ranges of -1.0f (traversed all the way from the bottom or
+right to all the way up or left) to 1.0f (traversed all the way from the
+top or left to all the way down or right).</p>
+<p>Note that while the coordinates are <em>normalized</em>, they are not <em>clamped</em>,
+which means in some circumstances you can get a value outside of this
+range. For example, a renderer using logical presentation might give a
+negative value when the touch is in the letterboxing. Some platforms might
+report a touch outside of the window, which will also be outside of the
+range.</p>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryEvents.html">CategoryEvents</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_TouchFingerEvent" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

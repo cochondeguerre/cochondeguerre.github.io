@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>AppFreezeDuringDrag - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">AppFreezeDuringDrag</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="why-does-my-app-freeze-while-the-window-is-being-resized-or-draggedmoved">Why does my app freeze while the window is being resized or dragged/moved?</h1>
+<p>On some operating systems (notably Windows, but others as well), your call into <a href="SDL_PollEvent.html"><code>SDL_PollEvent</code></a>, <a href="SDL_WaitEvent.html"><code>SDL_WaitEvent</code></a>, <a href="SDL_WaitEventTimeout.html"><code>SDL_WaitEventTimeout</code></a>, or <a href="SDL_PumpEvents.html"><code>SDL_PumpEvents</code></a> may block during resizing or dragging. This means these functions will not return and yield control to your code, until the OS is done with this operation, so new frames of video won't render, and other tasks, like game logic and multiplayer network upkeep, will not have a chance to run. The delay will last as long as the user is dragging or resizing the window in this case, which might be several seconds or more!</p>
+<p>The operating systems <em>do</em> provide ways for a user application to still do work during these operations, but they do so through callbacks: a function the user provides and the OS will call at appropriate times.</p>
+<p>SDL provides two ways to get called during these blocking operations.</p>
+<ul>
+<li><a href="README-main-functions#main-callbacks-in-sdl3.html">The callbacks from <code>SDL_main.h</code></a>
+<ul>
+<li>Using this, <a href="SDL_AppEvent.html"><code>SDL_AppEvent</code></a> and <a href="SDL_AppIterate.html"><code>SDL_AppIterate</code></a> should be called for you, even when being resized or moved.</li>
+</ul>
+</li>
+<li><a href="SDL_AddEventWatch.html">SDL_AddEventWatch</a>
+<ul>
+<li>Using this, you'll need to watch for the <code>SDL_EVENT_WINDOW_EXPOSED</code> event. This event tells you that you should redraw your window from within the callback so it doesn't stretch or look overly unnatural.</li>
+</ul>
+</li>
+</ul>
+<p>For further context, even when blocked the OS gives your application time slices during these operations, but they do so through callbacks themselves, not by returning back to user code. So the only solution is for SDL or similar to give you a callback as well.</p>
+<p>This doesn't guarantee perfectly smooth resizing but greatly improves the situation.</p>
+<p>Here's a program that demonstrates using the main callbacks, still allowing user code to run during Window resize and move operations:</p>
+<pre><code class="language-c">#include &lt;SDL3/SDL.h&gt;
+
+#define SDL_MAIN_USE_CALLBACKS
+#include &lt;SDL3/SDL_main.h&gt;
+
+SDL_Window* g_window;
+SDL_Renderer* g_renderer;
+SDL_FRect g_rect = {
+    100.f, 100.f, 100.f, 100.f
+};
+
+SDL_AppResult SDL_AppInit(void** appstate, int argc, char** argv)
+{
+    SDL_CreateWindowAndRenderer(&quot;Test&quot;, 300, 300, SDL_WINDOW_RESIZABLE, &amp;g_window, &amp;g_renderer);
+    return SDL_APP_CONTINUE;
+}
+
+SDL_AppResult SDL_AppIterate(void* appstate)
+{
+    SDL_SetRenderDrawColor(g_renderer, 0, 0, 0, 255);
+    SDL_RenderClear(g_renderer);
+
+    SDL_FRect rect = g_rect;
+    rect.x += 50 * SDL_sinf(SDL_GetTicksNS() / 1000000000.f);
+
+
+    SDL_SetRenderDrawColor(g_renderer, 255, 255, 255, 255);
+    SDL_RenderFillRect(g_renderer, &amp;rect);
+
+
+    SDL_RenderPresent(g_renderer);
+    return SDL_APP_CONTINUE;
+}
+
+SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
+{
+    if (event-&gt;common.type == SDL_EVENT_QUIT) {
+        return SDL_APP_SUCCESS;
+    }
+    return SDL_APP_CONTINUE;
+}
+
+void SDL_AppQuit(void* appstate, SDL_AppResult result)
+{ 
+}
+</code></pre>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/AppFreezeDuringDrag" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GL_ExtensionSupported - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GL_ExtensionSupported</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gl_extensionsupported">SDL_GL_ExtensionSupported</h1>
+<p>Check if an OpenGL extension is supported for the current context.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_video.h">&lt;SDL3/SDL_video.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_GL_ExtensionSupported(const char *extension);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>const char *</td>
+<td><strong>extension</strong></td>
+<td>the name of the extension to check.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true if the extension is supported, false otherwise.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This function operates on the current GL context; you must have created a
+context and it must be current before calling this function. Do not assume
+that all contexts you create will have the same set of extensions
+available, or that recreating an existing context will offer the same
+extensions again.</p>
+<p>While it's probably not a massive overhead, this function is not an O(1)
+operation. Check the extensions you care about after creating the GL
+context and save that information somewhere instead of calling the function
+every time you need to know.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should only be called on the main thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="code-examples">Code Examples</h2>
+<pre><code class="language-c">    extern void draw_to_the_screen_with_framebuffer_blit(void);
+    extern void draw_to_the_screen_with_a_textured_quad(void);
+
+    if (SDL_GL_ExtensionSupported(&quot;GL_EXT_framebuffer_blit&quot;)) {
+        draw_to_the_screen_with_framebuffer_blit();   // faster!
+    } else {
+        draw_to_the_screen_with_a_textured_quad();  // slower!
+    }
+
+</code></pre>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryVideo.html">CategoryVideo</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GL_ExtensionSupported" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

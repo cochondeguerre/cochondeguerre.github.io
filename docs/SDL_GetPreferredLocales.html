@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetPreferredLocales - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetPreferredLocales</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getpreferredlocales">SDL_GetPreferredLocales</h1>
+<p>Report the user's preferred locale.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_locale.h">&lt;SDL3/SDL_locale.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_Locale ** SDL_GetPreferredLocales(int *count);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int *</td>
+<td><strong>count</strong></td>
+<td>a pointer filled in with the number of locales returned, may be NULL.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_Locale.html">SDL_Locale</a> **) Returns a NULL terminated array of locale
+pointers, or NULL on failure; call <a href="SDL_GetError.html">SDL_GetError</a>() for more
+information. This is a single allocation that should be freed with
+<a href="SDL_free.html">SDL_free</a>() when it is no longer needed.</p>
+<h2 id="remarks">Remarks</h2>
+<p>Returned language strings are in the format xx, where 'xx' is an ISO-639
+language specifier (such as &quot;en&quot; for English, &quot;de&quot; for German, etc).
+Country strings are in the format YY, where &quot;YY&quot; is an ISO-3166 country
+code (such as &quot;US&quot; for the United States, &quot;CA&quot; for Canada, etc). Country
+might be NULL if there's no specific guidance on them (so you might get {
+&quot;en&quot;, &quot;US&quot; } for American English, but { &quot;en&quot;, NULL } means &quot;English
+language, generically&quot;). Language strings are never NULL, except to
+terminate the array.</p>
+<p>Please note that not all of these strings are 2 characters; some are three
+or more.</p>
+<p>The returned list of locales are in the order of the user's preference. For
+example, a German citizen that is fluent in US English and knows enough
+Japanese to navigate around Tokyo might have a list like: { &quot;de&quot;, &quot;en_US&quot;,
+&quot;jp&quot;, NULL }. Someone from England might prefer British English (where
+&quot;color&quot; is spelled &quot;colour&quot;, etc), but will settle for anything like it: {
+&quot;en_GB&quot;, &quot;en&quot;, NULL }.</p>
+<p>This function returns NULL on error, including when the platform does not
+supply this information at all.</p>
+<p>This might be a &quot;slow&quot; call that has to query the operating system. It's
+best to ask for this once and save the results. However, this list can
+change, usually because the user has changed a system preference outside of
+your program; SDL will send an
+<a href="SDL_EVENT_LOCALE_CHANGED.html">SDL_EVENT_LOCALE_CHANGED</a> event in this case, if
+possible, and you can call this function again to get an updated copy of
+preferred locales.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function is not thread safe.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryLocale.html">CategoryLocale</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetPreferredLocales" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

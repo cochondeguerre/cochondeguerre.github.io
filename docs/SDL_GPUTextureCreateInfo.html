@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GPUTextureCreateInfo - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GPUTextureCreateInfo</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gputexturecreateinfo">SDL_GPUTextureCreateInfo</h1>
+<p>A structure specifying the parameters of a texture.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_GPUTextureCreateInfo
+{
+    SDL_GPUTextureType type;          /**&lt; The base dimensionality of the texture. */
+    SDL_GPUTextureFormat format;      /**&lt; The pixel format of the texture. */
+    SDL_GPUTextureUsageFlags usage;   /**&lt; How the texture is intended to be used by the client. */
+    Uint32 width;                     /**&lt; The width of the texture. */
+    Uint32 height;                    /**&lt; The height of the texture. */
+    Uint32 layer_count_or_depth;      /**&lt; The layer count or depth of the texture. This value is treated as a layer count on 2D array textures, and as a depth value on 3D textures. */
+    Uint32 num_levels;                /**&lt; The number of mip levels in the texture. */
+    SDL_GPUSampleCount sample_count;  /**&lt; The number of samples per texel. Only applies if the texture is used as a render target. */
+
+    SDL_PropertiesID props;           /**&lt; A properties ID for extensions. Should be 0 if no extensions are needed. */
+} SDL_GPUTextureCreateInfo;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>Usage flags can be bitwise OR'd together for combinations of usages. Note
+that certain usage combinations are invalid, for example SAMPLER and
+GRAPHICS_STORAGE.</p>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_CreateGPUTexture.html">SDL_CreateGPUTexture</a></li>
+<li><a href="SDL_GPUTextureType.html">SDL_GPUTextureType</a></li>
+<li><a href="SDL_GPUTextureFormat.html">SDL_GPUTextureFormat</a></li>
+<li><a href="SDL_GPUTextureUsageFlags.html">SDL_GPUTextureUsageFlags</a></li>
+<li><a href="SDL_GPUSampleCount.html">SDL_GPUSampleCount</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GPUTextureCreateInfo" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

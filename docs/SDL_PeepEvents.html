@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_PeepEvents - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_PeepEvents</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_peepevents">SDL_PeepEvents</h1>
+<p>Check the event queue for messages and optionally return them.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_events.h">&lt;SDL3/SDL_events.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">int SDL_PeepEvents(SDL_Event *events, int numevents, SDL_EventAction action, Uint32 minType, Uint32 maxType);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Event.html">SDL_Event</a> *</td>
+<td><strong>events</strong></td>
+<td>destination buffer for the retrieved events, may be NULL to leave the events in the queue and return the number of events that would have been stored.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>numevents</strong></td>
+<td>if action is <a href="SDL_ADDEVENT.html">SDL_ADDEVENT</a>, the number of events to add back to the event queue; if action is <a href="SDL_PEEKEVENT.html">SDL_PEEKEVENT</a> or <a href="SDL_GETEVENT.html">SDL_GETEVENT</a>, the maximum number of events to retrieve.</td>
+</tr>
+<tr>
+<td><a href="SDL_EventAction.html">SDL_EventAction</a></td>
+<td><strong>action</strong></td>
+<td>action to take; see <a href="#remarks">Remarks</a> for details.</td>
+</tr>
+<tr>
+<td><a href="Uint32.html">Uint32</a></td>
+<td><strong>minType</strong></td>
+<td>minimum value of the event type to be considered; <a href="SDL_EVENT_FIRST.html">SDL_EVENT_FIRST</a> is a safe choice.</td>
+</tr>
+<tr>
+<td><a href="Uint32.html">Uint32</a></td>
+<td><strong>maxType</strong></td>
+<td>maximum value of the event type to be considered; <a href="SDL_EVENT_LAST.html">SDL_EVENT_LAST</a> is a safe choice.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(int) Returns the number of events actually stored or -1 on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p><code>action</code> may be any of the following:</p>
+<ul>
+<li><a href="SDL_ADDEVENT.html"><code>SDL_ADDEVENT</code></a>: up to <code>numevents</code> events will be added to
+the back of the event queue.</li>
+<li><a href="SDL_PEEKEVENT.html"><code>SDL_PEEKEVENT</code></a>: <code>numevents</code> events at the front of the
+event queue, within the specified minimum and maximum type, will be
+returned to the caller and will <em>not</em> be removed from the queue. If you
+pass NULL for <code>events</code>, then <code>numevents</code> is ignored and the total number
+of matching events will be returned.</li>
+<li><a href="SDL_GETEVENT.html"><code>SDL_GETEVENT</code></a>: up to <code>numevents</code> events at the front of
+the event queue, within the specified minimum and maximum type, will be
+returned to the caller and will be removed from the queue.</li>
+</ul>
+<p>You may have to call <a href="SDL_PumpEvents.html">SDL_PumpEvents</a>() before calling this
+function. Otherwise, the events may not be ready to be filtered when you
+call <a href="SDL_PeepEvents.html">SDL_PeepEvents</a>().</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_PollEvent.html">SDL_PollEvent</a></li>
+<li><a href="SDL_PumpEvents.html">SDL_PumpEvents</a></li>
+<li><a href="SDL_PushEvent.html">SDL_PushEvent</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryEvents.html">CategoryEvents</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_PeepEvents" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

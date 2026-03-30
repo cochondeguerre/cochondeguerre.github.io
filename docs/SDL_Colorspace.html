@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_Colorspace - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_Colorspace</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_colorspace">SDL_Colorspace</h1>
+<p>Colorspace definitions.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_pixels.h">&lt;SDL3/SDL_pixels.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef enum SDL_Colorspace
+{
+    SDL_COLORSPACE_UNKNOWN = 0,
+
+    /* sRGB is a gamma corrected colorspace, and the default colorspace for SDL rendering and 8-bit RGB surfaces */
+    SDL_COLORSPACE_SRGB = 0x120005a0u, /**&lt; Equivalent to DXGI_COLOR_SPACE_RGB_FULL_G22_NONE_P709 */
+        /* SDL_DEFINE_COLORSPACE(SDL_COLOR_TYPE_RGB,
+                                 SDL_COLOR_RANGE_FULL,
+                                 SDL_COLOR_PRIMARIES_BT709,
+                                 SDL_TRANSFER_CHARACTERISTICS_SRGB,
+                                 SDL_MATRIX_COEFFICIENTS_IDENTITY,
+                                 SDL_CHROMA_LOCATION_NONE), */
+
+    /* This is a linear colorspace and the default colorspace for floating point surfaces. On Windows this is the scRGB colorspace, and on Apple platforms this is kCGColorSpaceExtendedLinearSRGB for EDR content */
+    SDL_COLORSPACE_SRGB_LINEAR = 0x12000500u, /**&lt; Equivalent to DXGI_COLOR_SPACE_RGB_FULL_G10_NONE_P709  */
+        /* SDL_DEFINE_COLORSPACE(SDL_COLOR_TYPE_RGB,
+                                 SDL_COLOR_RANGE_FULL,
+                                 SDL_COLOR_PRIMARIES_BT709,
+                                 SDL_TRANSFER_CHARACTERISTICS_LINEAR,
+                                 SDL_MATRIX_COEFFICIENTS_IDENTITY,
+                                 SDL_CHROMA_LOCATION_NONE), */
+
+    /* HDR10 is a non-linear HDR colorspace and the default colorspace for 10-bit surfaces */
+    SDL_COLORSPACE_HDR10 = 0x12002600u, /**&lt; Equivalent to DXGI_COLOR_SPACE_RGB_FULL_G2084_NONE_P2020  */
+        /* SDL_DEFINE_COLORSPACE(SDL_COLOR_TYPE_RGB,
+                                 SDL_COLOR_RANGE_FULL,
+                                 SDL_COLOR_PRIMARIES_BT2020,
+                                 SDL_TRANSFER_CHARACTERISTICS_PQ,
+                                 SDL_MATRIX_COEFFICIENTS_IDENTITY,
+                                 SDL_CHROMA_LOCATION_NONE), */
+
+    SDL_COLORSPACE_JPEG = 0x220004c6u, /**&lt; Equivalent to DXGI_COLOR_SPACE_YCBCR_FULL_G22_NONE_P709_X601 */
+        /* SDL_DEFINE_COLORSPACE(SDL_COLOR_TYPE_YCBCR,
+                                 SDL_COLOR_RANGE_FULL,
+                                 SDL_COLOR_PRIMARIES_BT709,
+                                 SDL_TRANSFER_CHARACTERISTICS_BT601,
+                                 SDL_MATRIX_COEFFICIENTS_BT601,
+                                 SDL_CHROMA_LOCATION_NONE), */
+
+    SDL_COLORSPACE_BT601_LIMITED = 0x211018c6u, /**&lt; Equivalent to DXGI_COLOR_SPACE_YCBCR_STUDIO_G22_LEFT_P601 */
+        /* SDL_DEFINE_COLORSPACE(SDL_COLOR_TYPE_YCBCR,
+                                 SDL_COLOR_RANGE_LIMITED,
+                                 SDL_COLOR_PRIMARIES_BT601,
+                                 SDL_TRANSFER_CHARACTERISTICS_BT601,
+                                 SDL_MATRIX_COEFFICIENTS_BT601,
+                                 SDL_CHROMA_LOCATION_LEFT), */
+
+    SDL_COLORSPACE_BT601_FULL = 0x221018c6u, /**&lt; Equivalent to DXGI_COLOR_SPACE_YCBCR_STUDIO_G22_LEFT_P601 */
+        /* SDL_DEFINE_COLORSPACE(SDL_COLOR_TYPE_YCBCR,
+                                 SDL_COLOR_RANGE_FULL,
+                                 SDL_COLOR_PRIMARIES_BT601,
+                                 SDL_TRANSFER_CHARACTERISTICS_BT601,
+                                 SDL_MATRIX_COEFFICIENTS_BT601,
+                                 SDL_CHROMA_LOCATION_LEFT), */
+
+    SDL_COLORSPACE_BT709_LIMITED = 0x21100421u, /**&lt; Equivalent to DXGI_COLOR_SPACE_YCBCR_STUDIO_G22_LEFT_P709 */
+        /* SDL_DEFINE_COLORSPACE(SDL_COLOR_TYPE_YCBCR,
+                                 SDL_COLOR_RANGE_LIMITED,
+                                 SDL_COLOR_PRIMARIES_BT709,
+                                 SDL_TRANSFER_CHARACTERISTICS_BT709,
+                                 SDL_MATRIX_COEFFICIENTS_BT709,
+                                 SDL_CHROMA_LOCATION_LEFT), */
+
+    SDL_COLORSPACE_BT709_FULL = 0x22100421u, /**&lt; Equivalent to DXGI_COLOR_SPACE_YCBCR_STUDIO_G22_LEFT_P709 */
+        /* SDL_DEFINE_COLORSPACE(SDL_COLOR_TYPE_YCBCR,
+                                 SDL_COLOR_RANGE_FULL,
+                                 SDL_COLOR_PRIMARIES_BT709,
+                                 SDL_TRANSFER_CHARACTERISTICS_BT709,
+                                 SDL_MATRIX_COEFFICIENTS_BT709,
+                                 SDL_CHROMA_LOCATION_LEFT), */
+
+    SDL_COLORSPACE_BT2020_LIMITED = 0x21102609u, /**&lt; Equivalent to DXGI_COLOR_SPACE_YCBCR_STUDIO_G22_LEFT_P2020 */
+        /* SDL_DEFINE_COLORSPACE(SDL_COLOR_TYPE_YCBCR,
+                                 SDL_COLOR_RANGE_LIMITED,
+                                 SDL_COLOR_PRIMARIES_BT2020,
+                                 SDL_TRANSFER_CHARACTERISTICS_PQ,
+                                 SDL_MATRIX_COEFFICIENTS_BT2020_NCL,
+                                 SDL_CHROMA_LOCATION_LEFT), */
+
+    SDL_COLORSPACE_BT2020_FULL = 0x22102609u, /**&lt; Equivalent to DXGI_COLOR_SPACE_YCBCR_FULL_G22_LEFT_P2020 */
+        /* SDL_DEFINE_COLORSPACE(SDL_COLOR_TYPE_YCBCR,
+                                 SDL_COLOR_RANGE_FULL,
+                                 SDL_COLOR_PRIMARIES_BT2020,
+                                 SDL_TRANSFER_CHARACTERISTICS_PQ,
+                                 SDL_MATRIX_COEFFICIENTS_BT2020_NCL,
+                                 SDL_CHROMA_LOCATION_LEFT), */
+
+    SDL_COLORSPACE_RGB_DEFAULT = SDL_COLORSPACE_SRGB, /**&lt; The default colorspace for RGB surfaces if no colorspace is specified */
+    SDL_COLORSPACE_YUV_DEFAULT = SDL_COLORSPACE_BT601_LIMITED  /**&lt; The default colorspace for YUV surfaces if no colorspace is specified */
+} SDL_Colorspace;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>Since similar colorspaces may vary in their details (matrix, transfer
+function, etc.), this is not an exhaustive list, but rather a
+representative sample of the kinds of colorspaces supported in SDL.</p>
+<h2 id="version">Version</h2>
+<p>This enum is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_ColorPrimaries.html">SDL_ColorPrimaries</a></li>
+<li><a href="SDL_ColorRange.html">SDL_ColorRange</a></li>
+<li><a href="SDL_ColorType.html">SDL_ColorType</a></li>
+<li><a href="SDL_MatrixCoefficients.html">SDL_MatrixCoefficients</a></li>
+<li><a href="SDL_TransferCharacteristics.html">SDL_TransferCharacteristics</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIEnum.html">CategoryAPIEnum</a>, <a href="CategoryPixels.html">CategoryPixels</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_Colorspace" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

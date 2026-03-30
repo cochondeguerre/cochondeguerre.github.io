@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetClosestFullscreenDisplayMode - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetClosestFullscreenDisplayMode</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getclosestfullscreendisplaymode">SDL_GetClosestFullscreenDisplayMode</h1>
+<p>Get the closest match to the requested display mode.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_video.h">&lt;SDL3/SDL_video.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_GetClosestFullscreenDisplayMode(SDL_DisplayID displayID, int w, int h, float refresh_rate, bool include_high_density_modes, SDL_DisplayMode *closest);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_DisplayID.html">SDL_DisplayID</a></td>
+<td><strong>displayID</strong></td>
+<td>the instance ID of the display to query.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>w</strong></td>
+<td>the width in pixels of the desired display mode.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>h</strong></td>
+<td>the height in pixels of the desired display mode.</td>
+</tr>
+<tr>
+<td>float</td>
+<td><strong>refresh_rate</strong></td>
+<td>the refresh rate of the desired display mode, or 0.0f for the desktop refresh rate.</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong>include_high_density_modes</strong></td>
+<td>boolean to include high density modes in the search.</td>
+</tr>
+<tr>
+<td><a href="SDL_DisplayMode.html">SDL_DisplayMode</a> *</td>
+<td><strong>closest</strong></td>
+<td>a pointer filled in with the closest display mode equal to or larger than the desired mode.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>The available display modes are scanned and <code>closest</code> is filled in with the
+closest mode matching the requested mode and returned. The mode format and
+refresh rate default to the desktop mode if they are set to 0. The modes
+are scanned with size being first priority, format being second priority,
+and finally checking the refresh rate. If all the available modes are too
+small, then false is returned.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should only be called on the main thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetDisplays.html">SDL_GetDisplays</a></li>
+<li><a href="SDL_GetFullscreenDisplayModes.html">SDL_GetFullscreenDisplayModes</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryVideo.html">CategoryVideo</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetClosestFullscreenDisplayMode" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

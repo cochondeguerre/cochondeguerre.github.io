@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetHapticEffectStatus - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetHapticEffectStatus</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gethapticeffectstatus">SDL_GetHapticEffectStatus</h1>
+<p>Get the status of the current effect on the specified haptic device.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_haptic.h">&lt;SDL3/SDL_haptic.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_GetHapticEffectStatus(SDL_Haptic *haptic, SDL_HapticEffectID effect);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Haptic.html">SDL_Haptic</a> *</td>
+<td><strong>haptic</strong></td>
+<td>the <a href="SDL_Haptic.html">SDL_Haptic</a> device to query for the effect status on.</td>
+</tr>
+<tr>
+<td><a href="SDL_HapticEffectID.html">SDL_HapticEffectID</a></td>
+<td><strong>effect</strong></td>
+<td>the ID of the haptic effect to query its status.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true if it is playing, false if it isn't playing or haptic
+status isn't supported.</p>
+<h2 id="remarks">Remarks</h2>
+<p>Device must support the <a href="SDL_HAPTIC_STATUS.html">SDL_HAPTIC_STATUS</a> feature.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetHapticFeatures.html">SDL_GetHapticFeatures</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryHaptic.html">CategoryHaptic</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetHapticEffectStatus" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

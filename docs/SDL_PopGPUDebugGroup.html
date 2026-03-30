@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_PopGPUDebugGroup - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_PopGPUDebugGroup</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_popgpudebuggroup">SDL_PopGPUDebugGroup</h1>
+<p>Ends the most-recently pushed debug group.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">void SDL_PopGPUDebugGroup(
+    SDL_GPUCommandBuffer *command_buffer);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_GPUCommandBuffer.html">SDL_GPUCommandBuffer</a> *</td>
+<td><strong>command_buffer</strong></td>
+<td>a command buffer.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="remarks">Remarks</h2>
+<p>On Direct3D 12, using
+<a href="SDL_PopGPUDebugGroup.html">SDL_PopGPUDebugGroup</a> requires WinPixEventRuntime.dll
+to be in your PATH or in the same directory as your executable. See
+<a href="https://devblogs.microsoft.com/pix/winpixeventruntime/">here</a>
+for instructions on how to obtain it.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_PushGPUDebugGroup.html">SDL_PushGPUDebugGroup</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_PopGPUDebugGroup" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

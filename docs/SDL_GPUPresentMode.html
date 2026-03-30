@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GPUPresentMode - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GPUPresentMode</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gpupresentmode">SDL_GPUPresentMode</h1>
+<p>Specifies the timing that will be used to present swapchain textures to the OS.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef enum SDL_GPUPresentMode
+{
+    SDL_GPU_PRESENTMODE_VSYNC,
+    SDL_GPU_PRESENTMODE_IMMEDIATE,
+    SDL_GPU_PRESENTMODE_MAILBOX
+} SDL_GPUPresentMode;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>VSYNC mode will always be supported. IMMEDIATE and MAILBOX modes may not be
+supported on certain systems.</p>
+<p>It is recommended to query
+<a href="SDL_WindowSupportsGPUPresentMode.html">SDL_WindowSupportsGPUPresentMode</a> after
+claiming the window if you wish to change the present mode to IMMEDIATE or
+MAILBOX.</p>
+<ul>
+<li>VSYNC: Waits for vblank before presenting. No tearing is possible. If
+there is a pending image to present, the new image is enqueued for
+presentation. Disallows tearing at the cost of visual latency.</li>
+<li>IMMEDIATE: Immediately presents. Lowest latency option, but tearing may
+occur.</li>
+<li>MAILBOX: Waits for vblank before presenting. No tearing is possible. If
+there is a pending image to present, the pending image is replaced by the
+new image. Similar to VSYNC, but with reduced visual latency.</li>
+</ul>
+<h2 id="version">Version</h2>
+<p>This enum is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_SetGPUSwapchainParameters.html">SDL_SetGPUSwapchainParameters</a></li>
+<li><a href="SDL_WindowSupportsGPUPresentMode.html">SDL_WindowSupportsGPUPresentMode</a></li>
+<li><a href="SDL_WaitAndAcquireGPUSwapchainTexture.html">SDL_WaitAndAcquireGPUSwapchainTexture</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIEnum.html">CategoryAPIEnum</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GPUPresentMode" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

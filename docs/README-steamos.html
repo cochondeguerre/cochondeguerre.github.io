@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>README-steamos - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">README-steamos</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="steamos">SteamOS</h1>
+<p>SteamOS is literally a Linux system, and uses the same binaries you distribute to generic Linux Steam users, so generally speaking, all the other <a href="README-linux.html">Linux advice</a> applies.</p>
+<p>If you are shipping a Linux game on Steam, or explicitly targeting SteamOS, the system is guaranteed to provide SDL. The Steam Client will set up the dynamic loader path so that a known-good copy of SDL is available to any program that needs it before launching a game. Steam provides all major versions of SDL to date, in this manner, for both x86 and amd64, in addition to several add-on libraries like <code>SDL_image</code> and <code>SDL_mixer</code>. When shipping a Linux game on Steam, do not ship a build of SDL with your game. Link against SDL as normal, and expect it to be available on the player's system. This allows Valve to make fixes and improvements to their SDL and those fixes to flow on to your game.</p>
+<p>We are obsessive about SDL3 having a backwards-compatible ABI. Whether you build your game using the Steam Runtime SDK or just about any other copy of SDL, it <em>should</em> work with the one that ships with Steam.</p>
+<p>In fact, it's not a bad idea to just copy the SDL build out of the Steam Runtime if you plan to ship a Linux game for non-Steam platforms, too, since you know it's definitely well-built.</p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/README-steamos" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

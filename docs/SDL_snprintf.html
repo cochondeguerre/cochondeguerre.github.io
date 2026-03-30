@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_snprintf - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_snprintf</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_snprintf">SDL_snprintf</h1>
+<p>This works exactly like snprintf() but doesn't require access to a C runtime.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_stdinc.h">&lt;SDL3/SDL_stdinc.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">int SDL_snprintf(char *text, size_t maxlen, const char *fmt, ...);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char *</td>
+<td><strong>text</strong></td>
+<td>the buffer to write the string into. Must not be NULL.</td>
+</tr>
+<tr>
+<td>size_t</td>
+<td><strong>maxlen</strong></td>
+<td>the maximum bytes to write, including the null-terminator.</td>
+</tr>
+<tr>
+<td>const char *</td>
+<td><strong>fmt</strong></td>
+<td>a printf-style format string. Must not be NULL.</td>
+</tr>
+<tr>
+<td>...</td>
+<td><strong>...</strong></td>
+<td>a list of values to be used with the format string.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(int) Returns the number of bytes that should be written, not counting the
+null-terminator char, or a negative value on error.</p>
+<h2 id="remarks">Remarks</h2>
+<p>Format a string of up to <code>maxlen</code>-1 bytes, converting each '%' item with
+values provided through variable arguments.</p>
+<p>While some C runtimes differ on how to deal with too-large strings, this
+function null-terminates the output, by treating the null-terminator as
+part of the <code>maxlen</code> count. Note that if <code>maxlen</code> is zero, however, no
+bytes will be written at all.</p>
+<p>This function returns the number of <em>bytes</em> (not <em>characters</em>) that should
+be written, excluding the null-terminator character. If this returns a
+number &gt;= <code>maxlen</code>, it means the output string was truncated. A negative
+return value means an error occurred.</p>
+<p>Referencing the output string's pointer with a format item is undefined
+behavior.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryStdinc.html">CategoryStdinc</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_snprintf" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

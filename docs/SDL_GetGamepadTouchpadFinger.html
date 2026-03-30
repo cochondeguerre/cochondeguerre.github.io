@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetGamepadTouchpadFinger - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetGamepadTouchpadFinger</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getgamepadtouchpadfinger">SDL_GetGamepadTouchpadFinger</h1>
+<p>Get the current state of a finger on a touchpad on a gamepad.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gamepad.h">&lt;SDL3/SDL_gamepad.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_GetGamepadTouchpadFinger(SDL_Gamepad *gamepad, int touchpad, int finger, bool *down, float *x, float *y, float *pressure);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Gamepad.html">SDL_Gamepad</a> *</td>
+<td><strong>gamepad</strong></td>
+<td>a gamepad.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>touchpad</strong></td>
+<td>a touchpad.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>finger</strong></td>
+<td>a finger.</td>
+</tr>
+<tr>
+<td>bool *</td>
+<td><strong>down</strong></td>
+<td>a pointer filled with true if the finger is down, false otherwise, may be NULL.</td>
+</tr>
+<tr>
+<td>float *</td>
+<td><strong>x</strong></td>
+<td>a pointer filled with the x position, normalized 0 to 1, with the origin in the upper left, may be NULL.</td>
+</tr>
+<tr>
+<td>float *</td>
+<td><strong>y</strong></td>
+<td>a pointer filled with the y position, normalized 0 to 1, with the origin in the upper left, may be NULL.</td>
+</tr>
+<tr>
+<td>float *</td>
+<td><strong>pressure</strong></td>
+<td>a pointer filled with pressure value, may be NULL.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetNumGamepadTouchpadFingers.html">SDL_GetNumGamepadTouchpadFingers</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryGamepad.html">CategoryGamepad</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetGamepadTouchpadFinger" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

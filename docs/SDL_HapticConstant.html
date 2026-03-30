@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_HapticConstant - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_HapticConstant</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_hapticconstant">SDL_HapticConstant</h1>
+<p>A structure containing a template for a Constant effect.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_haptic.h">&lt;SDL3/SDL_haptic.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_HapticConstant
+{
+    /* Header */
+    SDL_HapticEffectType type;      /**&lt; SDL_HAPTIC_CONSTANT */
+    SDL_HapticDirection direction;  /**&lt; Direction of the effect. */
+
+    /* Replay */
+    Uint32 length;          /**&lt; Duration of the effect. */
+    Uint16 delay;           /**&lt; Delay before starting the effect. */
+
+    /* Trigger */
+    Uint16 button;          /**&lt; Button that triggers the effect. */
+    Uint16 interval;        /**&lt; How soon it can be triggered again after button. */
+
+    /* Constant */
+    Sint16 level;           /**&lt; Strength of the constant effect. */
+
+    /* Envelope */
+    Uint16 attack_length;   /**&lt; Duration of the attack. */
+    Uint16 attack_level;    /**&lt; Level at the start of the attack. */
+    Uint16 fade_length;     /**&lt; Duration of the fade. */
+    Uint16 fade_level;      /**&lt; Level at the end of the fade. */
+} SDL_HapticConstant;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>This struct is exclusively for the
+<a href="SDL_HAPTIC_CONSTANT.html">SDL_HAPTIC_CONSTANT</a> effect.</p>
+<p>A constant effect applies a constant force in the specified direction to
+the joystick.</p>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_HAPTIC_CONSTANT.html">SDL_HAPTIC_CONSTANT</a></li>
+<li><a href="SDL_HapticEffect.html">SDL_HapticEffect</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryHaptic.html">CategoryHaptic</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_HapticConstant" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

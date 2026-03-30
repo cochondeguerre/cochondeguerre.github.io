@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_HINT_VIDEO_DISPLAY_PRIORITY - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_HINT_VIDEO_DISPLAY_PRIORITY</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_hint_video_display_priority">SDL_HINT_VIDEO_DISPLAY_PRIORITY</h1>
+<p>A comma separated list containing the names of the displays that SDL should sort to the front of the display list.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_hints.h">&lt;SDL3/SDL_hints.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_HINT_VIDEO_DISPLAY_PRIORITY &quot;SDL_VIDEO_DISPLAY_PRIORITY&quot;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>When this hint is set, displays with matching name strings will be
+prioritized in the list of displays, as exposed by calling
+<a href="SDL_GetDisplays.html">SDL_GetDisplays</a>(), with the first listed becoming the
+primary display. The naming convention can vary depending on the
+environment, but it is usually a connector name (e.g. 'DP-1', 'DP-2',
+'HDMI-A-1', etc...).</p>
+<p>On Wayland desktops, the connector names associated with displays can be
+found in the <code>name</code> property of the info output from <code>wayland-info -i wl_output</code>. On X11 desktops, the <code>xrandr</code> utility can be used to retrieve
+the connector names associated with displays.</p>
+<p>This hint is currently supported on the following drivers:</p>
+<ul>
+<li>KMSDRM (kmsdrm)</li>
+<li>Wayland (wayland)</li>
+<li>X11 (x11)</li>
+</ul>
+<p>This hint should be set before SDL is initialized.</p>
+<h2 id="version">Version</h2>
+<p>This hint is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryHints.html">CategoryHints</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_HINT_VIDEO_DISPLAY_PRIORITY" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

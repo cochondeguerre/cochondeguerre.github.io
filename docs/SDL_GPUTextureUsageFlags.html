@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GPUTextureUsageFlags - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GPUTextureUsageFlags</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gputextureusageflags">SDL_GPUTextureUsageFlags</h1>
+<p>Specifies how a texture is intended to be used by the client.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef Uint32 SDL_GPUTextureUsageFlags;
+
+#define SDL_GPU_TEXTUREUSAGE_SAMPLER                                 (1u &lt;&lt; 0) /**&lt; Texture supports sampling. */
+#define SDL_GPU_TEXTUREUSAGE_COLOR_TARGET                            (1u &lt;&lt; 1) /**&lt; Texture is a color render target. */
+#define SDL_GPU_TEXTUREUSAGE_DEPTH_STENCIL_TARGET                    (1u &lt;&lt; 2) /**&lt; Texture is a depth stencil target. */
+#define SDL_GPU_TEXTUREUSAGE_GRAPHICS_STORAGE_READ                   (1u &lt;&lt; 3) /**&lt; Texture supports storage reads in graphics stages. */
+#define SDL_GPU_TEXTUREUSAGE_COMPUTE_STORAGE_READ                    (1u &lt;&lt; 4) /**&lt; Texture supports storage reads in the compute stage. */
+#define SDL_GPU_TEXTUREUSAGE_COMPUTE_STORAGE_WRITE                   (1u &lt;&lt; 5) /**&lt; Texture supports storage writes in the compute stage. */
+#define SDL_GPU_TEXTUREUSAGE_COMPUTE_STORAGE_SIMULTANEOUS_READ_WRITE (1u &lt;&lt; 6) /**&lt; Texture supports reads and writes in the same compute shader. This is NOT equivalent to READ | WRITE. */
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>A texture must have at least one usage flag. Note that some usage flag
+combinations are invalid.</p>
+<p>With regards to compute storage usage, READ | WRITE means that you can have
+shader A that only writes into the texture and shader B that only reads
+from the texture and bind the same texture to either shader respectively.
+SIMULTANEOUS means that you can do reads and writes within the same shader
+or compute pass. It also implies that atomic ops can be used, since those
+are read-modify-write operations. If you use SIMULTANEOUS, you are
+responsible for avoiding data races, as there is no data synchronization
+within a compute pass. Note that SIMULTANEOUS usage is only supported by a
+limited number of texture formats.</p>
+<h2 id="version">Version</h2>
+<p>This datatype is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_CreateGPUTexture.html">SDL_CreateGPUTexture</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIDatatype.html">CategoryAPIDatatype</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GPUTextureUsageFlags" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetKeyFromScancode - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetKeyFromScancode</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getkeyfromscancode">SDL_GetKeyFromScancode</h1>
+<p>Get the key code corresponding to the given scancode according to the current keyboard layout.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_keyboard.h">&lt;SDL3/SDL_keyboard.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_Keycode SDL_GetKeyFromScancode(SDL_Scancode scancode, SDL_Keymod modstate, bool key_event);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Scancode.html">SDL_Scancode</a></td>
+<td><strong>scancode</strong></td>
+<td>the desired <a href="SDL_Scancode.html">SDL_Scancode</a> to query.</td>
+</tr>
+<tr>
+<td><a href="SDL_Keymod.html">SDL_Keymod</a></td>
+<td><strong>modstate</strong></td>
+<td>the modifier state to use when translating the scancode to a keycode.</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong>key_event</strong></td>
+<td>true if the keycode will be used in key events.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_Keycode.html">SDL_Keycode</a>) Returns the <a href="SDL_Keycode.html">SDL_Keycode</a> that
+corresponds to the given <a href="SDL_Scancode.html">SDL_Scancode</a>.</p>
+<h2 id="remarks">Remarks</h2>
+<p>If you want to get the keycode as it would be delivered in key events,
+including options specified in
+<a href="SDL_HINT_KEYCODE_OPTIONS.html">SDL_HINT_KEYCODE_OPTIONS</a>, then you should pass
+<code>key_event</code> as true. Otherwise this function simply translates the scancode
+based on the given modifier state.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function is not thread safe.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetKeyName.html">SDL_GetKeyName</a></li>
+<li><a href="SDL_GetScancodeFromKey.html">SDL_GetScancodeFromKey</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryKeyboard.html">CategoryKeyboard</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetKeyFromScancode" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

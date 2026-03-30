@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_RegisterApp - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_RegisterApp</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_registerapp">SDL_RegisterApp</h1>
+<p>Register a win32 window class for SDL's use.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_main.h">&lt;SDL3/SDL_main.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_RegisterApp(const char *name, Uint32 style, void *hInst);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>const char *</td>
+<td><strong>name</strong></td>
+<td>the window class name, in UTF-8 encoding. If NULL, SDL currently uses &quot;<a href="SDL_app.html">SDL_app</a>&quot; but this isn't guaranteed.</td>
+</tr>
+<tr>
+<td><a href="Uint32.html">Uint32</a></td>
+<td><strong>style</strong></td>
+<td>the value to use in WNDCLASSEX::style.</td>
+</tr>
+<tr>
+<td>void *</td>
+<td><strong>hInst</strong></td>
+<td>the HINSTANCE to use in WNDCLASSEX::hInstance. If zero, SDL will use <code>GetModuleHandle(NULL)</code> instead.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This can be called to set the application window class at startup. It is
+safe to call this multiple times, as long as every call is eventually
+paired with a call to <a href="SDL_UnregisterApp.html">SDL_UnregisterApp</a>, but a second
+registration attempt while a previous registration is still active will be
+ignored, other than to increment a counter.</p>
+<p>Most applications do not need to, and should not, call this directly; SDL
+will call it when initializing the video subsystem.</p>
+<p>If <code>name</code> is NULL, SDL currently uses <code>(CS_BYTEALIGNCLIENT | CS_OWNDC)</code> for
+the style, regardless of what is specified here.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function is not thread safe.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryMain.html">CategoryMain</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_RegisterApp" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_DialogFileFilter - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_DialogFileFilter</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_dialogfilefilter">SDL_DialogFileFilter</h1>
+<p>An entry for filters for file dialogs.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_dialog.h">&lt;SDL3/SDL_dialog.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_DialogFileFilter
+{
+    const char *name;
+    const char *pattern;
+} SDL_DialogFileFilter;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p><code>name</code> is a user-readable label for the filter (for example, &quot;Office
+document&quot;).</p>
+<p><code>pattern</code> is a semicolon-separated list of file extensions (for example,
+&quot;doc;docx&quot;). File extensions may only contain alphanumeric characters,
+hyphens, underscores and periods. Alternatively, the whole string can be a
+single asterisk (&quot;*&quot;), which serves as an &quot;All files&quot; filter.</p>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<h2 id="code-examples">Code Examples</h2>
+<p>This structure is most often used as an array:</p>
+<pre><code class="language-c">const SDL_DialogFileFilter filters[] = {
+    { &quot;PNG images&quot;,  &quot;png&quot; },
+    { &quot;JPEG images&quot;, &quot;jpg;jpeg&quot; },
+    { &quot;All images&quot;,  &quot;png;jpg;jpeg&quot; },
+    { &quot;All files&quot;,   &quot;*&quot; }
+};
+</code></pre>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_DialogFileCallback.html">SDL_DialogFileCallback</a></li>
+<li><a href="SDL_ShowOpenFileDialog.html">SDL_ShowOpenFileDialog</a></li>
+<li><a href="SDL_ShowSaveFileDialog.html">SDL_ShowSaveFileDialog</a></li>
+<li><a href="SDL_ShowOpenFolderDialog.html">SDL_ShowOpenFolderDialog</a></li>
+<li><a href="SDL_ShowFileDialogWithProperties.html">SDL_ShowFileDialogWithProperties</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryDialog.html">CategoryDialog</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_DialogFileFilter" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

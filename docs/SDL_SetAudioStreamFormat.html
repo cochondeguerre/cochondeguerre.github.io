@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_SetAudioStreamFormat - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_SetAudioStreamFormat</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_setaudiostreamformat">SDL_SetAudioStreamFormat</h1>
+<p>Change the input and output formats of an audio stream.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_audio.h">&lt;SDL3/SDL_audio.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_SetAudioStreamFormat(SDL_AudioStream *stream, const SDL_AudioSpec *src_spec, const SDL_AudioSpec *dst_spec);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_AudioStream.html">SDL_AudioStream</a> *</td>
+<td><strong>stream</strong></td>
+<td>the stream the format is being changed.</td>
+</tr>
+<tr>
+<td>const <a href="SDL_AudioSpec.html">SDL_AudioSpec</a> *</td>
+<td><strong>src_spec</strong></td>
+<td>the new format of the audio input; if NULL, it is not changed.</td>
+</tr>
+<tr>
+<td>const <a href="SDL_AudioSpec.html">SDL_AudioSpec</a> *</td>
+<td><strong>dst_spec</strong></td>
+<td>the new format of the audio output; if NULL, it is not changed.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>Future calls to and
+<a href="SDL_GetAudioStreamAvailable.html">SDL_GetAudioStreamAvailable</a> and
+<a href="SDL_GetAudioStreamData.html">SDL_GetAudioStreamData</a> will reflect the new
+format, and future calls to
+<a href="SDL_PutAudioStreamData.html">SDL_PutAudioStreamData</a> must provide data in the
+new input formats.</p>
+<p>Data that was previously queued in the stream will still be operated on in
+the format that was current when it was added, which is to say you can put
+the end of a sound file in one format to a stream, change formats for the
+next sound file, and start putting that new data while the previous sound
+file is still queued, and everything will still play back correctly.</p>
+<p>If a stream is bound to a device, then the format of the side of the stream
+bound to a device cannot be changed (src_spec for recording devices,
+dst_spec for playback devices). Attempts to make a change to this side will
+be ignored, but this will not report an error. The other side's format can
+be changed.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread, as it holds a
+stream-specific mutex while running.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetAudioStreamFormat.html">SDL_GetAudioStreamFormat</a></li>
+<li><a href="SDL_SetAudioStreamFrequencyRatio.html">SDL_SetAudioStreamFrequencyRatio</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryAudio.html">CategoryAudio</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_SetAudioStreamFormat" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

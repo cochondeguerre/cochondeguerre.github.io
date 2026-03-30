@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SourceCode - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SourceCode</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="obtaining-sdls-source-code">Obtaining SDL's source code</h1>
+<h2 id="building-and-installation">Building and installation</h2>
+<p>Building SDL and using it in your project is covered in <a href="https://github.com/libsdl-org/SDL/blob/main/INSTALL">Installation</a>.</p>
+<h2 id="sdl-3.0">SDL 3.0</h2>
+<p>The latest official release of SDL3 is on <a href="https://github.com/libsdl-org/SDL/releases">GitHub</a>.</p>
+<p>If you want up to the minute bug fixes and improvements, you can track our work in SDL's <a href="https://git-scm.com">Git</a> repository, <a href="https://github.com/libsdl-org/SDL">here</a>. To clone the repo:</p>
+<pre><code class="language-bash">git clone https://github.com/libsdl-org/SDL
+</code></pre>
+<p>SDL3 is currently the &quot;main&quot; branch in git.</p>
+<p>We intend official releases to be reasonably stable, and don't promise anything about the quality level of the Git repo from moment to moment, but as major releases tend to happen months apart, you might find a bug that's bothering you is fixed in revision control long before it makes it to a release.</p>
+<h2 id="sdl-2.0-legacy">SDL 2.0 (legacy)</h2>
+<p>At the time of this writing, SDL2 has gone into maintenance mode, and will eventually be retired. Applications should move to SDL3 when possible.</p>
+<p>It is still possible, for the time being, for there to be minor bugfix releases of SDL2, but these will stop sooner than later.</p>
+<p>However, we offer <a href="https://github.com/libsdl-org/sdl2-compat">sdl2-compat</a>, a small library that provides the SDL2 API, using SDL3 behind the scenes. This is the recommended way forward for SDL2 apps that can't directly migrate to something newer at this point; it can even be used with existing binaries, by replacing the SDL2 shared library with sdl2-compat, or just setting the SDL_DYNAMIC_API environment variable to point to a copy of sdl2-compat.</p>
+<p>If you still want the real SDL2 source code, it is available from git:</p>
+<pre><code class="language-bash">git clone https://github.com/libsdl-org/SDL
+</code></pre>
+<p>SDL2 can be found in the &quot;SDL2&quot; branch in git.</p>
+<h2 id="sdl-1.2-obsolete">SDL 1.2 (obsolete!)</h2>
+<p>If you want SDL 1.2, the final released version is 1.2.15. We occasionally collect a fix or two in revision control, but our current intention is to never release an official 1.2.16 build, and while we may accept small patches, we do not intend to ever work on 1.2 again. You should expect it to continue to bitrot over time, and become a liability to your project. The best course of action is to move to SDL 3.0 or later as quickly as possible.</p>
+<p>We have put together a <a href="SDL12MigrationGuide.html">migration guide</a> to help with this.</p>
+<p>Failing that, we offer <a href="https://github.com/libsdl-org/sdl12-compat">sdl12-compat</a>, a small library that provides the SDL 1.2 API, using SDL2 behind the scenes. This is the recommended way forward for SDL 1.2 apps that can't directly migrate to something newer at this point; it can even be used with existing binaries, by replacing the SDL 1.2 shared library with sdl12-compat. sdl12-compat can even chain through sdl2-compat, getting your 1.2 app all the way to SDL3's tech.</p>
+<p>If you need the real (not sdl12-compat) SDL 1.2, you probably shouldn't use the last official release at this point. Instead, get the latest from revision control, which has accumulated some significant fixes since 1.2.15 was released.</p>
+<p>You can find 1.2's source code in <a href="https://github.com/libsdl-org/SDL-1.2">a separate Git repository</a>:</p>
+<pre><code class="language-bash">git clone https://github.com/libsdl-org/SDL-1.2
+</code></pre>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SourceCode" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

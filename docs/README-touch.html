@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>README-touch - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">README-touch</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="touch">Touch</h1>
+<h1 id="system-specific-notes">System Specific Notes</h1>
+<p>Linux:
+The linux touch system is currently based off event streams, and proc/bus/devices. The active user must be given permissions to read /dev/input/TOUCHDEVICE, where TOUCHDEVICE is the event stream for your device. Currently only Wacom tablets are supported. If you have an unsupported tablet contact me at jim.tla+sdl_touch@gmail.com and I will help you get support for it.</p>
+<p>Mac:
+The Mac and iPhone APIs are pretty. If your touch device supports them then you'll be fine. If it doesn't, then there isn't much we can do.</p>
+<p>iPhone:
+Works out of box.</p>
+<p>Windows:
+Unfortunately there is no windows support as of yet. Support for Windows 7 is planned, but we currently have no way to test. If you have a Windows 7 WM_TOUCH supported device, and are willing to help test please contact me at jim.tla+sdl_touch@gmail.com</p>
+<h1 id="events">Events</h1>
+<p>SDL_EVENT_FINGER_DOWN:
+Sent when a finger (or stylus) is placed on a touch device.
+Fields:</p>
+<ul>
+<li>event.tfinger.touchId  - the Id of the touch device.</li>
+<li>event.tfinger.fingerId - the Id of the finger which just went down.</li>
+<li>event.tfinger.x        - the x coordinate of the touch (0..1)</li>
+<li>event.tfinger.y        - the y coordinate of the touch (0..1)</li>
+<li>event.tfinger.pressure - the pressure of the touch (0..1)</li>
+</ul>
+<p>SDL_EVENT_FINGER_MOTION:
+Sent when a finger (or stylus) is moved on the touch device.
+Fields:
+Same as SDL_EVENT_FINGER_DOWN but with additional:</p>
+<ul>
+<li>event.tfinger.dx       - change in x coordinate during this motion event.</li>
+<li>event.tfinger.dy       - change in y coordinate during this motion event.</li>
+</ul>
+<p>SDL_EVENT_FINGER_UP:
+Sent when a finger (or stylus) is lifted from the touch device.
+Fields:
+Same as SDL_EVENT_FINGER_DOWN.</p>
+<h1 id="functions">Functions</h1>
+<p>SDL provides the ability to access the underlying SDL_Finger structures.
+These structures should <em>never</em> be modified.</p>
+<p>The following functions are included from SDL_touch.h</p>
+<p>Devices are tracked by instance ID, of type SDL_TouchID.</p>
+<p>To get a list of available device SDL_TouchID values, call SDL_GetTouchDevices().
+This returns an array of device IDs, terminated by a zero ID. Optionally, you can
+get a count of IDs by passing a non-NULL int* to SDL_GetTouchDevices() if you'd
+rather not iterate the whole array to get this number.</p>
+<p>A SDL_TouchID may be used to get pointers to SDL_Finger.</p>
+<p>SDL_GetNumTouchFingers(touchID) may be used to get the number of fingers currently down on the device.</p>
+<p>The most common reason to access SDL_Finger is to query the fingers outside the event. In most cases accessing the fingers is using the event. This would be accomplished by code like the following:</p>
+<pre><code>  float x = event.tfinger.x;
+  float y = event.tfinger.y;
+</code></pre>
+<p>To get a SDL_Finger, call SDL_GetTouchFinger(SDL_TouchID touchID, int index), where touchID is a SDL_TouchID, and index is the requested finger.
+This returns a SDL_Finger *, or NULL if the finger does not exist, or has been removed.
+A SDL_Finger is guaranteed to be persistent for the duration of a touch, but it will be de-allocated as soon as the finger is removed. This occurs when the SDL_EVENT_FINGER_UP event is <em>added</em> to the event queue, and thus <em>before</em> the SDL_EVENT_FINGER_UP event is polled.
+As a result, be very careful to check for NULL return values.</p>
+<p>A SDL_Finger has the following fields:</p>
+<ul>
+<li>x, y:
+The current coordinates of the touch.</li>
+<li>pressure:
+The pressure of the touch.</li>
+</ul>
+<p>Please direct questions/comments to:
+jim.tla+sdl_touch@gmail.com
+(original author, API was changed since)</p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/README-touch" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

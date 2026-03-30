@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_RotateSurface - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_RotateSurface</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_rotatesurface">SDL_RotateSurface</h1>
+<p>Return a copy of a surface rotated clockwise a number of degrees.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_surface.h">&lt;SDL3/SDL_surface.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_Surface * SDL_RotateSurface(SDL_Surface *surface, float angle);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Surface.html">SDL_Surface</a> *</td>
+<td><strong>surface</strong></td>
+<td>the surface to rotate.</td>
+</tr>
+<tr>
+<td>float</td>
+<td><strong>angle</strong></td>
+<td>the rotation angle, in degrees.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_Surface.html">SDL_Surface</a> *) Returns a rotated copy of the surface or
+NULL on failure; call <a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>The angle of rotation can be negative for counter-clockwise rotation.</p>
+<p>When the rotation isn't a multiple of 90 degrees, the resulting surface is
+larger than the original, with the background filled in with the colorkey,
+if available, or RGBA 255/255/255/0 if not.</p>
+<p>If <code>surface</code> has the
+<a href="SDL_PROP_SURFACE_ROTATION_FLOAT.html">SDL_PROP_SURFACE_ROTATION_FLOAT</a> property
+set on it, the new copy will have the adjusted value set: if the rotation
+property is 90 and <code>angle</code> was 30, the new surface will have a property
+value of 60 (that is: to be upright vs gravity, this surface needs to
+rotate 60 more degrees). However, note that further rotations on the new
+surface in this example will produce unexpected results, since the image
+will have resized and padded to accommodate the not-90 degree angle.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function can be called on different threads with different surfaces.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.4.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategorySurface.html">CategorySurface</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_RotateSurface" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

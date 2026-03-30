@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_BlendFactor - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_BlendFactor</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_blendfactor">SDL_BlendFactor</h1>
+<p>The normalized factor used to multiply pixel components.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_blendmode.h">&lt;SDL3/SDL_blendmode.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef enum SDL_BlendFactor
+{
+    SDL_BLENDFACTOR_ZERO                = 0x1,  /**&lt; 0, 0, 0, 0 */
+    SDL_BLENDFACTOR_ONE                 = 0x2,  /**&lt; 1, 1, 1, 1 */
+    SDL_BLENDFACTOR_SRC_COLOR           = 0x3,  /**&lt; srcR, srcG, srcB, srcA */
+    SDL_BLENDFACTOR_ONE_MINUS_SRC_COLOR = 0x4,  /**&lt; 1-srcR, 1-srcG, 1-srcB, 1-srcA */
+    SDL_BLENDFACTOR_SRC_ALPHA           = 0x5,  /**&lt; srcA, srcA, srcA, srcA */
+    SDL_BLENDFACTOR_ONE_MINUS_SRC_ALPHA = 0x6,  /**&lt; 1-srcA, 1-srcA, 1-srcA, 1-srcA */
+    SDL_BLENDFACTOR_DST_COLOR           = 0x7,  /**&lt; dstR, dstG, dstB, dstA */
+    SDL_BLENDFACTOR_ONE_MINUS_DST_COLOR = 0x8,  /**&lt; 1-dstR, 1-dstG, 1-dstB, 1-dstA */
+    SDL_BLENDFACTOR_DST_ALPHA           = 0x9,  /**&lt; dstA, dstA, dstA, dstA */
+    SDL_BLENDFACTOR_ONE_MINUS_DST_ALPHA = 0xA   /**&lt; 1-dstA, 1-dstA, 1-dstA, 1-dstA */
+} SDL_BlendFactor;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>The blend factors are multiplied with the pixels from a drawing operation
+(src) and the pixels from the render target (dst) before the blend
+operation. The comma-separated factors listed above are always applied in
+the component order red, green, blue, and alpha.</p>
+<h2 id="version">Version</h2>
+<p>This enum is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIEnum.html">CategoryAPIEnum</a>, <a href="CategoryBlendmode.html">CategoryBlendmode</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_BlendFactor" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

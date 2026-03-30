@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_OUT_CAP - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_OUT_CAP</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_out_cap">SDL_OUT_CAP</h1>
+<p>Macro that annotates function params with output buffer size.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_stdinc.h">&lt;SDL3/SDL_stdinc.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_OUT_CAP(x) _Out_cap_(x)
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>If we were to annotate <code>wcsncpy</code>:</p>
+<pre><code class="language-c">char *wcscpy(SDL_OUT_CAP(bufsize) wchar_t *dst, const wchar_t *src, size_t bufsize);
+</code></pre>
+<p>This notes that <code>dst</code> should have a capacity of <code>bufsize</code> wchar_t in size,
+and is only written to by the function. The compiler or other analysis
+tools can warn when this doesn't appear to be the case.</p>
+<p>This operates on counts of objects, not bytes. Use
+<a href="SDL_OUT_BYTECAP.html">SDL_OUT_BYTECAP</a> for bytes.</p>
+<p>On compilers without this annotation mechanism, this is defined to nothing.</p>
+<h2 id="version">Version</h2>
+<p>This macro is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryStdinc.html">CategoryStdinc</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_OUT_CAP" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

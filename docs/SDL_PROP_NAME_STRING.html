@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_PROP_NAME_STRING - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_PROP_NAME_STRING</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_prop_name_string">SDL_PROP_NAME_STRING</h1>
+<p>A generic property for naming things.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_properties.h">&lt;SDL3/SDL_properties.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_PROP_NAME_STRING &quot;SDL.name&quot;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>This property is intended to be added to any
+<a href="SDL_PropertiesID.html">SDL_PropertiesID</a> that needs a generic name associated
+with the property set. It is not guaranteed that any property set will
+include this key, but it is convenient to have a standard key that any
+piece of code could reasonably agree to use.</p>
+<p>For example, the properties associated with an <a href="SDL_Texture.html">SDL_Texture</a>
+might have a name string of &quot;player sprites&quot;, or an
+<a href="SDL_AudioStream.html">SDL_AudioStream</a> might have &quot;background music&quot;, etc. This
+might also be useful for an <a href="SDL_IOStream.html">SDL_IOStream</a> to list the path
+to its asset.</p>
+<p>There is no format for the value set with this key; it is expected to be
+human-readable and informational in nature, possibly for logging or
+debugging purposes.</p>
+<p>SDL does not currently set this property on any objects it creates, but
+this may change in later versions; it is currently expected that apps and
+external libraries will take advantage of it, when appropriate.</p>
+<h2 id="version">Version</h2>
+<p>This macro is available since SDL 3.4.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryProperties.html">CategoryProperties</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_PROP_NAME_STRING" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

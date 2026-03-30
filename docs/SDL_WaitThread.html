@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_WaitThread - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_WaitThread</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_waitthread">SDL_WaitThread</h1>
+<p>Wait for a thread to finish.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_thread.h">&lt;SDL3/SDL_thread.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">void SDL_WaitThread(SDL_Thread *thread, int *status);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Thread.html">SDL_Thread</a> *</td>
+<td><strong>thread</strong></td>
+<td>the <a href="SDL_Thread.html">SDL_Thread</a> pointer that was returned from the <a href="SDL_CreateThread.html">SDL_CreateThread</a>() call that started this thread.</td>
+</tr>
+<tr>
+<td>int *</td>
+<td><strong>status</strong></td>
+<td>a pointer filled in with the value returned from the thread function by its 'return', or -1 if the thread has been detached or isn't valid, may be NULL.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="remarks">Remarks</h2>
+<p>Threads that haven't been detached will remain until this function cleans
+them up. Not doing so is a resource leak.</p>
+<p>Once a thread has been cleaned up through this function, the
+<a href="SDL_Thread.html">SDL_Thread</a> that references it becomes invalid and should not
+be referenced again. As such, only one thread may call
+<a href="SDL_WaitThread.html">SDL_WaitThread</a>() on another.</p>
+<p>The return code from the thread function is placed in the area pointed to
+by <code>status</code>, if <code>status</code> is not NULL.</p>
+<p>You may not wait on a thread that has been used in a call to
+<a href="SDL_DetachThread.html">SDL_DetachThread</a>(). Use either that function or this
+one, but not both, or behavior is undefined.</p>
+<p>It is safe to pass a NULL thread to this function; it is a no-op.</p>
+<p>Note that the thread pointer is freed by this function and is not valid
+afterward.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread, but only a single thread
+can wait any specific thread to finish.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_CreateThread.html">SDL_CreateThread</a></li>
+<li><a href="SDL_DetachThread.html">SDL_DetachThread</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryThread.html">CategoryThread</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_WaitThread" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GPUVulkanOptions - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GPUVulkanOptions</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gpuvulkanoptions">SDL_GPUVulkanOptions</h1>
+<p>A structure specifying additional options when using Vulkan.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_GPUVulkanOptions
+{
+    Uint32 vulkan_api_version; /**&lt; The Vulkan API version to request for the instance. Use Vulkan's VK_MAKE_VERSION or VK_MAKE_API_VERSION. */
+    void *feature_list; /**&lt; Pointer to the first element of a chain of Vulkan feature structs. (Requires API version 1.1 or higher.)*/
+	void *vulkan_10_physical_device_features; /**&lt; Pointer to a VkPhysicalDeviceFeatures struct to enable additional Vulkan 1.0 features. */
+	Uint32 device_extension_count; /**&lt; Number of additional device extensions to require. */
+	const char **device_extension_names; /**&lt; Pointer to a list of additional device extensions to require. */
+	Uint32 instance_extension_count; /**&lt; Number of additional instance extensions to require. */
+	const char **instance_extension_names; /**&lt; Pointer to a list of additional instance extensions to require. */
+} SDL_GPUVulkanOptions;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>When no such structure is provided, SDL will use Vulkan API version 1.0 and
+a minimal set of features. The requested API version influences how the
+feature_list is processed by SDL. When requesting API version 1.0, the
+feature_list is ignored. Only the vulkan_10_physical_device_features and
+the extension lists are used. When requesting API version 1.1, the
+feature_list is scanned for feature structures introduced in Vulkan 1.1.
+When requesting Vulkan 1.2 or higher, the feature_list is additionally
+scanned for compound feature structs such as
+VkPhysicalDeviceVulkan11Features. The device and instance extension lists,
+as well as vulkan_10_physical_device_features, are always processed.</p>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.4.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GPUVulkanOptions" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

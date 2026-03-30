@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_RenderGeometry - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_RenderGeometry</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_rendergeometry">SDL_RenderGeometry</h1>
+<p>Render a list of triangles, optionally using a texture and indices into the vertex array.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_render.h">&lt;SDL3/SDL_render.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_RenderGeometry(SDL_Renderer *renderer,
+                   SDL_Texture *texture,
+                   const SDL_Vertex *vertices, int num_vertices,
+                   const int *indices, int num_indices);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Renderer.html">SDL_Renderer</a> *</td>
+<td><strong>renderer</strong></td>
+<td>the rendering context.</td>
+</tr>
+<tr>
+<td><a href="SDL_Texture.html">SDL_Texture</a> *</td>
+<td><strong>texture</strong></td>
+<td>(optional) The SDL texture to use.</td>
+</tr>
+<tr>
+<td>const <a href="SDL_Vertex.html">SDL_Vertex</a> *</td>
+<td><strong>vertices</strong></td>
+<td>vertices.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>num_vertices</strong></td>
+<td>number of vertices.</td>
+</tr>
+<tr>
+<td>const int *</td>
+<td><strong>indices</strong></td>
+<td>(optional) An array of integer indices into the 'vertices' array, if NULL all vertices will be rendered in sequential order.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>num_indices</strong></td>
+<td>number of indices.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true on success or false on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>Color and alpha modulation is done per vertex
+(<a href="SDL_SetTextureColorMod.html">SDL_SetTextureColorMod</a> and
+<a href="SDL_SetTextureAlphaMod.html">SDL_SetTextureAlphaMod</a> are ignored).</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should only be called on the main thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="code-examples">Code Examples</h2>
+<pre><code class="language-c">#include &lt;SDL3/SDL.h&gt;
+#include &lt;SDL3/SDL_main.h&gt;
+
+int main(int argc, char *argv[])
+{
+  bool quit = false;
+  SDL_Window *window = SDL_CreateWindow(&quot;Triangle Example&quot;, 800, 600, 0);
+
+  SDL_Renderer *renderer = SDL_CreateRenderer(window, NULL);
+
+  #define vertLen 3
+  SDL_Vertex vert[vertLen];
+
+  // center
+  vert[0].position.x = 400;
+  vert[0].position.y = 150;
+  vert[0].color.r = 1.0;
+  vert[0].color.g = 0.0;
+  vert[0].color.b = 0.0;
+  vert[0].color.a = 1.0;
+
+  // left
+  vert[1].position.x = 200;
+  vert[1].position.y = 450;
+  vert[1].color.r = 0.0;
+  vert[1].color.g = 0.0;
+  vert[1].color.b = 1.0;
+  vert[1].color.a = 1.0;
+
+  // right
+  vert[2].position.x = 600;
+  vert[2].position.y = 450;
+  vert[2].color.r = 0.0;
+  vert[2].color.g = 1.0;
+  vert[2].color.b = 0.0;
+  vert[2].color.a = 1.0;
+
+  while (!quit) {
+   SDL_Event ev;
+   while (SDL_PollEvent(&amp;ev) != 0) {
+      switch(ev.type) {
+        case SDL_EVENT_QUIT:
+        quit = true;
+        break;
+      }
+    }
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+
+    SDL_RenderGeometry(renderer, NULL, vert, vertLen, NULL, 0);
+
+    SDL_RenderPresent(renderer);
+  }
+
+  SDL_DestroyRenderer(renderer);
+  SDL_DestroyWindow(window);
+  SDL_Quit();
+  return 0;
+}
+
+</code></pre>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_RenderGeometryRaw.html">SDL_RenderGeometryRaw</a></li>
+<li><a href="SDL_SetRenderTextureAddressMode.html">SDL_SetRenderTextureAddressMode</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryRender.html">CategoryRender</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_RenderGeometry" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

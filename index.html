@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDL3 Doc Search</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script type='text/javascript' src='/js/knockout-3.5.3.js'></script>
+</head>
+<body>
+    <nav class="topbar">
+        <div class="topbar-inner">
+            <a href="/" class="logo">
+                <span class="logo-badge">S3</span>
+                <span class="logo-text">SDL3 <span class="accent">Docs</span></span>
+            </a>
+            <a href="https://wiki.libsdl.org/SDL3" target="_blank" rel="noopener" class="topbar-link">Wiki officiel ↗</a>
+        </div>
+    </nav>
+
+    <main class="search-page">
+        <div class="container">
+            <div class="search-hero">
+                <h1>SDL3 <span class="accent">Doc Search</span></h1>
+                <p class="subtitle"><span data-bind="text: data().length"></span> entrées · Fuzzy search · Navigation clavier</p>
+            </div>
+
+            <div class="search-box">
+                <span class="search-icon">⌕</span>
+                <input type="text" id="main-search" placeholder="Rechercher fonctions, types, enums, macros..." autofocus autocomplete="off" data-bind="textInput: searchQuery">
+                <kbd class="search-kbd">/</kbd>
+            </div>
+
+            <div class="filters" data-bind="foreach: types">
+                <button class="filter-btn" data-bind="
+                    text: $data.toLowerCase(),
+                    click: function() { $root.toggleType($data.toLowerCase()) },
+                    css: { active: $root.activeTypes.indexOf($data.toLowerCase()) >= 0 }">
+                </button>
+            </div>
+
+            <div class="filters filters-cats"  data-bind="foreach: categories">
+                <button class="filter-btn" data-bind="text: $data,
+                        click: function() { $root.toggleCat($data) },
+                        css: { active: $root.activeCats.indexOf($data) >= 0 }">
+                </button>
+            </div>
+
+            <div class="results-meta" id="results-meta"></div>
+            <div class="results-list" id="results-list" data-bind="foreach: filteredData">
+                <div class="result-item" data-bind="click: $root.toggleExpand">
+                    <div class="result-head">
+                        <span class="result-type" style="border: 1px solid"
+                              data-bind="text: type, css: 'result-type-' + type.toLowerCase()">
+                        </span>
+
+                        <span class="result-cat" style="border: 1px solid"
+                              data-bind="text: category, css: 'result-cat-' + category.toLowerCase().replace(/[& ]+/g, '-')">
+                        </span>
+                        <a class="result-name" data-bind="html: highlightedName, attr: { href: 'docs/' + name + '.html' }, click: function() { return true; }, clickBubble: false"></a>
+                        <span class="result-ver" data-bind="text: version"></span>
+                    </div> 
+                    <div class="result-sig" data-bind="text: syntax_short, visible: syntax_short"></div>
+                    <div class="result-desc" data-bind="text: desc"></div>
+                    <div style="margin-top: 8px; padding: 10px 12px; background: rgb(13, 17, 23); border-radius: 6px; border: 1px solid rgba(27, 34, 48, 0.267); font-size: 11px;" data-bind="visible: $root.expandedItem() === $data">
+                        <div style="margin-bottom: 8px;">
+                          <div style="color: rgb(61, 68, 77); font-weight: 600; margin-bottom: 4px;">FULL SIGNATURE</div>
+                          <pre style="margin: 0px; white-space: pre-wrap; color: rgb(139, 148, 158); font-family: inherit; line-height: 1.5;" data-bind="text: syntax_full"></pre>
+                        </div>
+                        <div style="margin-bottom: 6px;">
+                            <span style="color: rgb(61, 68, 77);">HEADER </span>
+                            <span style="color: rgb(130, 170, 255);" data-bind="text: header_full"></span>
+                        </div>
+                        <a data-bind="attr: { href: wiki_url }, click: function() { return true; }, clickBubble: false" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-top: 4px; padding: 4px 12px; background: rgba(26, 107, 255, 0.133); border: 1px solid rgba(26, 107, 255, 0.267); border-radius: 5px; color: rgb(108, 182, 255); text-decoration: none; font-size: 11px;">Ouvrir sur le Wiki ↗</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            SDL3 Doc Search · Source: <a href="https://github.com/libsdl-org/sdlwiki" target="_blank">libsdl-org/sdlwiki</a>
+        </div>
+    </footer>
+    <script src="/js/apply.js"></script>
+</body>
+</html>

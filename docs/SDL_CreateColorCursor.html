@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_CreateColorCursor - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_CreateColorCursor</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_createcolorcursor">SDL_CreateColorCursor</h1>
+<p>Create a color cursor.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_mouse.h">&lt;SDL3/SDL_mouse.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_Cursor * SDL_CreateColorCursor(SDL_Surface *surface,
+                              int hot_x,
+                              int hot_y);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Surface.html">SDL_Surface</a> *</td>
+<td><strong>surface</strong></td>
+<td>an <a href="SDL_Surface.html">SDL_Surface</a> structure representing the cursor image.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>hot_x</strong></td>
+<td>the x position of the cursor hot spot.</td>
+</tr>
+<tr>
+<td>int</td>
+<td><strong>hot_y</strong></td>
+<td>the y position of the cursor hot spot.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_Cursor.html">SDL_Cursor</a> *) Returns the new cursor on success or NULL on
+failure; call <a href="SDL_GetError.html">SDL_GetError</a>() for more information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>If this function is passed a surface with alternate representations added
+with <a href="SDL_AddSurfaceAlternateImage.html">SDL_AddSurfaceAlternateImage</a>(), the
+surface will be interpreted as the content to be used for 100% display
+scale, and the alternate representations will be used for high DPI
+situations if
+<a href="SDL_HINT_MOUSE_DPI_SCALE_CURSORS.html">SDL_HINT_MOUSE_DPI_SCALE_CURSORS</a> is
+enabled. For example, if the original surface is 32x32, then on a 2x macOS
+display or 200% display scale on Windows, a 64x64 version of the image will
+be used, if available. If a matching version of the image isn't available,
+the closest larger size image will be downscaled to the appropriate size
+and be used instead, if available. Otherwise, the closest smaller image
+will be upscaled and be used instead.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function should only be called on the main thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="code-examples">Code Examples</h2>
+<pre><code class="language-c">#include &lt;SDL3/SDL.h&gt;
+
+int
+main(int argc, char *argv[])
+{
+    SDL_Window *window = NULL;
+    SDL_Renderer *renderer = NULL;
+    SDL_Surface *surface = NULL;
+    SDL_Cursor *cursor = NULL;
+    bool error = true;
+
+    if (!SDL_Init(SDL_INIT_VIDEO)) {
+        goto exit;
+    }
+    if (!SDL_CreateWindowAndRenderer(&quot;Hello SDL&quot;, 640, 480, 0, &amp;window, &amp;renderer)) {
+        goto exit;
+    }
+    surface = SDL_LoadBMP((1 &lt; argc) ? argv[1] : &quot;cursor.bmp&quot;);
+    if (!surface) {
+        goto exit;
+    }
+    cursor = SDL_CreateColorCursor(surface, 0, 0);
+    if (!cursor) {
+        goto exit;
+    }
+
+    SDL_SetCursor(cursor);
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    while (true) {
+        SDL_Event event;
+        while (SDL_PollEvent(&amp;event)) {
+            switch (event.type) {
+            case SDL_EVENT_MOUSE_BUTTON_UP:
+            case SDL_EVENT_QUIT:
+                error = false;
+                goto exit;
+            }
+        }
+        SDL_RenderClear(renderer);
+        SDL_RenderPresent(renderer);
+    }
+
+exit:
+    if (error) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, &quot;%s&quot;, SDL_GetError());
+    }
+    if (cursor) {
+        SDL_DestroyCursor(cursor);
+    }
+    if (surface) {
+        SDL_DestroySurface(surface);
+    }
+    if (renderer) {
+        SDL_DestroyRenderer(renderer);
+    }
+    if (window) {
+        SDL_DestroyWindow(window);
+    }
+    SDL_Quit();
+    return error;
+}
+</code></pre>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_AddSurfaceAlternateImage.html">SDL_AddSurfaceAlternateImage</a></li>
+<li><a href="SDL_CreateAnimatedCursor.html">SDL_CreateAnimatedCursor</a></li>
+<li><a href="SDL_CreateCursor.html">SDL_CreateCursor</a></li>
+<li><a href="SDL_CreateSystemCursor.html">SDL_CreateSystemCursor</a></li>
+<li><a href="SDL_DestroyCursor.html">SDL_DestroyCursor</a></li>
+<li><a href="SDL_SetCursor.html">SDL_SetCursor</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryMouse.html">CategoryMouse</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_CreateColorCursor" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

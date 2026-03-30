@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_HapticCustom - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_HapticCustom</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_hapticcustom">SDL_HapticCustom</h1>
+<p>A structure containing a template for the <a href="SDL_HAPTIC_CUSTOM.html">SDL_HAPTIC_CUSTOM</a> effect.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_haptic.h">&lt;SDL3/SDL_haptic.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_HapticCustom
+{
+    /* Header */
+    SDL_HapticEffectType type;      /**&lt; SDL_HAPTIC_CUSTOM */
+    SDL_HapticDirection direction;  /**&lt; Direction of the effect. */
+
+    /* Replay */
+    Uint32 length;          /**&lt; Duration of the effect. */
+    Uint16 delay;           /**&lt; Delay before starting the effect. */
+
+    /* Trigger */
+    Uint16 button;          /**&lt; Button that triggers the effect. */
+    Uint16 interval;        /**&lt; How soon it can be triggered again after button. */
+
+    /* Custom */
+    Uint8 channels;         /**&lt; Axes to use, minimum of one. */
+    Uint16 period;          /**&lt; Sample periods. */
+    Uint16 samples;         /**&lt; Amount of samples. */
+    Uint16 *data;           /**&lt; Should contain channels*samples items. */
+
+    /* Envelope */
+    Uint16 attack_length;   /**&lt; Duration of the attack. */
+    Uint16 attack_level;    /**&lt; Level at the start of the attack. */
+    Uint16 fade_length;     /**&lt; Duration of the fade. */
+    Uint16 fade_level;      /**&lt; Level at the end of the fade. */
+} SDL_HapticCustom;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>This struct is exclusively for the <a href="SDL_HAPTIC_CUSTOM.html">SDL_HAPTIC_CUSTOM</a>
+effect.</p>
+<p>A custom force feedback effect is much like a periodic effect, where the
+application can define its exact shape. You will have to allocate the data
+yourself. Data should consist of channels * samples <a href="Uint16.html">Uint16</a>
+samples.</p>
+<p>If channels is one, the effect is rotated using the defined direction.
+Otherwise it uses the samples in data for the different axes.</p>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_HAPTIC_CUSTOM.html">SDL_HAPTIC_CUSTOM</a></li>
+<li><a href="SDL_HapticEffect.html">SDL_HapticEffect</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryHaptic.html">CategoryHaptic</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_HapticCustom" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

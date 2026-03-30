@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_SystemCursor - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_SystemCursor</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_systemcursor">SDL_SystemCursor</h1>
+<p>Cursor types for <a href="SDL_CreateSystemCursor.html">SDL_CreateSystemCursor</a>().</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_mouse.h">&lt;SDL3/SDL_mouse.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef enum SDL_SystemCursor
+{
+    SDL_SYSTEM_CURSOR_DEFAULT,      /**&lt; Default cursor. Usually an arrow. */
+    SDL_SYSTEM_CURSOR_TEXT,         /**&lt; Text selection. Usually an I-beam. */
+    SDL_SYSTEM_CURSOR_WAIT,         /**&lt; Wait. Usually an hourglass or watch or spinning ball. */
+    SDL_SYSTEM_CURSOR_CROSSHAIR,    /**&lt; Crosshair. */
+    SDL_SYSTEM_CURSOR_PROGRESS,     /**&lt; Program is busy but still interactive. Usually it's WAIT with an arrow. */
+    SDL_SYSTEM_CURSOR_NWSE_RESIZE,  /**&lt; Double arrow pointing northwest and southeast. */
+    SDL_SYSTEM_CURSOR_NESW_RESIZE,  /**&lt; Double arrow pointing northeast and southwest. */
+    SDL_SYSTEM_CURSOR_EW_RESIZE,    /**&lt; Double arrow pointing west and east. */
+    SDL_SYSTEM_CURSOR_NS_RESIZE,    /**&lt; Double arrow pointing north and south. */
+    SDL_SYSTEM_CURSOR_MOVE,         /**&lt; Four pointed arrow pointing north, south, east, and west. */
+    SDL_SYSTEM_CURSOR_NOT_ALLOWED,  /**&lt; Not permitted. Usually a slashed circle or crossbones. */
+    SDL_SYSTEM_CURSOR_POINTER,      /**&lt; Pointer that indicates a link. Usually a pointing hand. */
+    SDL_SYSTEM_CURSOR_NW_RESIZE,    /**&lt; Window resize top-left. This may be a single arrow or a double arrow like NWSE_RESIZE. */
+    SDL_SYSTEM_CURSOR_N_RESIZE,     /**&lt; Window resize top. May be NS_RESIZE. */
+    SDL_SYSTEM_CURSOR_NE_RESIZE,    /**&lt; Window resize top-right. May be NESW_RESIZE. */
+    SDL_SYSTEM_CURSOR_E_RESIZE,     /**&lt; Window resize right. May be EW_RESIZE. */
+    SDL_SYSTEM_CURSOR_SE_RESIZE,    /**&lt; Window resize bottom-right. May be NWSE_RESIZE. */
+    SDL_SYSTEM_CURSOR_S_RESIZE,     /**&lt; Window resize bottom. May be NS_RESIZE. */
+    SDL_SYSTEM_CURSOR_SW_RESIZE,    /**&lt; Window resize bottom-left. May be NESW_RESIZE. */
+    SDL_SYSTEM_CURSOR_W_RESIZE,     /**&lt; Window resize left. May be EW_RESIZE. */
+    SDL_SYSTEM_CURSOR_COUNT
+} SDL_SystemCursor;
+</code></pre>
+<h2 id="version">Version</h2>
+<p>This enum is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIEnum.html">CategoryAPIEnum</a>, <a href="CategoryMouse.html">CategoryMouse</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_SystemCursor" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

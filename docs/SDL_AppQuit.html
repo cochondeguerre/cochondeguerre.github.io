@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_AppQuit - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_AppQuit</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_appquit">SDL_AppQuit</h1>
+<p>App-implemented deinit entry point for <a href="SDL_MAIN_USE_CALLBACKS.html">SDL_MAIN_USE_CALLBACKS</a> apps.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_main.h">&lt;SDL3/SDL_main.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">void SDL_AppQuit(void *appstate, SDL_AppResult result);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>void *</td>
+<td><strong>appstate</strong></td>
+<td>an optional pointer, provided by the app in <a href="SDL_AppInit.html">SDL_AppInit</a>.</td>
+</tr>
+<tr>
+<td><a href="SDL_AppResult.html">SDL_AppResult</a></td>
+<td><strong>result</strong></td>
+<td>the result code that terminated the app (success or failure).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="remarks">Remarks</h2>
+<p>Apps implement this function when using
+<a href="SDL_MAIN_USE_CALLBACKS.html">SDL_MAIN_USE_CALLBACKS</a>. If using a standard
+&quot;main&quot; function, you should not supply this.</p>
+<p>This function is called once by SDL before terminating the program.</p>
+<p>This function will be called in all cases, even if
+<a href="SDL_AppInit.html">SDL_AppInit</a> requests termination at startup.</p>
+<p>This function should not go into an infinite mainloop; it should
+deinitialize any resources necessary, perform whatever shutdown activities,
+and return.</p>
+<p>You do not need to call <a href="SDL_Quit.html">SDL_Quit</a>() in this function, as SDL
+will call it after this function returns and before the process terminates,
+but it is safe to do so.</p>
+<p>The <code>appstate</code> parameter is an optional pointer provided by the app during
+<a href="SDL_AppInit.html">SDL_AppInit</a>(). If the app never provided a pointer, this
+will be NULL. This function call is the last time this pointer will be
+provided, so any resources to it should be cleaned up here.</p>
+<p>This function is called by SDL on the main thread.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p><a href="SDL_AppEvent.html">SDL_AppEvent</a>() may get called concurrently with this
+function if other threads that push events are still active.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_AppInit.html">SDL_AppInit</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryMain.html">CategoryMain</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_AppQuit" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

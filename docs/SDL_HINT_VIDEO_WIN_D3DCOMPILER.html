@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_HINT_VIDEO_WIN_D3DCOMPILER - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_HINT_VIDEO_WIN_D3DCOMPILER</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_hint_video_win_d3dcompiler">SDL_HINT_VIDEO_WIN_D3DCOMPILER</h1>
+<p>A variable specifying which shader compiler to preload when using the Chrome ANGLE binaries.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_hints.h">&lt;SDL3/SDL_hints.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_HINT_VIDEO_WIN_D3DCOMPILER &quot;SDL_VIDEO_WIN_D3DCOMPILER&quot;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>SDL has EGL and OpenGL ES2 support on Windows via the ANGLE project. It can
+use two different sets of binaries, those compiled by the user from source
+or those provided by the Chrome browser. In the later case, these binaries
+require that SDL loads a DLL providing the shader compiler.</p>
+<p>The variable can be set to the following values:</p>
+<ul>
+<li>&quot;d3dcompiler_46.dll&quot; - best for Vista or later. (default)</li>
+<li>&quot;d3dcompiler_43.dll&quot; - for XP support.</li>
+<li>&quot;none&quot; - do not load any library, useful if you compiled ANGLE from
+source and included the compiler in your binaries.</li>
+</ul>
+<p>This hint should be set before SDL is initialized.</p>
+<h2 id="version">Version</h2>
+<p>This hint is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryHints.html">CategoryHints</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_HINT_VIDEO_WIN_D3DCOMPILER" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

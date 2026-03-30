@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GamepadButton - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GamepadButton</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gamepadbutton">SDL_GamepadButton</h1>
+<p>The list of buttons available on a gamepad</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gamepad.h">&lt;SDL3/SDL_gamepad.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef enum SDL_GamepadButton
+{
+    SDL_GAMEPAD_BUTTON_INVALID = -1,
+    SDL_GAMEPAD_BUTTON_SOUTH,           /**&lt; Bottom face button (e.g. Xbox A button) */
+    SDL_GAMEPAD_BUTTON_EAST,            /**&lt; Right face button (e.g. Xbox B button) */
+    SDL_GAMEPAD_BUTTON_WEST,            /**&lt; Left face button (e.g. Xbox X button) */
+    SDL_GAMEPAD_BUTTON_NORTH,           /**&lt; Top face button (e.g. Xbox Y button) */
+    SDL_GAMEPAD_BUTTON_BACK,
+    SDL_GAMEPAD_BUTTON_GUIDE,
+    SDL_GAMEPAD_BUTTON_START,
+    SDL_GAMEPAD_BUTTON_LEFT_STICK,
+    SDL_GAMEPAD_BUTTON_RIGHT_STICK,
+    SDL_GAMEPAD_BUTTON_LEFT_SHOULDER,
+    SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER,
+    SDL_GAMEPAD_BUTTON_DPAD_UP,
+    SDL_GAMEPAD_BUTTON_DPAD_DOWN,
+    SDL_GAMEPAD_BUTTON_DPAD_LEFT,
+    SDL_GAMEPAD_BUTTON_DPAD_RIGHT,
+    SDL_GAMEPAD_BUTTON_MISC1,           /**&lt; Additional button (e.g. Xbox Series X share button, PS5 microphone button, Nintendo Switch Pro capture button, Amazon Luna microphone button, Google Stadia capture button) */
+    SDL_GAMEPAD_BUTTON_RIGHT_PADDLE1,   /**&lt; Upper or primary paddle, under your right hand (e.g. Xbox Elite paddle P1, DualSense Edge RB button, Right Joy-Con SR button) */
+    SDL_GAMEPAD_BUTTON_LEFT_PADDLE1,    /**&lt; Upper or primary paddle, under your left hand (e.g. Xbox Elite paddle P3, DualSense Edge LB button, Left Joy-Con SL button) */
+    SDL_GAMEPAD_BUTTON_RIGHT_PADDLE2,   /**&lt; Lower or secondary paddle, under your right hand (e.g. Xbox Elite paddle P2, DualSense Edge right Fn button, Right Joy-Con SL button) */
+    SDL_GAMEPAD_BUTTON_LEFT_PADDLE2,    /**&lt; Lower or secondary paddle, under your left hand (e.g. Xbox Elite paddle P4, DualSense Edge left Fn button, Left Joy-Con SR button) */
+    SDL_GAMEPAD_BUTTON_TOUCHPAD,        /**&lt; PS4/PS5 touchpad button */
+    SDL_GAMEPAD_BUTTON_MISC2,           /**&lt; Additional button */
+    SDL_GAMEPAD_BUTTON_MISC3,           /**&lt; Additional button (e.g. Nintendo GameCube left trigger click) */
+    SDL_GAMEPAD_BUTTON_MISC4,           /**&lt; Additional button (e.g. Nintendo GameCube right trigger click) */
+    SDL_GAMEPAD_BUTTON_MISC5,           /**&lt; Additional button */
+    SDL_GAMEPAD_BUTTON_MISC6,           /**&lt; Additional button */
+    SDL_GAMEPAD_BUTTON_COUNT
+} SDL_GamepadButton;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>For controllers that use a diamond pattern for the face buttons, the
+south/east/west/north buttons below correspond to the locations in the
+diamond pattern. For Xbox controllers, this would be A/B/X/Y, for Nintendo
+Switch controllers, this would be B/A/Y/X, for GameCube controllers this
+would be A/X/B/Y, for PlayStation controllers this would be
+Cross/Circle/Square/Triangle.</p>
+<p>For controllers that don't use a diamond pattern for the face buttons, the
+south/east/west/north buttons indicate the buttons labeled A, B, C, D, or
+1, 2, 3, 4, or for controllers that aren't labeled, they are the primary,
+secondary, etc. buttons.</p>
+<p>The activate action is often the south button and the cancel action is
+often the east button, but in some regions this is reversed, so your game
+should allow remapping actions based on user preferences.</p>
+<p>You can query the labels for the face buttons using
+<a href="SDL_GetGamepadButtonLabel.html">SDL_GetGamepadButtonLabel</a>()</p>
+<h2 id="version">Version</h2>
+<p>This enum is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIEnum.html">CategoryAPIEnum</a>, <a href="CategoryGamepad.html">CategoryGamepad</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GamepadButton" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

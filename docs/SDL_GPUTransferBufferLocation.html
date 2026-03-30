@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GPUTransferBufferLocation - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GPUTransferBufferLocation</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gputransferbufferlocation">SDL_GPUTransferBufferLocation</h1>
+<p>A structure specifying a location in a transfer buffer.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_GPUTransferBufferLocation
+{
+    SDL_GPUTransferBuffer *transfer_buffer;  /**&lt; The transfer buffer used in the transfer operation. */
+    Uint32 offset;                           /**&lt; The starting byte of the buffer data in the transfer buffer. */
+} SDL_GPUTransferBufferLocation;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>Used when transferring buffer data to or from a transfer buffer.</p>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_UploadToGPUBuffer.html">SDL_UploadToGPUBuffer</a></li>
+<li><a href="SDL_DownloadFromGPUBuffer.html">SDL_DownloadFromGPUBuffer</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GPUTransferBufferLocation" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

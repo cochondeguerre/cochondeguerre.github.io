@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_WaitProcess - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_WaitProcess</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_waitprocess">SDL_WaitProcess</h1>
+<p>Wait for a process to finish.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_process.h">&lt;SDL3/SDL_process.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">bool SDL_WaitProcess(SDL_Process *process, bool block, int *exitcode);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Process.html">SDL_Process</a> *</td>
+<td><strong>process</strong></td>
+<td>The process to wait for.</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><strong>block</strong></td>
+<td>If true, block until the process finishes; otherwise, report on the process' status.</td>
+</tr>
+<tr>
+<td>int *</td>
+<td><strong>exitcode</strong></td>
+<td>a pointer filled in with the process exit code if the process has exited, may be NULL.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(bool) Returns true if the process exited, false otherwise.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This can be called multiple times to get the status of a process.</p>
+<p>The exit code will be the exit code of the process if it terminates
+normally, a negative signal if it terminated due to a signal, or -255
+otherwise. It will not be changed if the process is still running.</p>
+<p>If you create a process with standard output piped to the application
+(<code>pipe_stdio</code> being true) then you should read all of the process output
+before calling <a href="SDL_WaitProcess.html">SDL_WaitProcess</a>(). If you don't do this
+the process might be blocked indefinitely waiting for output to be read and
+<a href="SDL_WaitProcess.html">SDL_WaitProcess</a>() will never return true;</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This function is not thread safe.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_CreateProcess.html">SDL_CreateProcess</a></li>
+<li><a href="SDL_CreateProcessWithProperties.html">SDL_CreateProcessWithProperties</a></li>
+<li><a href="SDL_KillProcess.html">SDL_KillProcess</a></li>
+<li><a href="SDL_DestroyProcess.html">SDL_DestroyProcess</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryProcess.html">CategoryProcess</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_WaitProcess" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

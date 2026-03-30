@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>README-ngage - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">README-ngage</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="nokia-n-gage">Nokia N-Gage</h1>
+<p>SDL port for the Nokia N-Gage
+<a href="https://github.com/ngagesdk/ngage-toolchain">Homebrew toolchain</a>
+contributed by:</p>
+<ul>
+<li><p><a href="https://github.com/mupfdev">Michael Fitzmayer</a></p>
+</li>
+<li><p><a href="https://github.com/madebr">Anonymous Maarten</a></p>
+</li>
+</ul>
+<p>Many thanks to:</p>
+<ul>
+<li><p>icculus and slouken for always making room for us, even when we show up in 2025
+still waving the N-Gage flag.</p>
+</li>
+<li><p>The Nokia N-Gage <a href="https://discord.gg/dbUzqJ26vs">Discord community</a>
+who keeps the platform alive.</p>
+</li>
+<li><p>The staff and supporters of the
+<a href="https://www.vapriikki.fi/nayttelyt/fantastinen-floppi/">Suomen pelimuseo</a>, and
+to Heikki Jungmann, for their ongoing love and dedication for the Nokia N-Gage --
+you guys are awesome!</p>
+</li>
+</ul>
+<h2 id="history">History</h2>
+<p>When SDL support was discontinued due to the lack of C99 support at the time,
+this version was rebuilt from the ground up after resolving the compiler issues.</p>
+<p>In contrast to the earlier SDL2 port, this version features a dedicated rendering
+backend and a functional, albeit limited, audio interface.  Support for the
+software renderer has been removed.</p>
+<p>The outcome is a significantly leaner and more efficient SDL port, which we hope
+will breathe new life into this beloved yet obscure platform.</p>
+<h2 id="to-the-stubborn-legends-of-the-dc-scene">To the Stubborn Legends of the DC Scene</h2>
+<p>This port is lovingly dedicated to the ever-nostalgic Dreamcast homebrew scene --
+because if we managed to pull this off for the N-Gage (yes, the N-Gage), surely
+you guys can stop clinging to SDL2 like it's a rare Shenmue prototype and finally
+make the leap to SDL3.  It's 2025, not 1999 -- and let's be honest, you're rocking
+a state-of-the-art C23 compiler.  The irony writes itself.</p>
+<h2 id="existing-issues-and-limitations">Existing Issues and Limitations</h2>
+<ul>
+<li><p>For now, the new
+<a href="https://wiki.libsdl.org/SDL3/README-main-functions#main-callbacks-in-sdl3">SDL3 main callbacks</a>
+are not optional and must be used. This is important as the callbacks
+are optional on other platforms.</p>
+</li>
+<li><p>If the application is put in the background while sound is playing,
+some of the audio is looped until the app is back in focus.</p>
+</li>
+<li><p>It is recommended initialising SDLs audio sub-system even when it
+is not required. The backend is started at a higher level.  Initialising
+SDLs audio sub-system ensures that the backend is properly deinitialised.</p>
+</li>
+<li><p>Because the audio sample rate can change during phone calls, the sample
+rate is currently fixed at 8kHz to ensure stable behavior.  Although
+dynamically adjusting the sample rate is theoretically possible, the
+current implementation doesn't support it yet.  This limitation is
+expected to be resolved in a future update.</p>
+</li>
+<li><p>Dependency tracking is currently non-functional.</p>
+</li>
+</ul>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/README-ngage" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

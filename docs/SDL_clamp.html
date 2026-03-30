@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_clamp - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_clamp</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_clamp">SDL_clamp</h1>
+<p>Return a value clamped to a range.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_stdinc.h">&lt;SDL3/SDL_stdinc.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_clamp(x, a, b) (((x) &lt; (a)) ? (a) : (((x) &gt; (b)) ? (b) : (x)))
+</code></pre>
+<h2 id="macro-parameters">Macro Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>x</strong></td>
+<td>the value to compare.</td>
+</tr>
+<tr>
+<td><strong>a</strong></td>
+<td>the low end value.</td>
+</tr>
+<tr>
+<td><strong>b</strong></td>
+<td>the high end value.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>Returns x, clamped between a and b.</p>
+<h2 id="remarks">Remarks</h2>
+<p>If <code>x</code> is outside the range a values between <code>a</code> and <code>b</code>, the returned
+value will be <code>a</code> or <code>b</code> as appropriate. Otherwise, <code>x</code> is returned.</p>
+<p>This macro will produce incorrect results if <code>b</code> is less than <code>a</code>.</p>
+<p>This is a helper macro that might be more clear than writing out the
+comparisons directly, and works with any type that can be compared with the
+<code>&lt;</code> and <code>&gt;</code> operators. However, it double-evaluates all its parameters, so
+do not use expressions with side-effects here.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this macro from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This macro is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryStdinc.html">CategoryStdinc</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_clamp" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

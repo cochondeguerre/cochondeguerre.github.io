@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>NonstandardStartup - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">NonstandardStartup</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="starting-up-sdl-in-unusual-ways">Starting up SDL in unusual ways</h1>
+<h2 id="target-audience">Target audience</h2>
+<p>This is almost certainly <em>not</em> the document you should read. If you have an application or game in C or C++ that uses SDL, you should just use <a href="README-main-functions.html">the normal app entry points</a>.</p>
+<p>If you are managing an app that uses SDL in a strange way, or perhaps a scripting language maintainer that wants to integrate tightly with SDL, this is probably for you.</p>
+<h2 id="normal-applications-written-in-cc">Normal applications written in C/C++</h2>
+<p>Traditional apps will <code>#include &lt;SDL3/SDL_main.h&gt;</code> and provide either a standard C <code>main</code> function, or use the &quot;main callbacks&quot; (SDL_AppInit, SDL_AppEvent, SDL_AppIterate, and SDL_AppQuit). These are covered in <a href="README-main-functions.html">README-main-functions</a>. However, it could be instructive to study <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_main.h">SDL_main.h</a> and <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_main_impl.h">SDL_main_impl.h</a> to see how the C implementation operates.</p>
+<h2 id="if-you-cant-include-sdl3sdl_main.h">If you can't include <code>SDL3/SDL_main.h</code></h2>
+<p>If your application is written in a language other than C/C++, and must manage the application's entry point directly, it is recommended that you call <a href="SDL_RunApp.html"><code>SDL_RunApp</code></a>() from your actual entry point, passing in a C-callable callback function that constitutes your application's &quot;main function&quot; as the third argument. <code>SDL_RunApp()</code> initializes platform-specific details before calling the callback and is the best way to ensure that your application will work on as many platforms as possible.</p>
+<p>This example is written in C for clarity, but any language that can call into C, and provide C-callable function pointers, can work.</p>
+<pre><code class="language-c">// Include 'SDL3/SDL_main.h' without redefining the main function by defining SDL_MAIN_HANDLED.
+#define SDL_MAIN_HANDLED
+#include &lt;SDL3/SDL.h&gt;
+#include &lt;SDL3/SDL_main.h&gt;
+
+// Native non-standard main function
+int main(int argc, char *argv[], char *envp[])
+{
+    // The first and second arguments, 'argc' and 'argv', can be
+    // ignored if you don't care about command-line arguments.
+    // The fourth argument, 'reserved', is currently unused and must be NULL!
+    return SDL_RunApp(argc, argv, my_runapp_callback, NULL);
+}
+
+// Callback passed to SDL_RunApp
+int SDLCALL my_runapp_callback(int argc, char *argv[])
+{
+    // Your app logic should live in scope of this function.
+}
+</code></pre>
+<p>If you also want to use SDL's main callbacks system, the callback that you pass to <code>SDL_RunApp()</code> should in turn call <a href="SDL_EnterAppMainCallbacks.html"><code>SDL_EnterAppMainCallbacks</code></a>(), passing in your application's init, iterate, event and quit callbacks.</p>
+<pre><code class="language-c">#define SDL_MAIN_HANDLED
+#include &lt;SDL3/SDL.h&gt;
+#include &lt;SDL3/SDL_main.h&gt;
+
+int main(int argc, char *argv[], char *envp[])
+{
+    return SDL_RunApp(argc, argv, my_runapp_callback, NULL);
+}
+
+int SDLCALL my_runapp_callback(int argc, char *argv[])
+{
+    // Forward the received 'argc' and 'argv'
+    return SDL_EnterAppMainCallbacks(
+        argc, argv,
+        my_init_callback, my_iterate_callback, my_event_callback, my_quit_callback
+    );
+}
+
+SDL_AppResult SDLCALL my_init_callback(void **appstate, int argc, char *argv[]) { /* ... */ }
+
+SDL_AppResult SDLCALL my_iterate_callback(void *appstate) { /* ... */ }
+
+SDL_AppResult SDLCALL my_event_callback(void *appstate, SDL_Event *event) { /* ... */ }
+
+void SDLCALL my_quit_callback(void *appstate, SDL_AppResult result) { /* ... */ }
+</code></pre>
+<p>Any callback functions passed to <code>SDL_RunApp()</code>/<code>SDL_EnterAppMainCallbacks()</code> must be defined with a calling convention equivalent to <code>SDLCALL</code>.</p>
+<p>If you don't let SDL redefine main, and you don't use <code>SDL_RunApp()</code>, SDL will not initialize any platform-specific details, and your app might not work correctly on certain platforms. In this case, you will need to perform all platform initialization yourself, and then inform SDL that the initialization work is done by calling <code>SDL_SetMainReady()</code> before initializing any SDL subsystems. While many platforms need only minor (or no) initialization through SDL_RunApp, this can be a complicated process on some targets, so it can be desirable for SDL to handle it for you.</p>
+<p>Be aware that some platforms, for example Android, may have additional requirements beyond just calling <code>SDL_RunApp()</code>. When in doubt, the best advice is to carefully read and try to understand the parts of SDL's source code that deal with application entry points and replicate them to the best of your ability in the language of your choosing.</p>
+<h2 id="sdl_runapp-blocks">SDL_RunApp blocks</h2>
+<p>Note that <code>my_runapp_callback</code>, in those examples, is intended to return when the application is terminating (in the same way that returning from main() would), and that SDL_RunApp() will return after that. Therefore, SDL_RunApp() blocks for the lifetime of the app.</p>
+<p>If you have a platform that can't tolerate this at all, things can get tricky. You might need to provide an SDL_RunApp callback that uses an equivalent of longjmp() or throws an exception to return control to the caller once SDL has initialized (Emscripten does something like this, in fact), or avoid using SDL_RunApp at all and deal with platform quirks directly.</p>
+<h2 id="using-sdl-as-an-external-module">Using SDL as an external module</h2>
+<p>There are times when SDL will be used from a scripting language module, either as a straightfoward binding, where the language can just call SDL APIs directly, or internally as part of some other module. Perhaps it's being used by a plugin to an otherwise-unrelated app. In both cases, SDL isn't even <em>loaded</em> when the process starts, and is not expected to control app startup.</p>
+<p>In these cases, SDL <em>will</em> generally function normally. You should, after loading the library, call SDL_SetMainReady() from your process's main thread. Since SDL isn't handling startup, you don't need to manage command line arguments, etc. The esoteric platform-specific startup work that SDL provides will not be done, but the expectation is that the base app will be responsible for this; if you're running Python on a PlayStation 2, the Python interpreter should know enough about the PS2 to handle those things; failing that, you should consult <a href="https://github.com/libsdl-org/SDL/tree/main/src/main">SDL's &quot;main&quot; code</a> for any surprises as you bootstrap on new targets.</p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/NonstandardStartup" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

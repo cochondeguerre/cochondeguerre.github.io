@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetCameraSupportedFormats - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetCameraSupportedFormats</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getcamerasupportedformats">SDL_GetCameraSupportedFormats</h1>
+<p>Get the list of native formats/sizes a camera supports.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_camera.h">&lt;SDL3/SDL_camera.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_CameraSpec ** SDL_GetCameraSupportedFormats(SDL_CameraID instance_id, int *count);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_CameraID.html">SDL_CameraID</a></td>
+<td><strong>instance_id</strong></td>
+<td>the camera device instance ID.</td>
+</tr>
+<tr>
+<td>int *</td>
+<td><strong>count</strong></td>
+<td>a pointer filled in with the number of elements in the list, may be NULL.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_CameraSpec.html">SDL_CameraSpec</a> **) Returns a NULL terminated array of
+pointers to <a href="SDL_CameraSpec.html">SDL_CameraSpec</a> or NULL on failure; call
+<a href="SDL_GetError.html">SDL_GetError</a>() for more information. This is a single
+allocation that should be freed with <a href="SDL_free.html">SDL_free</a>() when it is no
+longer needed.</p>
+<h2 id="remarks">Remarks</h2>
+<p>This returns a list of all formats and frame sizes that a specific camera
+can offer. This is useful if your app can accept a variety of image formats
+and sizes and so want to find the optimal spec that doesn't require
+conversion.</p>
+<p>This function isn't strictly required; if you call
+<a href="SDL_OpenCamera.html">SDL_OpenCamera</a> with a NULL spec, SDL will choose a native
+format for you, and if you instead specify a desired format, it will
+transparently convert to the requested format on your behalf.</p>
+<p>If <code>count</code> is not NULL, it will be filled with the number of elements in
+the returned array.</p>
+<p>Note that it's legal for a camera to supply an empty list. This is what
+will happen on Emscripten builds, since that platform won't tell <em>anything</em>
+about available cameras until you've opened one, and won't even tell if
+there <em>is</em> a camera until the user has given you permission to check
+through a scary warning popup.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_GetCameras.html">SDL_GetCameras</a></li>
+<li><a href="SDL_OpenCamera.html">SDL_OpenCamera</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryCamera.html">CategoryCamera</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetCameraSupportedFormats" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

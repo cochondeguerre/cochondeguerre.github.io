@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GPUTextureSamplerBinding - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GPUTextureSamplerBinding</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_gputexturesamplerbinding">SDL_GPUTextureSamplerBinding</h1>
+<p>A structure specifying parameters in a sampler binding call.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_gpu.h">&lt;SDL3/SDL_gpu.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef struct SDL_GPUTextureSamplerBinding
+{
+    SDL_GPUTexture *texture;  /**&lt; The texture to bind. Must have been created with SDL_GPU_TEXTUREUSAGE_SAMPLER. */
+    SDL_GPUSampler *sampler;  /**&lt; The sampler to bind. */
+} SDL_GPUTextureSamplerBinding;
+</code></pre>
+<h2 id="version">Version</h2>
+<p>This struct is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_BindGPUVertexSamplers.html">SDL_BindGPUVertexSamplers</a></li>
+<li><a href="SDL_BindGPUFragmentSamplers.html">SDL_BindGPUFragmentSamplers</a></li>
+<li><a href="SDL_GPUTexture.html">SDL_GPUTexture</a></li>
+<li><a href="SDL_GPUSampler.html">SDL_GPUSampler</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIStruct.html">CategoryAPIStruct</a>, <a href="CategoryGPU.html">CategoryGPU</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GPUTextureSamplerBinding" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GLAttr - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GLAttr</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_glattr">SDL_GLAttr</h1>
+<p>An enumeration of OpenGL configuration attributes.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_video.h">&lt;SDL3/SDL_video.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef enum SDL_GLAttr
+{
+    SDL_GL_RED_SIZE,                    /**&lt; the minimum number of bits for the red channel of the color buffer; defaults to 8. */
+    SDL_GL_GREEN_SIZE,                  /**&lt; the minimum number of bits for the green channel of the color buffer; defaults to 8. */
+    SDL_GL_BLUE_SIZE,                   /**&lt; the minimum number of bits for the blue channel of the color buffer; defaults to 8. */
+    SDL_GL_ALPHA_SIZE,                  /**&lt; the minimum number of bits for the alpha channel of the color buffer; defaults to 8. */
+    SDL_GL_BUFFER_SIZE,                 /**&lt; the minimum number of bits for frame buffer size; defaults to 0. */
+    SDL_GL_DOUBLEBUFFER,                /**&lt; whether the output is single or double buffered; defaults to double buffering on. */
+    SDL_GL_DEPTH_SIZE,                  /**&lt; the minimum number of bits in the depth buffer; defaults to 16. */
+    SDL_GL_STENCIL_SIZE,                /**&lt; the minimum number of bits in the stencil buffer; defaults to 0. */
+    SDL_GL_ACCUM_RED_SIZE,              /**&lt; the minimum number of bits for the red channel of the accumulation buffer; defaults to 0. */
+    SDL_GL_ACCUM_GREEN_SIZE,            /**&lt; the minimum number of bits for the green channel of the accumulation buffer; defaults to 0. */
+    SDL_GL_ACCUM_BLUE_SIZE,             /**&lt; the minimum number of bits for the blue channel of the accumulation buffer; defaults to 0. */
+    SDL_GL_ACCUM_ALPHA_SIZE,            /**&lt; the minimum number of bits for the alpha channel of the accumulation buffer; defaults to 0. */
+    SDL_GL_STEREO,                      /**&lt; whether the output is stereo 3D; defaults to off. */
+    SDL_GL_MULTISAMPLEBUFFERS,          /**&lt; the number of buffers used for multisample anti-aliasing; defaults to 0. */
+    SDL_GL_MULTISAMPLESAMPLES,          /**&lt; the number of samples used around the current pixel used for multisample anti-aliasing. */
+    SDL_GL_ACCELERATED_VISUAL,          /**&lt; set to 1 to require hardware acceleration, set to 0 to force software rendering; defaults to allow either. */
+    SDL_GL_RETAINED_BACKING,            /**&lt; not used (deprecated). */
+    SDL_GL_CONTEXT_MAJOR_VERSION,       /**&lt; OpenGL context major version. */
+    SDL_GL_CONTEXT_MINOR_VERSION,       /**&lt; OpenGL context minor version. */
+    SDL_GL_CONTEXT_FLAGS,               /**&lt; some combination of 0 or more of elements of the SDL_GLContextFlag enumeration; defaults to 0. */
+    SDL_GL_CONTEXT_PROFILE_MASK,        /**&lt; type of GL context (Core, Compatibility, ES). See SDL_GLProfile; default value depends on platform. */
+    SDL_GL_SHARE_WITH_CURRENT_CONTEXT,  /**&lt; OpenGL context sharing; defaults to 0. */
+    SDL_GL_FRAMEBUFFER_SRGB_CAPABLE,    /**&lt; requests sRGB capable visual; defaults to 0. */
+    SDL_GL_CONTEXT_RELEASE_BEHAVIOR,    /**&lt; sets context the release behavior. See SDL_GLContextReleaseFlag; defaults to FLUSH. */
+    SDL_GL_CONTEXT_RESET_NOTIFICATION,  /**&lt; set context reset notification. See SDL_GLContextResetNotification; defaults to NO_NOTIFICATION. */
+    SDL_GL_CONTEXT_NO_ERROR,
+    SDL_GL_FLOATBUFFERS,
+    SDL_GL_EGL_PLATFORM
+} SDL_GLAttr;
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>While you can set most OpenGL attributes normally, the attributes listed
+above must be known before SDL creates the window that will be used with
+the OpenGL context. These attributes are set and read with
+<a href="SDL_GL_SetAttribute.html">SDL_GL_SetAttribute</a>() and
+<a href="SDL_GL_GetAttribute.html">SDL_GL_GetAttribute</a>().</p>
+<p>In some cases, these attributes are minimum requests; the GL does not
+promise to give you exactly what you asked for. It's possible to ask for a
+16-bit depth buffer and get a 24-bit one instead, for example, or to ask
+for no stencil buffer and still have one available. Context creation should
+fail if the GL can't provide your requested attributes at a minimum, but
+you should check to see exactly what you got.</p>
+<h2 id="version">Version</h2>
+<p>This enum is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIEnum.html">CategoryAPIEnum</a>, <a href="CategoryVideo.html">CategoryVideo</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GLAttr" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

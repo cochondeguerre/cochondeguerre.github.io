@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetSurfaceProperties - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetSurfaceProperties</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getsurfaceproperties">SDL_GetSurfaceProperties</h1>
+<p>Get the properties associated with a surface.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_surface.h">&lt;SDL3/SDL_surface.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_PropertiesID SDL_GetSurfaceProperties(SDL_Surface *surface);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Surface.html">SDL_Surface</a> *</td>
+<td><strong>surface</strong></td>
+<td>the <a href="SDL_Surface.html">SDL_Surface</a> structure to query.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_PropertiesID.html">SDL_PropertiesID</a>) Returns a valid property ID on
+success or 0 on failure; call <a href="SDL_GetError.html">SDL_GetError</a>() for more
+information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>The following properties are understood by SDL:</p>
+<ul>
+<li><a href="SDL_PROP_SURFACE_SDR_WHITE_POINT_FLOAT.html"><code>SDL_PROP_SURFACE_SDR_WHITE_POINT_FLOAT</code></a>:
+for HDR10 and floating point surfaces, this defines the value of 100%
+diffuse white, with higher values being displayed in the High Dynamic
+Range headroom. This defaults to 203 for HDR10 surfaces and 1.0 for
+floating point surfaces.</li>
+<li><a href="SDL_PROP_SURFACE_HDR_HEADROOM_FLOAT.html"><code>SDL_PROP_SURFACE_HDR_HEADROOM_FLOAT</code></a>:
+for HDR10 and floating point surfaces, this defines the maximum dynamic
+range used by the content, in terms of the SDR white point. This defaults
+to 0.0, which disables tone mapping.</li>
+<li><a href="SDL_PROP_SURFACE_TONEMAP_OPERATOR_STRING.html"><code>SDL_PROP_SURFACE_TONEMAP_OPERATOR_STRING</code></a>:
+the tone mapping operator used when compressing from a surface with high
+dynamic range to another with lower dynamic range. Currently this
+supports &quot;chrome&quot;, which uses the same tone mapping that Chrome uses for
+HDR content, the form &quot;*=N&quot;, where N is a floating point scale factor
+applied in linear space, and &quot;none&quot;, which disables tone mapping. This
+defaults to &quot;chrome&quot;.</li>
+<li><a href="SDL_PROP_SURFACE_HOTSPOT_X_NUMBER.html"><code>SDL_PROP_SURFACE_HOTSPOT_X_NUMBER</code></a>:
+the hotspot pixel offset from the left edge of the image, if this surface
+is being used as a cursor.</li>
+<li><a href="SDL_PROP_SURFACE_HOTSPOT_Y_NUMBER.html"><code>SDL_PROP_SURFACE_HOTSPOT_Y_NUMBER</code></a>:
+the hotspot pixel offset from the top edge of the image, if this surface
+is being used as a cursor.</li>
+<li><a href="SDL_PROP_SURFACE_ROTATION_FLOAT.html"><code>SDL_PROP_SURFACE_ROTATION_FLOAT</code></a>: the
+number of degrees a surface's data is meant to be rotated clockwise to
+make the image right-side up. Default 0. This is used by the camera API,
+if a mobile device is oriented differently than what its camera provides
+(i.e. - the camera always provides portrait images but the phone is being
+held in landscape orientation). Since SDL 3.4.0.</li>
+</ul>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategorySurface.html">CategorySurface</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetSurfaceProperties" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

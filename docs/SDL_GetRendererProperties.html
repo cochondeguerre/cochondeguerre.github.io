@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_GetRendererProperties - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_GetRendererProperties</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_getrendererproperties">SDL_GetRendererProperties</h1>
+<p>Get the properties associated with a renderer.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_render.h">&lt;SDL3/SDL_render.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">SDL_PropertiesID SDL_GetRendererProperties(SDL_Renderer *renderer);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="SDL_Renderer.html">SDL_Renderer</a> *</td>
+<td><strong>renderer</strong></td>
+<td>the rendering context.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(<a href="SDL_PropertiesID.html">SDL_PropertiesID</a>) Returns a valid property ID on
+success or 0 on failure; call <a href="SDL_GetError.html">SDL_GetError</a>() for more
+information.</p>
+<h2 id="remarks">Remarks</h2>
+<p>The following read-only properties are provided by SDL:</p>
+<ul>
+<li><a href="SDL_PROP_RENDERER_NAME_STRING.html"><code>SDL_PROP_RENDERER_NAME_STRING</code></a>: the
+name of the rendering driver</li>
+<li><a href="SDL_PROP_RENDERER_WINDOW_POINTER.html"><code>SDL_PROP_RENDERER_WINDOW_POINTER</code></a>:
+the window where rendering is displayed, if any</li>
+<li><a href="SDL_PROP_RENDERER_SURFACE_POINTER.html"><code>SDL_PROP_RENDERER_SURFACE_POINTER</code></a>:
+the surface where rendering is displayed, if this is a software renderer
+without a window</li>
+<li><a href="SDL_PROP_RENDERER_VSYNC_NUMBER.html"><code>SDL_PROP_RENDERER_VSYNC_NUMBER</code></a>: the
+current vsync setting</li>
+<li><a href="SDL_PROP_RENDERER_MAX_TEXTURE_SIZE_NUMBER.html"><code>SDL_PROP_RENDERER_MAX_TEXTURE_SIZE_NUMBER</code></a>:
+the maximum texture width and height</li>
+<li><a href="SDL_PROP_RENDERER_TEXTURE_FORMATS_POINTER.html"><code>SDL_PROP_RENDERER_TEXTURE_FORMATS_POINTER</code></a>:
+a (const <a href="SDL_PixelFormat.html">SDL_PixelFormat</a> *) array of pixel formats,
+terminated with <a href="SDL_PIXELFORMAT_UNKNOWN.html">SDL_PIXELFORMAT_UNKNOWN</a>,
+representing the available texture formats for this renderer.</li>
+<li><a href="SDL_PROP_RENDERER_TEXTURE_WRAPPING_BOOLEAN.html"><code>SDL_PROP_RENDERER_TEXTURE_WRAPPING_BOOLEAN</code></a>:
+true if the renderer supports
+<a href="SDL_TEXTURE_ADDRESS_WRAP.html">SDL_TEXTURE_ADDRESS_WRAP</a> on non-power-of-two
+textures.</li>
+<li><a href="SDL_PROP_RENDERER_OUTPUT_COLORSPACE_NUMBER.html"><code>SDL_PROP_RENDERER_OUTPUT_COLORSPACE_NUMBER</code></a>:
+an <a href="SDL_Colorspace.html">SDL_Colorspace</a> value describing the colorspace for
+output to the display, defaults to
+<a href="SDL_COLORSPACE_SRGB.html">SDL_COLORSPACE_SRGB</a>.</li>
+<li><a href="SDL_PROP_RENDERER_HDR_ENABLED_BOOLEAN.html"><code>SDL_PROP_RENDERER_HDR_ENABLED_BOOLEAN</code></a>:
+true if the output colorspace is
+<a href="SDL_COLORSPACE_SRGB_LINEAR.html">SDL_COLORSPACE_SRGB_LINEAR</a> and the renderer
+is showing on a display with HDR enabled. This property can change
+dynamically when
+<a href="SDL_EVENT_WINDOW_HDR_STATE_CHANGED.html">SDL_EVENT_WINDOW_HDR_STATE_CHANGED</a>
+is sent.</li>
+<li><a href="SDL_PROP_RENDERER_SDR_WHITE_POINT_FLOAT.html"><code>SDL_PROP_RENDERER_SDR_WHITE_POINT_FLOAT</code></a>:
+the value of SDR white in the
+<a href="SDL_COLORSPACE_SRGB_LINEAR.html">SDL_COLORSPACE_SRGB_LINEAR</a> colorspace. When
+HDR is enabled, this value is automatically multiplied into the color
+scale. This property can change dynamically when
+<a href="SDL_EVENT_WINDOW_HDR_STATE_CHANGED.html">SDL_EVENT_WINDOW_HDR_STATE_CHANGED</a>
+is sent.</li>
+<li><a href="SDL_PROP_RENDERER_HDR_HEADROOM_FLOAT.html"><code>SDL_PROP_RENDERER_HDR_HEADROOM_FLOAT</code></a>:
+the additional high dynamic range that can be displayed, in terms of the
+SDR white point. When HDR is not enabled, this will be 1.0. This property
+can change dynamically when
+<a href="SDL_EVENT_WINDOW_HDR_STATE_CHANGED.html">SDL_EVENT_WINDOW_HDR_STATE_CHANGED</a>
+is sent.</li>
+</ul>
+<p>With the direct3d renderer:</p>
+<ul>
+<li><a href="SDL_PROP_RENDERER_D3D9_DEVICE_POINTER.html"><code>SDL_PROP_RENDERER_D3D9_DEVICE_POINTER</code></a>:
+the IDirect3DDevice9 associated with the renderer</li>
+</ul>
+<p>With the direct3d11 renderer:</p>
+<ul>
+<li><a href="SDL_PROP_RENDERER_D3D11_DEVICE_POINTER.html"><code>SDL_PROP_RENDERER_D3D11_DEVICE_POINTER</code></a>:
+the ID3D11Device associated with the renderer</li>
+<li><a href="SDL_PROP_RENDERER_D3D11_SWAPCHAIN_POINTER.html"><code>SDL_PROP_RENDERER_D3D11_SWAPCHAIN_POINTER</code></a>:
+the IDXGISwapChain1 associated with the renderer. This may change when
+the window is resized.</li>
+</ul>
+<p>With the direct3d12 renderer:</p>
+<ul>
+<li><a href="SDL_PROP_RENDERER_D3D12_DEVICE_POINTER.html"><code>SDL_PROP_RENDERER_D3D12_DEVICE_POINTER</code></a>:
+the ID3D12Device associated with the renderer</li>
+<li><a href="SDL_PROP_RENDERER_D3D12_SWAPCHAIN_POINTER.html"><code>SDL_PROP_RENDERER_D3D12_SWAPCHAIN_POINTER</code></a>:
+the IDXGISwapChain4 associated with the renderer.</li>
+<li><a href="SDL_PROP_RENDERER_D3D12_COMMAND_QUEUE_POINTER.html"><code>SDL_PROP_RENDERER_D3D12_COMMAND_QUEUE_POINTER</code></a>:
+the ID3D12CommandQueue associated with the renderer</li>
+</ul>
+<p>With the vulkan renderer:</p>
+<ul>
+<li><a href="SDL_PROP_RENDERER_VULKAN_INSTANCE_POINTER.html"><code>SDL_PROP_RENDERER_VULKAN_INSTANCE_POINTER</code></a>:
+the VkInstance associated with the renderer</li>
+<li><a href="SDL_PROP_RENDERER_VULKAN_SURFACE_NUMBER.html"><code>SDL_PROP_RENDERER_VULKAN_SURFACE_NUMBER</code></a>:
+the VkSurfaceKHR associated with the renderer</li>
+<li><a href="SDL_PROP_RENDERER_VULKAN_PHYSICAL_DEVICE_POINTER.html"><code>SDL_PROP_RENDERER_VULKAN_PHYSICAL_DEVICE_POINTER</code></a>:
+the VkPhysicalDevice associated with the renderer</li>
+<li><a href="SDL_PROP_RENDERER_VULKAN_DEVICE_POINTER.html"><code>SDL_PROP_RENDERER_VULKAN_DEVICE_POINTER</code></a>:
+the VkDevice associated with the renderer</li>
+<li><a href="SDL_PROP_RENDERER_VULKAN_GRAPHICS_QUEUE_FAMILY_INDEX_NUMBER.html"><code>SDL_PROP_RENDERER_VULKAN_GRAPHICS_QUEUE_FAMILY_INDEX_NUMBER</code></a>:
+the queue family index used for rendering</li>
+<li><a href="SDL_PROP_RENDERER_VULKAN_PRESENT_QUEUE_FAMILY_INDEX_NUMBER.html"><code>SDL_PROP_RENDERER_VULKAN_PRESENT_QUEUE_FAMILY_INDEX_NUMBER</code></a>:
+the queue family index used for presentation</li>
+<li><a href="SDL_PROP_RENDERER_VULKAN_SWAPCHAIN_IMAGE_COUNT_NUMBER.html"><code>SDL_PROP_RENDERER_VULKAN_SWAPCHAIN_IMAGE_COUNT_NUMBER</code></a>:
+the number of swapchain images, or potential frames in flight, used by
+the Vulkan renderer</li>
+</ul>
+<p>With the gpu renderer:</p>
+<ul>
+<li><a href="SDL_PROP_RENDERER_GPU_DEVICE_POINTER.html"><code>SDL_PROP_RENDERER_GPU_DEVICE_POINTER</code></a>:
+the <a href="SDL_GPUDevice.html">SDL_GPUDevice</a> associated with the renderer</li>
+</ul>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="code-examples">Code Examples</h2>
+<pre><code class="language-c">SDL_Renderer *renderer;
+SDL_PropertiesID props = SDL_GetRendererProperties(renderer);
+int max_texture_size = (int)SDL_GetNumberProperty(props, SDL_PROP_RENDERER_MAX_TEXTURE_SIZE_NUMBER, 0);
+</code></pre>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryRender.html">CategoryRender</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_GetRendererProperties" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

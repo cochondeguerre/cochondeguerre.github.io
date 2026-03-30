@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_ANALYZER_NORETURN - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_ANALYZER_NORETURN</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_analyzer_noreturn">SDL_ANALYZER_NORETURN</h1>
+<p>A macro to tag a function as never-returning (for analysis purposes).</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_begin_code.h">&lt;SDL3/SDL_begin_code.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">#define SDL_ANALYZER_NORETURN __attribute__((analyzer_noreturn))
+</code></pre>
+<h2 id="remarks">Remarks</h2>
+<p>This is almost identical to <a href="SDL_NORETURN.html">SDL_NORETURN</a>, except functions
+marked with this <em>can</em> actually return. The difference is that this isn't
+used for code generation, but rather static analyzers use this information
+to assume truths about program state and available code paths.
+Specifically, this tag is useful for writing an assertion mechanism.
+Indeed, <a href="SDL_assert.html">SDL_assert</a> uses this tag behind the scenes.
+Generally, apps that don't understand the specific use-case for this tag
+should avoid using it directly.</p>
+<p>On compilers without analyzer_noreturn support, this is defined to nothing.</p>
+<p>This symbol is used in SDL's headers, but apps and other libraries are
+welcome to use it for their own interfaces as well.</p>
+<h2 id="version">Version</h2>
+<p>This macro is available since SDL 3.2.0.</p>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIMacro.html">CategoryAPIMacro</a>, <a href="CategoryBeginCode.html">CategoryBeginCode</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_ANALYZER_NORETURN" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

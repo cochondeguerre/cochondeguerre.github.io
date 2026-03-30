@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_bsearch_r - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_bsearch_r</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_bsearch_r">SDL_bsearch_r</h1>
+<p>Perform a binary search on a previously sorted array, passing a userdata pointer to the compare function.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_stdinc.h">&lt;SDL3/SDL_stdinc.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">void * SDL_bsearch_r(const void *key, const void *base, size_t nmemb, size_t size, SDL_CompareCallback_r compare, void *userdata);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>const void *</td>
+<td><strong>key</strong></td>
+<td>a pointer to a key equal to the element being searched for.</td>
+</tr>
+<tr>
+<td>const void *</td>
+<td><strong>base</strong></td>
+<td>a pointer to the start of the array.</td>
+</tr>
+<tr>
+<td>size_t</td>
+<td><strong>nmemb</strong></td>
+<td>the number of elements in the array.</td>
+</tr>
+<tr>
+<td>size_t</td>
+<td><strong>size</strong></td>
+<td>the size of the elements in the array.</td>
+</tr>
+<tr>
+<td><a href="SDL_CompareCallback_r.html">SDL_CompareCallback_r</a></td>
+<td><strong>compare</strong></td>
+<td>a function used to compare elements in the array.</td>
+</tr>
+<tr>
+<td>void *</td>
+<td><strong>userdata</strong></td>
+<td>a pointer to pass to the compare function.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="return-value">Return Value</h2>
+<p>(void *) Returns a pointer to the matching element in the array, or NULL if
+not found.</p>
+<h2 id="remarks">Remarks</h2>
+<p>For example:</p>
+<pre><code class="language-c">typedef enum {
+    sort_increasing,
+    sort_decreasing,
+} sort_method;
+
+typedef struct {
+    int key;
+    const char *string;
+} data;
+
+int SDLCALL compare(const void *userdata, const void *a, const void *b)
+{
+    sort_method method = (sort_method)(uintptr_t)userdata;
+    const data *A = (const data *)a;
+    const data *B = (const data *)b;
+
+    if (A-&gt;key &lt; B-&gt;key) {
+        return (method == sort_increasing) ? -1 : 1;
+    } else if (B-&gt;key &lt; A-&gt;key) {
+        return (method == sort_increasing) ? 1 : -1;
+    } else {
+        return 0;
+    }
+}
+
+data values[] = {
+    { 1, &quot;first&quot; }, { 2, &quot;second&quot; }, { 3, &quot;third&quot; }
+};
+data key = { 2, NULL };
+
+data *result = SDL_bsearch_r(&amp;key, values, SDL_arraysize(values), sizeof(values[0]), compare, (const void *)(uintptr_t)sort_increasing);
+</code></pre>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>It is safe to call this function from any thread.</p>
+<h2 id="version">Version</h2>
+<p>This function is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_bsearch.html">SDL_bsearch</a></li>
+<li><a href="SDL_qsort_r.html">SDL_qsort_r</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIFunction.html">CategoryAPIFunction</a>, <a href="CategoryStdinc.html">CategoryStdinc</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_bsearch_r" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

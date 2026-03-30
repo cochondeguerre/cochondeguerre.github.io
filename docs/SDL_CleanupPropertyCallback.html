@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SDL_CleanupPropertyCallback - SDL3 Docs</title>
+    <link rel="stylesheet" href="/css/styles.css"> </head>
+<body>
+    <main class="doc-page">
+        <div class="container">
+            <div class="doc-breadcrumb">
+                <a href="/">← Recherche</a>
+                <span class="sep">/</span>
+                <span class="current">SDL_CleanupPropertyCallback</span>
+            </div>
+            <article class="doc-article">
+                <h1 id="sdl_cleanuppropertycallback">SDL_CleanupPropertyCallback</h1>
+<p>A callback used to free resources when a property is deleted.</p>
+<h2 id="header-file">Header File</h2>
+<p>Defined in <a href="https://github.com/libsdl-org/SDL/blob/main/include/SDL3/SDL_properties.h">&lt;SDL3/SDL_properties.h&gt;</a></p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-c">typedef void (SDLCALL *SDL_CleanupPropertyCallback)(void *userdata, void *value);
+</code></pre>
+<h2 id="function-parameters">Function Parameters</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>userdata</strong></td>
+<td>an app-defined pointer passed to the callback.</td>
+</tr>
+<tr>
+<td><strong>value</strong></td>
+<td>the pointer assigned to the property to clean up.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="remarks">Remarks</h2>
+<p>This should release any resources associated with <code>value</code> that are no
+longer needed.</p>
+<p>This callback is set per-property. Different properties in the same group
+can have different cleanup callbacks.</p>
+<p>This callback will be called <em>during</em>
+<a href="SDL_SetPointerPropertyWithCleanup.html">SDL_SetPointerPropertyWithCleanup</a> if
+the function fails for any reason.</p>
+<h2 id="thread-safety">Thread Safety</h2>
+<p>This callback may fire without any locks held; if this is a concern, the
+app should provide its own locking.</p>
+<h2 id="version">Version</h2>
+<p>This datatype is available since SDL 3.2.0.</p>
+<h2 id="see-also">See Also</h2>
+<ul>
+<li><a href="SDL_SetPointerPropertyWithCleanup.html">SDL_SetPointerPropertyWithCleanup</a></li>
+</ul>
+<hr />
+<p><a href="CategoryAPI.html">CategoryAPI</a>, <a href="CategoryAPIDatatype.html">CategoryAPIDatatype</a>, <a href="CategoryProperties.html">CategoryProperties</a></p>
+
+            </article>
+            <div class="doc-footer">
+                <a href="https://wiki.libsdl.org/SDL3/SDL_CleanupPropertyCallback" target="_blank" rel="noopener" class="btn">
+                    Voir sur le Wiki officiel ↗
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
