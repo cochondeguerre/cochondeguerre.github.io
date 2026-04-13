@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDL3 Doc Search</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app">
+
+        <!-- Header -->
+        <header class="header">
+            <a class="header__brand" data-bind="click: goHome" href="#">
+                <div class="header__logo">S3</div>
+                <h1 class="header__title">SDL3 <span>Doc Search</span></h1>
+            </a>
+            <div class="header__actions">
+                <a class="header__link" href="https://wiki.libsdl.org/SDL3" target="_blank" rel="noopener">Wiki officiel ↗</a>
+                <button class="theme-toggle" data-bind="click: toggleTheme" title="Changer de thème">
+                    <span data-bind="text: isDark() ? '☀️' : '🌙'"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Vue recherche -->
+        <div data-bind="visible: currentView() === 'search'">
+
+            <div class="search">
+                <span class="search__icon">⌕</span>
+                <input class="search__input" type="text"
+                       placeholder="Rechercher une fonction, struct, enum, macro..."
+                       data-bind="textInput: query, hasFocus: searchFocused"
+                       id="searchInput">
+                <span class="search__shortcut" data-bind="visible: !searchFocused()">/</span>
+            </div>
+
+            <div class="filters">
+                <button class="filters__btn"
+                        data-bind="click: function() { setFilter('all') },
+                                   css: { 'filters__btn--active': activeFilter() === 'all' }">Tout</button>
+                <button class="filters__btn"
+                        data-bind="click: function() { setFilter('function') },
+                                   css: { 'filters__btn--active': activeFilter() === 'function' }">Functions</button>
+                <button class="filters__btn"
+                        data-bind="click: function() { setFilter('struct') },
+                                   css: { 'filters__btn--active': activeFilter() === 'struct' }">Structs</button>
+                <button class="filters__btn"
+                        data-bind="click: function() { setFilter('enum') },
+                                   css: { 'filters__btn--active': activeFilter() === 'enum' }">Enums</button>
+                <button class="filters__btn"
+                        data-bind="click: function() { setFilter('enumerators') },
+                                   css: { 'filters__btn--active': activeFilter() === 'enumerators' }">Enumerators</button>
+                <button class="filters__btn"
+                        data-bind="click: function() { setFilter('macro') },
+                                   css: { 'filters__btn--active': activeFilter() === 'macro' }">Macros</button>
+                <button class="filters__btn"
+                        data-bind="click: function() { setFilter('datatype') },
+                                   css: { 'filters__btn--active': activeFilter() === 'datatype' }">Datatypes</button>
+                <span class="filters__count"
+                      data-bind="text: filteredEntries().length + ' / ' + entries().length + ' entrées'"></span>
+            </div>
+
+            <div class="loading" data-bind="visible: isLoading()">
+                <div class="loading__spinner"></div>
+                <div class="loading__text">Chargement de la base de données…</div>
+            </div>
+
+            <div class="results" data-bind="visible: !isLoading(), foreach: displayedEntries">
+                <div class="entry"
+                     data-bind="click: $parent.selectEntry,
+                                css: { 'entry--selected': $parent.selectedEntry() === $data }">
+                    <div class="entry__top">
+                        <span class="entry__name" data-bind="html: $parent.highlightName(name)"></span>
+                        <span class="entry__tag"
+                              data-bind="text: type, css: 'entry__tag--' + type"></span>
+                        <span class="entry__header" data-bind="text: header"></span>
+                    </div>
+                    <div class="entry__brief" data-bind="text: brief"></div>
+                </div>
+            </div>
+
+            <div class="results__empty"
+                 data-bind="visible: !isLoading() && displayedEntries().length === 0 && query().length > 0">
+                <div class="results__empty-icon">∅</div>
+                Aucun résultat pour « <span data-bind="text: query"></span> »
+            </div>
+        </div>
+
+        <!-- Detail panel (bottom sheet) -->
+        <div class="detail" data-bind="css: { 'detail--visible': selectedEntry() !== null }">
+            <div class="detail__inner" data-bind="with: selectedEntry">
+                <div class="detail__top">
+                    <span class="detail__name" data-bind="text: name"></span>
+                    <div class="detail__actions">
+                        <button class="detail__btn" data-bind="click: $parent.openPage">Wiki ↗</button>
+                        <button class="detail__close" data-bind="click: $parent.closeDetail">✕</button>
+                    </div>
+                </div>
+                <div class="detail__brief" data-bind="text: brief"></div>
+                <pre class="detail__syntax" data-bind="text: syntax, visible: syntax"></pre>
+                <div class="detail__meta">
+                    <span class="detail__meta-item" data-bind="text: header, visible: header"></span>
+                    <span class="detail__meta-item" data-bind="text: '· ' + category, visible: category"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vue page (SPA wiki) -->
+        <div data-bind="visible: currentView() === 'page'" class="page">
+            <div class="page__nav">
+                <button class="page__back" data-bind="click: goHome">← Retour</button>
+                <span class="page__module" data-bind="text: pageModule"></span>
+                <a class="page__wiki-link"
+                   data-bind="attr: { href: pageWikiUrl }"
+                   target="_blank" rel="noopener">Wiki officiel ↗</a>
+            </div>
+
+            <div class="page__loading" data-bind="visible: pageLoading()">
+                <div class="loading__spinner" style="margin: 0 auto 16px;"></div>
+                Chargement…
+            </div>
+
+            <div class="page__error" data-bind="visible: pageError(), text: pageError()"></div>
+            <div class="markdown" data-bind="html: pageHtml()"></div>
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
